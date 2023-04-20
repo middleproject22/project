@@ -21,7 +21,7 @@ public class DBConnect {
 			Class.forName("oracle.jdbc.OracleDriver");
 			
 			//세션수립
-			return DriverManager.getConnection(url, "hr", "hr");
+			return DriverManager.getConnection(url, "project", "project");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
