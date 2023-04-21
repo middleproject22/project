@@ -82,7 +82,7 @@ body ::before {
 	border: none;
 	border-bottom: 1px solid rgb(191,217,112);
 	font-size: 18px;
-	color: #fff;
+	color: black;
 	outline: none;
 }
 
@@ -143,5 +143,8 @@ body ::before {
 	left: 300px;
 	justify-content: end;
 	z-index: 2;
+}
+.h6{
+	font-size: 15px;
 }
 
