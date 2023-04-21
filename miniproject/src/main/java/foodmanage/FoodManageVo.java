@@ -5,6 +5,7 @@ import java.sql.Date;
 public class FoodManageVo {
 	
 	
+
 	private int fm_num;
 	private String id;
 	private String ingredient;
@@ -14,6 +15,7 @@ public class FoodManageVo {
 	private Date remain; 
 	private int amount;
 	private String memo;
+
 	
 	public FoodManageVo () {
 		
