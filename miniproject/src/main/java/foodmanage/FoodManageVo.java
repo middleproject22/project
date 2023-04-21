@@ -5,15 +5,15 @@ import java.sql.Date;
 public class FoodManageVo {
 	
 	
-	private int fm_num ;
-	private String id ;
+	private int fm_num;
+	private String id;
 	private String ingredient;
 	private int cat_num; 
-	private Date today ;
-	private Date dday ;
+	private Date today;
+	private Date dday;
 	private Date remain; 
-	private int amount ;
-	private String memo ;
+	private int amount;
+	private String memo;
 	
 	public FoodManageVo () {
 		
