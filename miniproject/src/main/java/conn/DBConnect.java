@@ -19,7 +19,7 @@ public class DBConnect {
 		try {
 			//드라이버 로드
 			Class.forName("oracle.jdbc.OracleDriver");
-			
+				
 			//세션수립
 			return DriverManager.getConnection(url, "project", "project");
 		} catch (ClassNotFoundException e) {
