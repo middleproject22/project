@@ -32,5 +32,6 @@ public class FoodManageService {
 	public ArrayList<FoodManageVo> getByName(String name) {
 		return dao.selectByName(name);
 	}
+}
 	
 	
