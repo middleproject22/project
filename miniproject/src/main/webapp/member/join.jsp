@@ -18,12 +18,12 @@
 		//비동기 요청 응답이 왔을때 자동 실행될 핸들러 등록
 		xhttp.onload = function() {
 			let val = xhttp.responseText;
-			let html = '<h5 style="color : ';
+			let html = '<p class="h6"' ;
 			let obj = JSON.parse(val);
 			if (obj.flag) {
-				html += 'blue">available </5>'
+				html += 'style="color : blue">available </p>'
 			} else {
-				html += 'red">already in use</h5>'
+				html += 'style="color : red">already in use</p>'
 			}
 			let res = document.getElementById("res");
 			res.innerHTML = html;
@@ -31,7 +31,7 @@
 		}
 
 		let param = "?id=" + f.id.value;
-		xhttp.open("GET", "${pageContext.request.contextPath}/member/checkid"
+		xhttp.open("GET", "${pageContext.request.contextPath}/member/checkid.do"
 				+ param);
 		xhttp.send();
 	}
@@ -53,18 +53,13 @@
 	<nav class="navbar navbar-expand-lg py-3 sicky-top bgc shadow-lg">
 		<div class="container">
 			<div class="col col-md-3 text-start">
-				<span class="text_margine"> <a href="#">나의 냉장고</a></span> <span
-					class="text_margine"><a href="#">레시피</a></span> <span
-					class="text_margine"><a href="#">게시판</a></span>
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="index.html"><img class="logo" src="../imgs/logo3.png"></a>
+					<a href="${pageContext.request.contextPath }/index.jsp"><img class="logo" src="../imgs/logo3.png"></a>
 				</nav>
 			</div>
 			<div class="col col-md-3 text-end">
-				<span class="text_margine"><a href="#">로그인</a></span> <span
-					class="text_margine"><a href="#">회원가입</a></span>
 			</div>
 		</div>
 	</nav>
@@ -72,7 +67,7 @@
 		<h1>JOIN</h1>
 	</div>
 	<section class=loginform>
-		<form name="f" action="${pageContext.request.contextPath}/member/join"
+		<form name="f" action="${pageContext.request.contextPath}/member/join.do"
 			method="post">
 			<div class=int-area>
 				<input type="text" name="id" id="id" required autocomplete="off"

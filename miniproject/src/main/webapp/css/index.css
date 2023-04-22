@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
 .bgc{
-    background-color: rgba(191,217,112,0.7)
+    background-color: rgb(191,217,112)
     
-}   
+}  
+
 
 a{
     text-decoration: none;
@@ -48,3 +49,7 @@ a{
     color: #444444;
   }
 
+.img-circle{
+	width: 30px;
+	height: p30px
+}

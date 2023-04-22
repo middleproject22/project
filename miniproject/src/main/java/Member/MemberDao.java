@@ -32,6 +32,43 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+
+	}
+	
+	
+	public MemberVo SelectByPnum(String pnum) {
+		MemberVo vo = null;
+		Connection conn = dbconn.conn();
+		String sql = "select * from member where phonenum =?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pnum);
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				String id1 = rs.getString(1);
+				String pwd = rs.getString(2);
+				String name = rs.getString(3);
+				String email = rs.getString(4);
+				String phonenum = rs.getString(5);
+				String imgpath = rs.getString(6);
+				int managenum = rs.getInt(7);
+
+				vo = new MemberVo(id1, pwd, name, email, phonenum, imgpath, managenum);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			try {
 				conn.close();
@@ -40,11 +77,12 @@ public class MemberDao {
 				e.printStackTrace();
 			}
 		}
+		return vo;
 
 	}
-
+	
 	public MemberVo SelectById(String id) {
-		MemberVo vo = new MemberVo();
+		MemberVo vo = null;
 		Connection conn = dbconn.conn();
 		String sql = "select * from member where id =?";
 		try {

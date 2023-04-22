@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.text_margine{
+    padding: 5px;
+}
+.bgc{
+	background-color: rgb(191,217,112);
+}
+.logo{
+    width: 180px;
+}
+
+body {
+	
+	text-decoration : none;
+	list-style: none;
+	height: 100vh;
+	background-size: cover;
+	text-decoration: none;
+}
+
+body ::before {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, .7);
+}
+
+.main{
+	display: flex;
+	justify-content: space-evenly; 
+}
+
+.find-id {
+	justify-content: flex-start; 
+	position : relative;
+	margin-top:70px;
+	margin-right:70px;
+	z-index: 2;
+	position: relative;
+}
+
+.find-id>h1 {
+	font-size: 32px;
+	color:  rgb(191,217,112);
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+.find-pwd {
+	display: inline;
+	justify-content: flex-end;
+	margin-top: 70px;
+	margin-left:70px;
+	position: relative;
+	z-index: 2;
+}
+
+.find-pwd>h1 {
+	font-size: 32px;
+	color:  rgb(191,217,112);
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+.int-area {
+	width: 400px;
+	position: relative;
+	margin-top: 20px;
+}
+
+.int-area:first-child {
+	margin-top: 0;
+}
+
+.int-area>input {
+	width: 100%;
+	padding: 20px 10px 10px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #999;
+	font-size: 18px;
+	color: black;
+	outline: none;
+}
+
+.int-area>label {
+	position: absolute;
+	left: 10px;
+	top: 15px;
+	font-size: 18px;
+	color:  rgb(191,217,112);
+	transition: all .5s ease;
+}
+
+.int-area input:focus+label, .int-area input:valid+label {
+	top: -2px;
+	font-size: 13px;
+	color: #166cea;
+}
+
+.btn-area {
+	margin-top: 30px;
+}
+
+.btn-area button {
+	width: 100%;
+	height: 50px;
+	background: rgb(191,217,112);
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 25px;
+	cursor: pointer;
+}
