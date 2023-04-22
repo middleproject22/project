@@ -25,5 +25,12 @@ public class FoodManageService {
 	public ArrayList<FoodManageVo> getAll() {
 		return dao.selectAll();
 	}
-	
+
+	public ArrayList<FoodManageVo> getByCategories(int num) {
+		return dao.selectByCategoies(num);
+	}
+	public ArrayList<FoodManageVo> getByName(String name) {
+		return dao.selectByName(name);
+	}
 }
+	

@@ -1,19 +1,7 @@
-<<<<<<< HEAD
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-<h3>�Խ���</h3>
-	<a href="${pageContext.request.contextPath }/freeboard/list.do">�۸��</a><br /> 
-</body>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -28,7 +16,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/miniproject/css/index.css">
     <title>Document</title>
 
 </head>
@@ -37,18 +25,24 @@
     <nav class="navbar navbar-expand-lg py-3 sicky-top bgc shadow-lg">
         <div class="container">
             <div class="col col-md-3 text-start">
-                <sapn class="text_margine"><a href="#">나의 냉장고</a></sapn>
+                <span class="text_margine"><a href="#">나의 냉장고</a></span>
                 <span class="text_margine"><a href="#">레시피</a></span>
                 <span class="text_margine"><a href="#">게시판</a></span>
             </div>
             <div class="col col-md-6 text-center">
                 <nav class="navbar-brand">
-                    <a href="index.html"><img class="logo" src="./imgs/logo3.png"></a>
+                    <a href="${pageContext.request.contextPath }/index.jsp"><img class="logo" src="/miniproject/imgs/logo3.png"></a>
                 </nav>
             </div>
             <div class="col col-md-3 text-end">
-               <span class="text_margine"><a href="#">로그인</a></span>
-                <span class="text_margine"><a href="#">회원가입</a></span>
+            <c:if test="${empty sessionScope.loginId }">
+               <span class="text_margine"><a href="${pageContext.request.contextPath }/member/login.do">로그인</a></span>
+                <span class="text_margine"><a href="${pageContext.request.contextPath }/member/join.do">회원가입</a></span>
+			</c:if>	 
+			<c:if test="${not empty sessionScope.loginId }">
+				<a href="${pageContext.request.contextPath }/member/detail.do"><img src ="/miniproject/imgs/user.png" class= "img-circle"></a>
+				<span class="text_margine"><a href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
+			</c:if>          
             </div>
         </div>
     </nav>
@@ -75,7 +69,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="./js/index.js"></script>
 
 
     <script>
@@ -89,12 +82,14 @@
         })
 
     </script>
-    <script>
-        let pre = document.querySelector('button.slick-prev.slick-arrow')
-        let html ='<i class="fa-sharp fa-solid fa-arrow-left"></i>'
-        pre.innerHTML= html;
-    </script>
+   <script type="text/javascript">
+window.onload = function() {
+	if ('${ck}' == "ck") {
+		alert('${msg}')
+	}
+}
+</script>
 </body>
 
->>>>>>> refs/heads/master
+
 </html>

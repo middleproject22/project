@@ -98,7 +98,6 @@ public class DispatcherServlet extends HttpServlet {
 		// 요청을 처리한 뒤 뷰 페이지 이동
 		String url = request.getServletPath(); // 요청 url 반환,
 		String view = null;
-
 		Handler handler = map.get(url);
 		// url (key), handler (key에 따른 value)
 
