@@ -14,31 +14,12 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 	<script>
-	window.onload function (){
-	
-		//1. gettoday= sysdate
-		//2. getdday= 유통기한
-		//3. getreamin= 남은 날 (sysdate-expiredate) 새로고침마다 갱신
+	window.onload = function (){
 	
 		const xhttp = new XMLHttpRequest();
-		xhttp.onload = function(){
-		//받은 응답을 가지고 처리 코드 작성
-		 var today = $('#startDate').val();
-         var endDate = $('#endDate').val();
-         //-을 구분자로 연,월,일로 잘라내어 배열로 반환
-         var startArray = startDate.split('-');
-         var endArray = endDate.split('-');   
-         //배열에 담겨있는 연,월,일을 사용해서 Date 객체 생성
-         var start_date = new Date(startArray[0], startArray[1], startArray[2]);
-         var end_date = new Date(endArray[0], endArray[1], endArray[2]);
-              //날짜를 숫자형태의 날짜 정보로 변환하여 비교한다.
-         if(start_date.getTime() > end_date.getTime()) {
-             alert("종료날짜보다 시작날짜가 작아야합니다.");
-             return false;
-		
-		}
-		xhttp.open(”GET”, “ajax_info.txt”);
-	
+		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/updatetoday.do);
+		xhttp.send();
+	   
 	}
 	</script>
 </head>
@@ -47,34 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-    <div class="row">
-        <div class="col">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            =
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <h4>나의 레시피</h4>
-                            식품 등록<br />
-                            식품 전체리스트<br />
-                            냉장고를 부탁해 (레시피)<br />
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="p-4"></div>
-
-
+    
     <h2> ${sessionScope.loginId} 님의 냉장고</h2>
 
     <div class="p-4"></div>
