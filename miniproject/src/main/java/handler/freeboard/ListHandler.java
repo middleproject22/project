@@ -18,8 +18,8 @@ public class ListHandler implements Handler {
 		FreeBoardService service = new FreeBoardService();
 		ArrayList<FreeBoardVo> list = service.getAll();
 		request.setAttribute("list", list);
-		request.setAttribute("view", "/freeboard/list.jsp");
-		return "/freeboard/list.jsp";
+		request.setAttribute("view", "/freeboard/fb_list.jsp");
+		return "/freeboard/fb_list.jsp";
 	}
 
 }

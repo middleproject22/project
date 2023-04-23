@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.fb_title {
+	margin-top: 0px;
+	list-style: none;
+	font-size: 32px;
+	color: rgb(191, 217, 112);
+	text-align: left;
+	margin-bottom: 60px;
+}
+
+.tableBox {
+	padding-right: 50px;
+	padding-left: 50px;
+}
