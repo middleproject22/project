@@ -25,7 +25,7 @@ public class FoodListDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class FoodListDao {
 
 			while (rs.next()) {
 				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -90,7 +90,7 @@ public class FoodListDao {
 	// 남은 날 확인
 	public void checkDate() {
 		Connection conn = dbconn.conn();
-		String sql = "update food_manage set dday = datediff(expireday,today)";
+		String sql = "update food_manage set dday =round((expiredate-today),0)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -120,7 +120,7 @@ public class FoodListDao {
 
 			while (rs.next()) {
 				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -135,4 +135,31 @@ public class FoodListDao {
 		return list;
 
 	}
+	
+	//id별 리스트 뽑기
+	public ArrayList<FoodManageVo> selectById(String id) {
+		Connection conn = dbconn.conn();
+		String sql = "select * from food_manage where id = ?";
+		ArrayList<FoodManageVo> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	} 
 }
