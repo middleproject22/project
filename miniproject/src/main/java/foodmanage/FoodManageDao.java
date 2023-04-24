@@ -26,7 +26,7 @@ public class FoodManageDao {
 			pstmt.setInt(3, vo.getCat_num());
 			pstmt.setDate(4, vo.getToday());
 			pstmt.setDate(5, vo.getExpiredate());
-			pstmt.setDate(6, vo.getDday());
+			pstmt.setInt(6, vo.getDday());
 			pstmt.setInt(7, vo.getAmount());
 			pstmt.setString(8, vo.getMemo());
 
@@ -93,7 +93,7 @@ public class FoodManageDao {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				vo = new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
 			}
 
 		} catch (SQLException e) {
@@ -117,7 +117,7 @@ public class FoodManageDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -143,7 +143,7 @@ public class FoodManageDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -172,7 +172,7 @@ public class FoodManageDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -199,7 +199,7 @@ public class FoodManageDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -226,7 +226,7 @@ public class FoodManageDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
