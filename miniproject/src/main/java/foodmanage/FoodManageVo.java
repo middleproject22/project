@@ -15,12 +15,12 @@ public class FoodManageVo {
 	private Date dday; 
 	private int amount;
 	private String memo;
-	
-	
+				
+				
 	public FoodManageVo () {
-		
+					
 	}
-
+					
 
 	public FoodManageVo(int fm_num, String id, String ingredient, int cat_num, Date today, Date expiredate, Date dday,
 			int amount, String memo) {
