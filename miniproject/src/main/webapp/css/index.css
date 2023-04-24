@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
 .bgc{
-    background-color: rgb(191,217,112)
-    
+    background-color: #00A652    
 }  
 
 
@@ -17,15 +16,29 @@ a{
 }
 
 .logo{
-    width: 180px;
+    width: 227px;
 }
 
 .text_margine{
     padding: 5px;
 }
 
-.text_margine>a{
+.dropdown>h5>a{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+    color: #fff;
+}
+.dropdown>h5>a:hover{
+    color: yellow;
+}
+
+.text_flex{
+    display: flex;
+    justify-content: end;
+}
+h5>.text_margine>a{
     font-size: 20px;
+    color: #fff;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 .slick-next.slick-arrow{
