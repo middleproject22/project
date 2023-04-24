@@ -25,8 +25,8 @@ public class FoodManageDao {
 			pstmt.setString(2, vo.getIngredient());
 			pstmt.setInt(3, vo.getCat_num());
 			pstmt.setDate(4, vo.getToday());
-			pstmt.setDate(5, vo.getDday());
-			pstmt.setDate(6, vo.getRemain());
+			pstmt.setDate(5, vo.getExpiredate());
+			pstmt.setDate(6, vo.getDday());
 			pstmt.setInt(7, vo.getAmount());
 			pstmt.setString(8, vo.getMemo());
 
@@ -45,12 +45,11 @@ public class FoodManageDao {
 
 	public void update(FoodManageVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "update food_manage set dday =?, amount =? where fm_num = ?";
+		String sql = "update food_manage set amount =? where fm_num = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setDate(1, vo.getDday());
-			pstmt.setInt(2, vo.getAmount());
-			pstmt.setInt(3, vo.getCat_num());
+			pstmt.setInt(1, vo.getAmount());
+			pstmt.setInt(2, vo.getCat_num());
 
 			int num = pstmt.executeUpdate();
 			System.out.println(num + "줄이 수정되었습니다.");
@@ -111,7 +110,7 @@ public class FoodManageDao {
 
 	public ArrayList<FoodManageVo> selectAll() {
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage order by remain";
+		String sql = "select * from food_manage";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -135,20 +134,12 @@ public class FoodManageDao {
 
 	public ArrayList<FoodManageVo> selectByCategoies(int num) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from f.food_manage c.categories where f.cat_num=c.cat_num and cat_num = ? order by remain";
+		String sql = "select * from f.food_manage c.categories where f.cat_num=c.cat_num and cat_num = ? order by dday";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
+
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-		}
-		}
-
-	public ArrayList<FoodManageVo> selectAll() {
-		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage";
-		ArrayList<FoodManageVo> list = new ArrayList<>();
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
@@ -166,6 +157,8 @@ public class FoodManageDao {
 		}
 		return list;
 	}
+		
+	
 
 	public ArrayList<FoodManageVo> selectByName(String name) {
 
@@ -194,4 +187,58 @@ public class FoodManageDao {
 		return list;
 	}
 
+	public ArrayList<FoodManageVo> selectById(String id) {
+
+		Connection conn = dbconn.conn();
+		String sql = "select * from food_manage where id = ? ";
+		ArrayList<FoodManageVo> list = new ArrayList<>();
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
+						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public ArrayList<FoodManageVo> selectIngredient(int num) {
+		Connection conn = dbconn.conn();
+		String sql = "select f.ingredient from f.food_manage c.categories where f.cat_num=c.cat_num and cat_num = ? order by dday ";
+		ArrayList<FoodManageVo> list = new ArrayList<>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
+						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
 }
