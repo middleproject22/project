@@ -16,11 +16,14 @@
 	<script>
 	
 	//sysdate 갱신
-	window.onload = function (){
-		const xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/updatetoday.do);
-		xhttp.send();
-	}
+// 	window.onload = function (){
+// 		const xhttp = new XMLHttpRequest();
+// 		xhttp.onload=function(){
+// 			alert('adf');
+// 		}
+// 		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/updatetoday.do");
+// 		xhttp.send();
+// 	}
 	
 	function getByCategories(){
 		$('#btn').click(function(){
@@ -51,33 +54,35 @@
                     <input class="form-check-input me-1" type="checkbox">
                 </li>
             </div>
-            <div class="col">
+            <div class="col-2">
                 <select name="categories" onchange="window.open(value,'_self');" >
  					 <option>카테고리</option>
- 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=1">육류</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=1">육류,어패류, 달걀, 콩류</option>
  					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=3">과일류</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=4">유제품류</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=2">곡류</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=5">채소류</option>
+					<option value="${pageContext.request.contextPath}/foodlist/mylist.do?id=test">전체보기</option>
+					
 				</select>
             </div>
             <div class="col-2">
-                <h6>이름</h6>
+                <h4>이름</h4>
             </div>
             <div class="col-2">
-                <h6>유통기한</h6>
+                <h4>유통기한</h4>
+            </div>
+            <div class="col">
+                <h4>남은 날</h4>
+            </div>
+            <div class="col">
+                <h4>남은 양</h4>
             </div>
             <div class="col-2">
-                <h6>남은 날</h6>
+                <h4>영양소(100g)</h4>
             </div>
             <div class="col">
-                <h6>남은 양</h6>
-            </div>
-            <div class="col">
-                <h6>영양소(100g)</h6>
-            </div>
-            <div class="col">
-                <h6>삭제</h6>
+                <h4>삭제</h4>
             </div>
         </div>
     </div>
@@ -93,7 +98,21 @@
                     </li>
                 </div>
                 <div class="col-2">
-					<h6>${vo.cat_num }</h6>               
+	                <c:if test="${vo.cat_num ==1}" >
+						육류,어패류, 달걀, 콩류
+					</c:if>    
+					 <c:if test="${vo.cat_num ==2}" >
+						과일류
+					</c:if> 
+					 <c:if test="${vo.cat_num ==3}" >
+						유제품류
+					</c:if> 
+					 <c:if test="${vo.cat_num ==4}" >
+						곡류
+					</c:if> 
+					 <c:if test="${vo.cat_num ==5}" >
+						채소류
+					</c:if>       
                 </div>
                 <div class="col-2">
                     <h6>${vo.ingredient }</h6>
@@ -102,17 +121,26 @@
                     <h6>${vo.expiredate }</h6>
                 </div>
                 <!-- 남은 날짜 (remain) -->
-                <div class="col-2" id="">
+                <div class="col" id="">
                     <h6>${vo.dday }</h6>
                 </div>
                 <div class="col">
+                <!--  vo.amount 일때 기본값으로 보여줌. 근데 바꾸면 저장되도록. 근데 db값이 디폴트되도록 -->
                     <h6>${vo.amount }</h6>
+                    <select name="categories" onchange="window.open(value,'_self');" >
+ 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?num=${vo.fm_num }">0%</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=25">25%</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=50">50%</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=75">75%</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=100">100%</option>
+					
+					</select>
                 </div>
-                <div class="col">
+                <div class="col-2">
                     <h6>${vo.ingredient }</h6>
                 </div>
                 <div class="col">
-                    <input type="button" value="삭제" onclick="">
+                    <input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/foodlist/updateamount.do?num=${vo.fm_num }'">
                 </div>
             </div>
         </div>
