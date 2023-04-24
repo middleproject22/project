@@ -1,4 +1,4 @@
-package handler.ingredient;
+package handler.foodlist;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class MyListHandler implements Handler {
 		FoodManageService service = new FoodManageService();
 		ArrayList<FoodManageVo> list = service.getAll();
 		request.setAttribute("list", list);
-		request.setAttribute("view", "/ingredientList/mylist.jsp");		
+		request.setAttribute("view", "/foodlist/updatetoday.do");		
 		return null;
 	}
 

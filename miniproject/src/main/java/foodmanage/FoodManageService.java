@@ -10,8 +10,6 @@ public class FoodManageService {
 		dao = new FoodManageDao();
 	}
 	
-	
-	
 	public void addFood(FoodManageVo vo) {
 		dao.insert(vo);
 	}

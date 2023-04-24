@@ -17,6 +17,8 @@ window.onload = function(){
 		alert("일치하지 않는 정보");
 	}else if('${a}'==2){
 		window.open('${pageContext.request.contextPath}/member/result.jsp?id="${id}"','result','width=400px,height=300px');
+	}else if ('${a}'==3){
+		window.open('${pageContext.request.contextPath}/member/result.jsp?pwd="${pwd}"','result','width=400px,height=300px');
 	}
 	
 }
