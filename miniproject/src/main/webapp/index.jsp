@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -27,7 +26,7 @@
             <div class="col col-md-3 text-start">
                 <span class="text_margine"><a href="#">나의 냉장고</a></span>
                 <span class="text_margine"><a href="#">레시피</a></span>
-                <span class="text_margine"><a href="#">게시판</a></span>
+                <span class="text_margine"><a href="${pageContext.request.contextPath }/freeboard/fb-list.do">게시판</a></span>
             </div>
             <div class="col col-md-6 text-center">
                 <nav class="navbar-brand">

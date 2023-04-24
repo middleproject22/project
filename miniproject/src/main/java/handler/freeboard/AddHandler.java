@@ -18,7 +18,6 @@ public class AddHandler implements Handler {
 			request.setAttribute("view", "/freeboard/add.jsp");
 			view = "/freeboard/add.jsp";
 		} else {
-			response.setCharacterEncoding("utf-8");
 			String id = request.getParameter("id");
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
@@ -28,6 +27,8 @@ public class AddHandler implements Handler {
 			service.addFreeBoard(new FreeBoardVo(0, id, null, title, content, 0, 0, 0));
 			view = "redirect:/detail.jsp";
 		}
+		  response.setCharacterEncoding("UTF-8"); // response의 인코딩 설정
+		  response.setContentType("text/html; charset=UTF-8");
 		return view;
 	}
 
