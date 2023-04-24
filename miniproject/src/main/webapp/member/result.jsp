@@ -6,11 +6,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+<%String id = request.getParameter("id");
+System.out.println(id);
+String pwd = request.getParameter("pwd");
+System.out.println(pwd);
+String html="";
+if(id == null){
+	html += "Password =" +pwd;
+}else if(pwd == null){
+	html += "Id =" +id;
+}
+
+%>
 </script>
 </head>
 <body>
-<%String id = request.getParameter("id"); %>
 
-<h3><%=id %></h3>
+
+<h3><%=html %></h3>
 </body>
 </html>
