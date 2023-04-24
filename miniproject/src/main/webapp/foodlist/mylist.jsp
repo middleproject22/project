@@ -14,12 +14,23 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 	<script>
-	window.onload = function (){
 	
+	//sysdate 갱신
+	window.onload = function (){
 		const xhttp = new XMLHttpRequest();
 		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/updatetoday.do);
 		xhttp.send();
-	   
+	}
+	
+	function getByCategories(){
+		$('#btn').click(function(){
+			var category = $("#getCat option:selected").val();
+			// 카테고리로 검색
+			<% 
+// 			FoodListService service = new FoodListService();
+// 			ArrayList<FoodManageVo> list = service.();
+			%>
+		})
 	}
 	</script>
 </head>
@@ -41,7 +52,14 @@
                 </li>
             </div>
             <div class="col-2">
-                <h6>카테고리</h6>
+                <select name="categories" >
+ 					 <option value="meat">육류</option>
+ 					 <option value="fruit">과일류</option>
+					 <option value="milk">유제품류</option>
+					  <option value="grain">곡류</option>
+					   <option value="vegetable">채소류</option>
+					    <option value="etc">유지.당류</option>
+				</select>
             </div>
             <div class="col-3">
                 <h6>이름</h6>
@@ -73,7 +91,7 @@
                 </div>
                 <div class="col-2">
 <!--                  	cat_num이 1~5일때에 따라 다른 카테고리명 보여줌  -->
-                  
+               
                 </div>
                 <div class="col-3">
                     <h6>${vo.ingredient }</h6>

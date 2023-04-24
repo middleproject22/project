@@ -17,7 +17,7 @@ public class MyListHandler implements Handler {
 		FoodManageService service = new FoodManageService();
 		ArrayList<FoodManageVo> list = service.getAll();
 		request.setAttribute("list", list);
-		request.setAttribute("view", "/foodlist/updatetoday.do");		
+		request.setAttribute("view", "/foodlist/mylist.do");		
 		return null;
 	}
 
