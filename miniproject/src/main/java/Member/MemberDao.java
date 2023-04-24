@@ -43,8 +43,8 @@ public class MemberDao {
 		
 
 	}
-	
-	
+			
+			
 	public MemberVo SelectByPnum(String pnum) {
 		MemberVo vo = null;
 		Connection conn = dbconn.conn();
@@ -52,7 +52,7 @@ public class MemberDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pnum);
-
+			
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String id1 = rs.getString(1);
@@ -62,10 +62,10 @@ public class MemberDao {
 				String phonenum = rs.getString(5);
 				String imgpath = rs.getString(6);
 				int managenum = rs.getInt(7);
-
+				
 				vo = new MemberVo(id1, pwd, name, email, phonenum, imgpath, managenum);
 			}
-
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
