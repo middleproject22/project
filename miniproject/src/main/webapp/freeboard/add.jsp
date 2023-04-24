@@ -33,7 +33,7 @@
         </div>
     </nav>
 <h3>자료 올리기</h3>
-<form action="${pageContext.request.contextPath }/freeboard/add.do" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath }/freeboard/add.do" method="post">
 <table border="1">
 <tr><th>작성자</th><td><input type="text" name="writer" value="${sessionScope.loginId }" readonly></td></tr>
 <tr><th>제목</th><td><input type="text" name="title"></td></tr>

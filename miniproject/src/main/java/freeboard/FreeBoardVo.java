@@ -18,7 +18,6 @@ public class FreeBoardVo {
 
 	public FreeBoardVo(int fb_num, String id, Date w_date, String title, String content, int likes, int cnt,
 			int parent) {
-		super();
 		this.fb_num = fb_num;
 		this.id = id;
 		this.w_date = w_date;

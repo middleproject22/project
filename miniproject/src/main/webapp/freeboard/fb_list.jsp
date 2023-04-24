@@ -84,13 +84,13 @@
 			<tbody>
 				<tr>
 					<th scope="row">234</th>
-					<td>맛있어요</td>
-					<td>진혁</td>
+					<td>{vo.fb_num}</td>
+					<td>{vo.</td>
 					<td>오늘</td>
 					<td>0</td>
 					<td>5</td>
 				</tr>
-							<tr>
+				<tr>
 					<th scope="row">234</th>
 					<td>맛있어요</td>
 					<td>진혁</td>
@@ -98,7 +98,7 @@
 					<td>0</td>
 					<td>5</td>
 				</tr>
-							<tr>
+				<tr>
 					<th scope="row">234</th>
 					<td>맛있어요</td>
 					<td>진혁</td>
