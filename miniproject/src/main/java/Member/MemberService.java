@@ -26,5 +26,9 @@ public class MemberService {
 	public void getAll() {
 		dao.selectAll();
 	}
+	
+	public MemberVo getByPnum(String pnum) {
+		return dao.SelectByPnum(pnum);
+	}
 
 }
