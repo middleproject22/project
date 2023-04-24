@@ -37,7 +37,7 @@
                         </li>
                         <li class="nav-item dropdown">
                            <h5><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">리시피</a></h5>
+                                aria-expanded="false">레시피</a></h5>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#scrollspyHeading3">레시피 목록</a></li>
                                 <li><a class="dropdown-item" href="#scrollspyHeading4">관리자 픽 레시피</a></li>
