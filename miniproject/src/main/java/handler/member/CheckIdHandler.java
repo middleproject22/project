@@ -26,14 +26,24 @@ public class CheckIdHandler implements Handler {
 		response.setCharacterEncoding("utf-8");
 		
 		String id = request.getParameter("id");
+		String txt="";
+		System.out.println(id);
 		MemberService service = new MemberService();
 		MemberVo vo = service.getById(id);
 		System.out.println(vo);
+		if(id == "") {
+			String flag = "insertid"; 
+			JSONObject obj = new JSONObject();
+			obj.put("flag", flag);
+			System.out.println(flag);
+			 txt = obj.toJSONString();
+		}else {
 		boolean flag = (vo==null);
 		JSONObject obj = new JSONObject();
 		obj.put("flag", flag);
 		System.out.println(flag);
-		String txt = obj.toJSONString();
+		 txt = obj.toJSONString();
+		}
 		
 		return "responsebody/" + txt;
 	}

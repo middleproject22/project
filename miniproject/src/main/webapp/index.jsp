@@ -25,23 +25,46 @@
     <nav class="navbar navbar-expand-lg py-3 sicky-top bgc shadow-lg">
         <div class="container">
             <div class="col col-md-3 text-start">
-                <span class="text_margine"><a href="#">나의 냉장고</a></span>
-                <span class="text_margine"><a href="#">레시피</a></span>
-                <span class="text_margine"><a href="#">게시판</a></span>
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item dropdown">
+                           <h5><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">나의 냉장고</a></h5>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
+                                <li><a class="dropdown-item" href="#scrollspyHeading4">식품 전체 리스트</a></li>
+                                <li><a class="dropdown-item" href="#scrollspyHeading5">냉장고를 부탁해</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                           <h5><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">리시피</a></h5>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#scrollspyHeading3">레시피 목록</a></li>
+                                <li><a class="dropdown-item" href="#scrollspyHeading4">관리자 픽 레시피</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <h5><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">게시판</a></h5>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#scrollspyHeading3">자유게시판</a></li>
+                            </ul>
+                        </li>
+                    </ul>
             </div>
             <div class="col col-md-6 text-center">
                 <nav class="navbar-brand">
                     <a href="${pageContext.request.contextPath }/index.jsp"><img class="logo" src="/miniproject/imgs/logo3.png"></a>
                 </nav>
             </div>
-            <div class="col col-md-3 text-end">
+            <div class="col col-md-3 text-end text_flex">
             <c:if test="${empty sessionScope.loginId }">
-               <span class="text_margine"><a href="${pageContext.request.contextPath }/member/login.do">로그인</a></span>
-                <span class="text_margine"><a href="${pageContext.request.contextPath }/member/join.do">회원가입</a></span>
+               <h5><span class="text_margine"><a href="${pageContext.request.contextPath }/member/login.do">로그인</a></span></h5>
+                <h5><span class="text_margine"><a href="${pageContext.request.contextPath }/member/join.do">회원가입</a></span></h5>
 			</c:if>	 
 			<c:if test="${not empty sessionScope.loginId }">
 				<a href="${pageContext.request.contextPath }/member/detail.do"><img src ="/miniproject/imgs/user.png" class= "img-circle"></a>
-				<span class="text_margine"><a href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
+				<h5><span class="text_margine"><a href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span></h5>
 			</c:if>          
             </div>
         </div>

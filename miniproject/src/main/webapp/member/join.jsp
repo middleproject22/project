@@ -20,9 +20,12 @@
 			let val = xhttp.responseText;
 			let html = '<p class="h6"' ;
 			let obj = JSON.parse(val);
-			if (obj.flag) {
+			
+			if(obj.flag=="insertid"){
+				html += 'style="color : red">Insert Id</p>'
+			}else if (obj.flag) {
 				html += 'style="color : blue">available </p>'
-			} else {
+			}else{
 				html += 'style="color : red">already in use</p>'
 			}
 			let res = document.getElementById("res");
