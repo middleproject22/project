@@ -71,7 +71,7 @@
                 <h6>남은 날</h6>
             </div>
             <div class="col">
-                <h6>퍼센트</h6>
+                <h6>남은 양</h6>
             </div>
             <div class="col">
                 <h6>영양소(100g)</h6>
@@ -93,7 +93,7 @@
                     </li>
                 </div>
                 <div class="col-2">
-					<h6>${vo. }</h6>               
+					<h6>${vo.cat_num }</h6>               
                 </div>
                 <div class="col-2">
                     <h6>${vo.ingredient }</h6>
@@ -107,6 +107,9 @@
                 </div>
                 <div class="col">
                     <h6>${vo.amount }</h6>
+                </div>
+                <div class="col">
+                    <h6>${vo.ingredient }</h6>
                 </div>
                 <div class="col">
                     <input type="button" value="삭제" onclick="">

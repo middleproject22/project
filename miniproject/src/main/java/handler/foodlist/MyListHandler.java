@@ -18,8 +18,9 @@ public class MyListHandler implements Handler {
 		FoodManageService service = new FoodManageService();
 		ArrayList<FoodManageVo> list = service.getById(id);
 		request.setAttribute("list", list);
+		System.out.println(list);
 		request.setAttribute("view", "${pageContext.request.contextPath}/foodlist/mylist.jsp");		
-		return null;
+		return "/(sy)testindex.jsp";
 	}
 
 }
