@@ -51,30 +51,33 @@
                     <input class="form-check-input me-1" type="checkbox">
                 </li>
             </div>
-            <div class="col-2">
-                <select name="categories" >
- 					 <option value="meat">육류</option>
- 					 <option value="fruit">과일류</option>
-					 <option value="milk">유제품류</option>
-					  <option value="grain">곡류</option>
-					   <option value="vegetable">채소류</option>
-					    <option value="etc">유지.당류</option>
+            <div class="col">
+                <select name="categories" onchange="window.open(value,'_self');" >
+ 					 <option>카테고리</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=1">육류</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=3">과일류</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=4">유제품류</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=2">곡류</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=5">채소류</option>
 				</select>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <h6>이름</h6>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <h6>유통기한</h6>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <h6>남은 날</h6>
             </div>
             <div class="col">
-                <h6>퍼센트</h6>
+                <h6>남은 양</h6>
             </div>
             <div class="col">
-                <input type="button" value="삭제">
+                <h6>영양소(100g)</h6>
+            </div>
+            <div class="col">
+                <h6>삭제</h6>
             </div>
         </div>
     </div>
@@ -90,21 +93,23 @@
                     </li>
                 </div>
                 <div class="col-2">
-<!--                  	cat_num이 1~5일때에 따라 다른 카테고리명 보여줌  -->
-               
+					<h6>${vo.cat_num }</h6>               
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <h6>${vo.ingredient }</h6>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <h6>${vo.expiredate }</h6>
                 </div>
                 <!-- 남은 날짜 (remain) -->
-                <div class="col-3" id="">
+                <div class="col-2" id="">
                     <h6>${vo.dday }</h6>
                 </div>
                 <div class="col">
                     <h6>${vo.amount }</h6>
+                </div>
+                <div class="col">
+                    <h6>${vo.ingredient }</h6>
                 </div>
                 <div class="col">
                     <input type="button" value="삭제" onclick="">

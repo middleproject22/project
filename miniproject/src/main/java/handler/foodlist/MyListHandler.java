@@ -14,11 +14,13 @@ public class MyListHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		String id = request.getParameter("id");
 		FoodManageService service = new FoodManageService();
-		ArrayList<FoodManageVo> list = service.getAll();
+		ArrayList<FoodManageVo> list = service.getById(id);
 		request.setAttribute("list", list);
-		request.setAttribute("view", "/foodlist/mylist.do");		
-		return null;
+		System.out.println(list);
+		request.setAttribute("view", "${pageContext.request.contextPath}/foodlist/mylist.jsp");		
+		return "/(sy)testindex.jsp";
 	}
 
 }
