@@ -12,7 +12,7 @@ public class FoodManageVo {
 	private int cat_num; 
 	private Date today;
 	private Date expiredate;
-	private Date dday; 
+	private int dday; 
 	private int amount;
 	private String memo;
 				
@@ -22,7 +22,7 @@ public class FoodManageVo {
 	}
 					
 
-	public FoodManageVo(int fm_num, String id, String ingredient, int cat_num, Date today, Date expiredate, Date dday,
+	public FoodManageVo(int fm_num, String id, String ingredient, int cat_num, Date today, Date expiredate, int dday,
 			int amount, String memo) {
 		super();
 		this.fm_num = fm_num;
@@ -97,12 +97,14 @@ public class FoodManageVo {
 	}
 
 
-	public Date getDday() {
+
+
+	public int getDday() {
 		return dday;
 	}
 
 
-	public void setDday(Date dday) {
+	public void setDday(int dday) {
 		this.dday = dday;
 	}
 

@@ -27,4 +27,7 @@ public class FoodListService {
 	public ArrayList<FoodManageVo> ddaySeven() {
 		return dao.ddaySeven();
 	}
+	public ArrayList<FoodManageVo> getbyId (String id) {
+		return dao.selectById(id);
+	}
 }
