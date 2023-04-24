@@ -13,15 +13,19 @@ public class FoodManageService {
 	public void addFood(FoodManageVo vo) {
 		dao.insert(vo);
 	}
+	
 	public void editFood(FoodManageVo vo) {
 		dao.update(vo);
 	}
+	
 	public void deleteFood(int num) {
 		dao.delete(num);
 	}
+	
 	public FoodManageVo getFood(int num) {
 		return dao.select(num);
 	}
+	
 	public ArrayList<FoodManageVo> getAll() {
 		return dao.selectAll();
 	}
@@ -29,8 +33,22 @@ public class FoodManageService {
 	public ArrayList<FoodManageVo> getByCategories(int num) {
 		return dao.selectByCategoies(num);
 	}
+	
 	public ArrayList<FoodManageVo> getByName(String name) {
 		return dao.selectByName(name);
 	}
+	
+	public ArrayList<FoodManageVo> getById(String id) {
+		return dao.selectByName(id);
+	}
+
+	public ArrayList<FoodManageVo> getIngredient(int num) {
+		return dao.selectIngredient(num);
+	}
+	
+	
+	
+	
 }
+
 	
