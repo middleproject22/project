@@ -25,7 +25,7 @@ public class FoodListDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class FoodListDao {
 
 			while (rs.next()) {
 				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -69,6 +69,7 @@ public class FoodListDao {
 
 	// 날짜 갱신
 	public void updateToday() {
+		
 		Connection conn = dbconn.conn();
 		String sql = "update food_manage set today = sysdate";
 		try {
@@ -88,11 +89,14 @@ public class FoodListDao {
 	}
 
 	// 남은 날 확인
-	public void checkDate() {
+	public void checkDate(String id) {
+		System.out.println("dao");
 		Connection conn = dbconn.conn();
-		String sql = "update food_manage set dday = datediff(expireday,today)";
+		String sql = "update food_manage set dday=expiredate-sysdate where id =? ";
+		//String sql = "update food_manage set dday =round((expiredate-sysdate),0)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
 
 			int num = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -111,6 +115,7 @@ public class FoodListDao {
 
 	// 7일전
 	public ArrayList<FoodManageVo> ddaySeven() {
+		
 		Connection conn = dbconn.conn();
 		String sql = "select * from food_manage where expireday - today <=7";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
@@ -120,7 +125,7 @@ public class FoodListDao {
 
 			while (rs.next()) {
 				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getDate(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -135,4 +140,31 @@ public class FoodListDao {
 		return list;
 
 	}
+	
+	//id별 리스트 뽑기
+	public ArrayList<FoodManageVo> selectById(String id) {
+		Connection conn = dbconn.conn();
+		String sql = "select * from food_manage where id = ? order by dday";
+		ArrayList<FoodManageVo> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	} 
 }
