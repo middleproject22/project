@@ -32,10 +32,14 @@ a{
 .text_flex{
     display: flex;
     justify-content: end;
+    align-items: center;
 }
 
 .text_margine{
-    padding: 5px;
+    padding: 20px;
+}
+.text_margine>a{
+	color:#fff;
 }
 .text_flex>h3>a{
     color: #fff
@@ -48,6 +52,12 @@ a{
 .material-symbols-outlined{
     color : #fff
 }
+.userimg{
+	width: 50px;
+	height:50px;
+}
 
-
+.offcanvas.offcanvas-start{
+	width : 250px;
+}
 
