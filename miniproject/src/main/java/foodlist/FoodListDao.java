@@ -69,6 +69,7 @@ public class FoodListDao {
 
 	// 날짜 갱신
 	public void updateToday() {
+		
 		Connection conn = dbconn.conn();
 		String sql = "update food_manage set today = sysdate";
 		try {
@@ -88,11 +89,14 @@ public class FoodListDao {
 	}
 
 	// 남은 날 확인
-	public void checkDate() {
+	public void checkDate(String id) {
+		System.out.println("dao");
 		Connection conn = dbconn.conn();
-		String sql = "update food_manage set dday =round((expiredate-today),0)";
+		String sql = "update food_manage set dday=expiredate-sysdate where id =? ";
+		//String sql = "update food_manage set dday =round((expiredate-sysdate),0)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
 
 			int num = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -111,6 +115,7 @@ public class FoodListDao {
 
 	// 7일전
 	public ArrayList<FoodManageVo> ddaySeven() {
+		
 		Connection conn = dbconn.conn();
 		String sql = "select * from food_manage where expireday - today <=7";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
@@ -139,7 +144,7 @@ public class FoodListDao {
 	//id별 리스트 뽑기
 	public ArrayList<FoodManageVo> selectById(String id) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage where id = ?";
+		String sql = "select * from food_manage where id = ? order by dday";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

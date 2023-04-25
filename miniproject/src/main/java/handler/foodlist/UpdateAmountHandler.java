@@ -5,20 +5,22 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import foodlist.FoodListService;
+import foodmanage.FoodManageService;
 import foodmanage.FoodManageVo;
 import handler.Handler;
 
-public class CategoryHandler implements Handler {
+public class UpdateAmountHandler implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		int cat_num=Integer.parseInt( request.getParameter("cat_num"));
-		FoodListService service = new FoodListService();
-		ArrayList<FoodManageVo> list = service.getByCategories(cat_num);
-		request.setAttribute("list", list);
-		return "/foodlist/mylist.jsp";
-	}
+		
+		int num = Integer.parseInt( request.getParameter("num"));
+		FoodManageService service = new FoodManageService();
+		service.deleteFood(num);
+		
+		return "/foodlist/mylist.do?id=test";
+		}
+	
 
 }
