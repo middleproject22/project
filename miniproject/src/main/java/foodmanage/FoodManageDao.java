@@ -66,7 +66,7 @@ public class FoodManageDao {
 
 	public void delete(int num) {
 		Connection conn = dbconn.conn();
-		String sql = "delete from food_manage where fm_num = ?";
+		String sql = "delete food_manage where fm_num = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
