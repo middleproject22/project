@@ -14,7 +14,7 @@ public class IngredientService {
 	public ArrayList<IngredientVo> getAll(){
 		return dao.selectAll();
 	}
-	public ArrayList<IngredientVo> getByName(String name){
+	public IngredientVo getByName(String name){
 		return dao.selectByName(name);
 	}
 	

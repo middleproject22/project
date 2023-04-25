@@ -15,45 +15,17 @@
 
 	<script>
 	
-
-	
-	function getByCategories(){
-		$('#btn').click(function(){
-			var category = $("#getCat option:selected").val();
-			// 카테고리로 검색
-			<% 
-// 			FoodListService service = new FoodListService();
-// 			ArrayList<FoodManageVo> list = service.();
-			%>
-		})
-	}
-	
-	}
-	
 // 	window.onload = function (){
-// 		let arr=['25','50','75','100'];
-// 		let html ="";
-// 		let ca = document.getElementById("selamount");
-// 		for (i=0; i<4;i++){
-// 			if ('${vo.amount}'==arr[i]){
-// 				html += '<option value='+arr[i]+' selected>'+arr[i]+'% </option>';	
-// 			}else {
-// 				html += '<option value='+arr[i]+'>'+arr[i]+'% </option>';
-// 			}
+// 		const xhttp = new XMLHttpRequest();
+// 		xhttp.onload = function(){
 			
 // 		}
-// 		ca.innerHTML=html;
+// 		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/ingredient.do?name="+${vo.ingredient});
+// 		xhttp.send();
 		
 // 	}
-// // 	function link(){
-		
-// // 		location.href="${pageContext.request.contextPath}/foodlist/updateamount.do?amount="+arr[i]"&num=${vo.fm_num }"
-// // 	}
-// 	function link() {
-//   		let arr = ['25', '50', '75', '100'];
-//   		let ca = document.getElementById("selamount");
-// 		location.href = "${pageContext.request.contextPath}/foodlist/updateamount.do?amount=" + ca.value + "&num=${vo.fm_num }";
-// 	}
+
+	
 
 	</script>
 </head>
@@ -108,7 +80,7 @@
     </div>
 
     <!--  for 문으로 리스트 돌리기 -->
-    <c:forEach var="vo" items="${list }">
+    <c:forEach var="vo" items="${list }" varStatus="status">
 
         <div class="container text-center">
             <div class="row">
@@ -152,23 +124,25 @@
                    		
                    	 <option selected>${vo.amount}%</option>
  					 <option value="${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }" >0%</option>
- 					
- 					 <%--  					<option value="값1" <%= (dbValue.equals("값1")) ? "selected" : "" %>>값1</option> --%>
  					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=25&num=${vo.fm_num }" >25%</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=50&num=${vo.fm_num }" >50%</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=75&num=${vo.fm_num }" >75%</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=100&num=${vo.fm_num }" >100%</option>
 					
 					</select>
-				
-<!-- 					<select name="selamount" onchange="link()" id="categories"> -->
-<%--                    		 <option value="${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }" >0%</option> --%>
-                   		
-<!-- 					</select> -->
 					
                 </div>
                 <div class="col-2">
-                    <h6>${vo.ingredient }</h6>
+<%--                     <h6>${vo.ingredient }</h6> --%>
+<!-- varstatus로 -->
+				
+                    	칼로리 :${listIng[status.index].ig_kcal }<br/>
+                    	단백질 :${listIng[status.index].ig_pt }<br/>
+                    	지방 :${listIng[status.index].ig_fat }<br/>
+                    	탄수화물 :${listIng[status.index].ig_car }<br/>
+                    	당 :${listIng[status.index].ig_sug }<br/>
+                    	나트륨 :${listIng[status.index].ig_nat }<br/>
+
                 </div>
                 <div class="col">
                     <input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }'">
