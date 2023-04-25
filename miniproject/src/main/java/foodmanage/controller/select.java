@@ -3,29 +3,29 @@ package foodmanage.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import categories.CategoriesService;
-import categories.CategoriesVo;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import ingredient.IngredientService;
 import ingredient.IngredientVo;
 
 /**
- * Servlet implementation class list
+ * Servlet implementation class select
  */
-@WebServlet("/product/list")
-public class list extends HttpServlet {
+@WebServlet("/product/select")
+public class select extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public list() {
+    public select() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,20 +34,39 @@ public class list extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoriesService service = new CategoriesService();
+	
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
+		IngredientService service = new IngredientService();
+		String name = request.getParameter("name"); 
+		ArrayList<IngredientVo> list = new ArrayList<>(); 
 		
-		ArrayList<CategoriesVo> list =service.getCategories();
+		if (!name.equals("iii")) {
+			list = service.getByName(name);
+			
+		}else {
+			list = service.getAll();
+		}
+		
 		request.setAttribute("list", list);
-
+		JSONArray arr = new JSONArray();
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/bang/list.jsp");
-		dis.forward(request, response);
-	
+		for(IngredientVo vo : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("ig_name", vo.getIg_name());
+			arr.add(obj);
+		}
 		
-	
-	}
-
+		String txt = arr.toJSONString();
+		response.getWriter().append(txt);
+		
+		}
+		
+		
+		
+		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
