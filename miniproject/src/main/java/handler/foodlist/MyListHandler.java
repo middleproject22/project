@@ -18,7 +18,7 @@ public class MyListHandler implements Handler {
 		System.out.println(id);
 		FoodListService service = new FoodListService();
 		
-//		service.checkDate(id);
+		service.checkDate(id);
 		System.out.println("asddf");
 		ArrayList<FoodManageVo> list = service.getbyId(id);
 		request.setAttribute("list", list);

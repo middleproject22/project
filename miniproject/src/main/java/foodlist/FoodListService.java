@@ -31,4 +31,8 @@ public class FoodListService {
 	public ArrayList<FoodManageVo> getbyId (String id) {
 		return dao.selectById(id);
 	}
+	
+	public void updateAmount(int amount, int num ) {
+		dao.updateAmount(amount, num);
+	}
 }
