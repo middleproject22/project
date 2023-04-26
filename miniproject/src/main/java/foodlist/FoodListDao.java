@@ -113,11 +113,39 @@ public class FoodListDao {
 		}
 	}
 
+	// 3일전
+		public ArrayList<FoodManageVo> ddayThree() {
+			
+			Connection conn = dbconn.conn();
+			String sql = "select * from food_manage where dday<=3";
+			ArrayList<FoodManageVo> list = new ArrayList<>();
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
+							rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return list;
+
+		}
+	
 	// 7일전
 	public ArrayList<FoodManageVo> ddaySeven() {
 		
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage where expireday - today <=7";
+		String sql = "select * from food_manage where 3 < dday and Dday <=7";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

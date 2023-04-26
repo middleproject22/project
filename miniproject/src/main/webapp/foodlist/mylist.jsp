@@ -41,14 +41,10 @@
 
     <div class="container text-center">
         <div class="row">
-            <div class="col">
-                <li class="list-group-item">
-                    <input class="form-check-input me-1" type="checkbox">
-                </li>
-            </div>
+
             <div class="col-2">
                 <select name="categories" onchange="window.open(value,'_self');" >
- 					 <option>카테고리</option>
+ 					 <option>--카테고리--</option>
  					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=1">육류,어패류, 달걀, 콩류</option>
  					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=3">과일류</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=4">유제품류</option>
@@ -78,17 +74,14 @@
             </div>
         </div>
     </div>
+     <hr class="line">
 
     <!--  for 문으로 리스트 돌리기 -->
     <c:forEach var="vo" items="${list }" varStatus="status">
 
         <div class="container text-center">
             <div class="row">
-                <div class="col">
-                    <li class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox">
-                    </li>
-                </div>
+ 
                 <div class="col-2">
 	                <c:if test="${vo.cat_num ==1}" >
 						육류,어패류, 달걀, 콩류
@@ -107,7 +100,11 @@
 					</c:if>       
                 </div>
                 <div class="col-2">
+                	
                     <h6>${vo.ingredient }</h6>
+                    <div class="col" style="display :flex; justify-content :center">
+                    ${vo.memo }
+                    </div>
                 </div>
                 <div class="col-2">
                     <h6>${vo.expiredate }</h6>
@@ -122,7 +119,7 @@
                     
                     <select name="selamount" onchange="window.open(value,'_self');" >
                    		
-                   	 <option selected>${vo.amount}%</option>
+                   	 <option selected>--${vo.amount}%--</option>
  					 <option value="${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }" >0%</option>
  					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=25&num=${vo.fm_num }" >25%</option>
 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=50&num=${vo.fm_num }" >50%</option>
@@ -133,22 +130,31 @@
 					
                 </div>
                 <div class="col-2">
-<%--                     <h6>${vo.ingredient }</h6> --%>
-<!-- varstatus로 -->
 				
-                    	칼로리 :${listIng[status.index].ig_kcal }<br/>
-                    	단백질 :${listIng[status.index].ig_pt }<br/>
-                    	지방 :${listIng[status.index].ig_fat }<br/>
-                    	탄수화물 :${listIng[status.index].ig_car }<br/>
-                    	당 :${listIng[status.index].ig_sug }<br/>
-                    	나트륨 :${listIng[status.index].ig_nat }<br/>
-
+				<!-- 영양소 불러오기. MyList에서 listIng 받아옴. varstatus -->
+				<table border="1">
+                    	<tr>
+                    		<td> 칼로리 :${listIng[status.index].ig_kcal }</td>
+                    		<td>단백질 :${listIng[status.index].ig_pt }</td>
+                    	</tr>
+                    	<tr>
+                    		<td>지방 :${listIng[status.index].ig_fat }</td>
+                    		<td>탄수화물 :${listIng[status.index].ig_car }</td>
+                    	</tr>
+                    	<tr>
+                    		<td> 당 :${listIng[status.index].ig_sug }</td>
+                    		<td> 나트륨 :${listIng[status.index].ig_nat }</td>
+                    	</tr>
+				</table>
                 </div>
                 <div class="col">
                     <input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }'">
                 </div>
             </div>
         </div>
+        
+      <hr class="line">
+      
     </c:forEach>
     
 </body>
