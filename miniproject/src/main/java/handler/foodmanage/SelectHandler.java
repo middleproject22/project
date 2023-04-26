@@ -42,7 +42,7 @@ public class SelectHandler implements Handler {
 		}
 		
 		String txt = arr.toJSONString();
-			response.setContentType("application/json");
+		response.setContentType("application/json");
 		
 		
 		return "responsebody/"+txt;
