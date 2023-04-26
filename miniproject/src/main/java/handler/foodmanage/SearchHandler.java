@@ -22,7 +22,7 @@ public class SearchHandler implements Handler {
 		
 		IngredientService service = new IngredientService();
 		String name = request.getParameter("name"); 
-		ArrayList<IngredientVo> list = service.getByName(name); 
+		ArrayList<IngredientVo> list = service.getByMid(name); 
 		JSONArray arr = new JSONArray();
 		
 		for(IngredientVo vo : list) {
@@ -36,9 +36,6 @@ public class SearchHandler implements Handler {
 		
 		
 		return "responsebody/"+txt;
-		
-		
-		
 		
 		
 	}

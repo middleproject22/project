@@ -1,6 +1,7 @@
 package temp;
 
 public class TempVo {
+	
 	private int temp_num;
 	private String id ;
 	private String ingredient;
