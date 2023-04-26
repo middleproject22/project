@@ -18,8 +18,12 @@ public class TempService {
 		return dao.select();
 		
 	}
-	public void out(String ingredient) {
-		dao.delete(ingredient);
+	public void outByName(String ingredient) {
+		dao.deleteByName(ingredient);
+		
+	}
+	public void outByNum(int num) {
+		dao.deleteByNum(num);
 		
 	}
 	public void outAll() {

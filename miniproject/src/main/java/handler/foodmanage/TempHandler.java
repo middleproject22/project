@@ -27,8 +27,8 @@ public class TempHandler implements Handler {
 		TempService service = new TempService();
 		ArrayList<TempVo> list = new ArrayList<>();
 		
-		service.add(new TempVo(id,ingredient));
-		list.add(new TempVo(id,ingredient));
+		service.add(new TempVo(0,id,ingredient));
+		list.add(new TempVo(0,id,ingredient));
 		
 		JSONArray arr = new JSONArray();
 		for(TempVo vo1 : list) {
