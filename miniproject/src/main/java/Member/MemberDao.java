@@ -142,7 +142,7 @@ public class MemberDao {
 
 	public void updateImgPath(String imgpath, String id) {
 		Connection conn = dbconn.conn();
-		String sql = "update member set imgpath = ? where id = ?";
+		String sql = "update member set img_path = ? where id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, imgpath);

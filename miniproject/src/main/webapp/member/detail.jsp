@@ -141,7 +141,7 @@
 	}
 	
 	function a() {
-		window.open("${pageContext.request.contextPath}/member/selectimg.do","selectImg","width:600px,height:600px;")
+		window.open("${pageContext.request.contextPath}/member/selectimg.do","selectImg","width=640px,height=640px")
 	}
 	</script>
 	

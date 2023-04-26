@@ -35,10 +35,10 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 								href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
-							<li><a class="dropdown-item" href="#scrollspyHeading4">식품
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/bang/list.do">식품등록</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do?id=test">식품
 									전체 리스트</a></li>
-							<li><a class="dropdown-item" href="#scrollspyHeading5">냉장고를
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipelist/mylist.do?id=test">냉장고를
 									부탁해</a></li>
 						</ul>
 					</li>
@@ -56,7 +56,7 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 								href="#" role="button" aria-expanded="false">게시판</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#scrollspyHeading3">자유게시판</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
 						</ul>
 					</li>
 				</ul>
