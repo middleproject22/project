@@ -8,64 +8,59 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import ingredient.IngredientService;
-import ingredient.IngredientVo;
+import temp.TempService;
+import temp.TempVo;
 
 /**
- * Servlet implementation class select
+ * Servlet implementation class temp
  */
-@WebServlet("/product/select")
-public class select extends HttpServlet {
+@WebServlet("/product/temp")
+public class temp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public select() {
+    public temp() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		IngredientService service = new IngredientService();
-		String name = request.getParameter("name"); 
-		ArrayList<IngredientVo> list = new ArrayList<>(); 
+		HttpSession session = request.getSession(false);
+		String id = (String)session.getAttribute("loginId");
+		String ingredient = request.getParameter("ingredient");
+		TempService service = new TempService();
+		ArrayList<TempVo> list = new ArrayList<>();
 		
-		if (!name.equals("iii")) {
-			list = service.getByName(name);
-			
-		}else {
-			list = service.getAll();
-		}
+		service.add(new TempVo(id,ingredient));
+		list.add(new TempVo(id,ingredient));
 		
 		JSONArray arr = new JSONArray();
-		
-		for(IngredientVo vo : list) {
+		for(TempVo vo1 : list) {
 			JSONObject obj = new JSONObject();
-			obj.put("ig_name", vo.getIg_name());
+			obj.put("ingredient", vo1.getIngredient());
 			arr.add(obj);
 		}
 		
 		String txt = arr.toJSONString();
 		response.getWriter().append(txt);
 		
-		}
 		
-		
-		
-		
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
