@@ -25,7 +25,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			if (rs.next()) {
 				return new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7), rs.getInt(8));
+						rs.getInt(6));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -50,7 +50,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7), rs.getInt(8)));
+						rs.getInt(6)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,7 +76,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7), rs.getInt(8)));
+						rs.getInt(6)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -96,15 +96,13 @@ public class FreeBoardDao {
 	public void insert(FreeBoardVo vo) {
 		Connection conn = dbconn.conn();
 
-		String sql = "insert into free_board values(seq_fbnum.nextval, ?, sysdate, ?, ?, ?,?,?)";
+		String sql = "insert into free_board values(seq_fbnum.nextval, ?, sysdate, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getTitle());
 			pstmt.setString(3, vo.getContent());
-			pstmt.setInt(4, vo.getLikes());
-			pstmt.setInt(5, vo.getCnt());
-			pstmt.setInt(6, vo.getParent());
+			pstmt.setInt(4, vo.getCnt());
 			int num = pstmt.executeUpdate();
 			System.out.println(num + " 줄이 추가되었다");
 		} catch (SQLException e) {
@@ -153,6 +151,28 @@ public class FreeBoardDao {
 			pstmt.setInt(1, num);
 			int num2 = pstmt.executeUpdate();
 			System.out.println(num2 + " 줄이 삭제됨");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void cnt(int num) {
+		Connection conn = dbconn.conn();
+		String sql = "update free_board set cnt=cnt+1 where fb_num=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, num);
+			int num1 = pstmt.executeUpdate();
+			System.out.println(num1 + " 줄이 수정됨");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

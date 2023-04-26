@@ -71,7 +71,7 @@
 	<div class="tableBox">
 		<table class="table">
 			<thead
-				style="border-top-width: 3px; border-bottom-width: 3px; border-color: #BFD970">
+				style="border-top-width: 3px; border-bottom-width: 3px; border-color:#00A652">
 				<tr>
 					<th scope="col" style="width: 10%">번호</th>
 					<th scope="col" style="width: 50%">제목</th>
@@ -89,7 +89,7 @@
 					<td>${vo.id}</td>
 					<td>${vo.w_date}</td>
 					<td>${vo.cnt}</td>
-					<td>${vo.parent}</td>
+					<td>${vo.cnt}</td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -98,7 +98,7 @@
 	<div>
 		<button type="button" class="btn btn-outline-secondary"
 			style="float: right; margin-right: 160px">
-			<a href="${pageContext.request.contextPath }/freeboard/add.do">글작성</a>
+			<a href="${pageContext.request.contextPath }/freeboard/fb_add.do">글작성</a>
 		</button>
 	</div>
 	<br />

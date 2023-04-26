@@ -15,26 +15,18 @@
 
 	<script>
 	
-	//sysdate 갱신
 // 	window.onload = function (){
 // 		const xhttp = new XMLHttpRequest();
-// 		xhttp.onload=function(){
-// 			alert('adf');
+// 		xhttp.onload = function(){
+			
 // 		}
-// 		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/updatetoday.do");
+// 		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/ingredient.do?name="+${vo.ingredient});
 // 		xhttp.send();
+		
 // 	}
+
 	
-	function getByCategories(){
-		$('#btn').click(function(){
-			var category = $("#getCat option:selected").val();
-			// 카테고리로 검색
-			<% 
-// 			FoodListService service = new FoodListService();
-// 			ArrayList<FoodManageVo> list = service.();
-			%>
-		})
-	}
+
 	</script>
 </head>
 
@@ -88,7 +80,7 @@
     </div>
 
     <!--  for 문으로 리스트 돌리기 -->
-    <c:forEach var="vo" items="${list }">
+    <c:forEach var="vo" items="${list }" varStatus="status">
 
         <div class="container text-center">
             <div class="row">
@@ -125,22 +117,35 @@
                     <h6>${vo.dday }</h6>
                 </div>
                 <div class="col">
-                <!--  vo.amount 일때 기본값으로 보여줌. 근데 바꾸면 저장되도록. 근데 db값이 디폴트되도록 -->
-                    <h6>${vo.amount }</h6>
-                    <select name="categories" onchange="window.open(value,'_self');" >
- 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?num=${vo.fm_num }">0%</option>
- 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=25">25%</option>
-					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=50">50%</option>
-					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=75">75%</option>
-					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=100">100%</option>
+<!--                  vo.amount 일때 기본값으로 보여줌. 근데 바꾸면 저장되도록. 근데 db값이 디폴트되도록 -->
+                    
+                    
+                    <select name="selamount" onchange="window.open(value,'_self');" >
+                   		
+                   	 <option selected>${vo.amount}%</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }" >0%</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=25&num=${vo.fm_num }" >25%</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=50&num=${vo.fm_num }" >50%</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=75&num=${vo.fm_num }" >75%</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/updateamount.do?amount=100&num=${vo.fm_num }" >100%</option>
 					
 					</select>
+					
                 </div>
                 <div class="col-2">
-                    <h6>${vo.ingredient }</h6>
+<%--                     <h6>${vo.ingredient }</h6> --%>
+<!-- varstatus로 -->
+				
+                    	칼로리 :${listIng[status.index].ig_kcal }<br/>
+                    	단백질 :${listIng[status.index].ig_pt }<br/>
+                    	지방 :${listIng[status.index].ig_fat }<br/>
+                    	탄수화물 :${listIng[status.index].ig_car }<br/>
+                    	당 :${listIng[status.index].ig_sug }<br/>
+                    	나트륨 :${listIng[status.index].ig_nat }<br/>
+
                 </div>
                 <div class="col">
-                    <input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/foodlist/updateamount.do?num=${vo.fm_num }'">
+                    <input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }'">
                 </div>
             </div>
         </div>
