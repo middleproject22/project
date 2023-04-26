@@ -15,8 +15,8 @@ public class AddHandler implements Handler {
 		// TODO Auto-generated method stub
 		String view = "";
 		if (request.getMethod().equals("GET")) {//request.getMethod(): 요청 방식(get/post)값 반환
-			request.setAttribute("view", "/freeboard/add.jsp");
-			view = "/freeboard/add.jsp";
+			request.setAttribute("view", "/freeboard/fb_add.jsp");
+			view = "/freeboard/fb_add.jsp";
 		} else {
 			String id = request.getParameter("id");
 			String title = request.getParameter("title");
@@ -24,8 +24,8 @@ public class AddHandler implements Handler {
 			System.out.println(title);
 			System.out.println(content);
 			FreeBoardService service = new FreeBoardService();
-			service.addFreeBoard(new FreeBoardVo(0, id, null, title, content, 0, 0, 0));
-			view = "redirect:/detail.jsp";
+			service.addFreeBoard(new FreeBoardVo(0, id, null, title, content, 0));
+			view = "/freeboard/fb_detail.jsp";
 		}
 		  response.setCharacterEncoding("UTF-8"); // response의 인코딩 설정
 		  response.setContentType("text/html; charset=UTF-8");
