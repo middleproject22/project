@@ -28,7 +28,7 @@ public class SelectHandler implements Handler {
 		ArrayList<IngredientVo> list = new ArrayList<>(); 
 		
 		if (!name.equals("iii")) {
-			list = service.getByName(name);
+			list = service.getByMid(name);
 			
 		}else {
 			list = service.getAll();
