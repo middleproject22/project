@@ -41,6 +41,7 @@ function select() {
 	xhttp.send();	
 				
 }
+
 		
 function sele(ingredient){
 		
