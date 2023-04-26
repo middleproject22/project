@@ -17,6 +17,9 @@ public class IngredientService {
 	public IngredientVo getByName(String name){
 		return dao.selectByName(name);
 	}
+	public ArrayList<IngredientVo> getByMid(String name){
+		return dao.selectByMid(name);
+	}
 	
 	
 	

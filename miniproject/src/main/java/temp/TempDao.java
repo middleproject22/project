@@ -22,7 +22,7 @@ public class TempDao {
 	public void insert(TempVo vo) {
 		
 		Connection conn = dbconn.conn();
-		String sql = "insert into temp values (?,?)";
+		String sql = "insert into temp values (seq_temp.nextval,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -39,8 +39,28 @@ public class TempDao {
 			}
 		}
 	}
+public void deleteByNum(int num) {
+		
+		Connection conn = dbconn.conn();
+		String sql = "delete from temp where ingredient = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			int num2 = pstmt.executeUpdate();
+			System.out.println(num2 + "줄이 삭제되었습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 	
-	public void delete(String ingredient) {
+	public void deleteByName(String ingredient) {
 		
 		Connection conn = dbconn.conn();
 		String sql = "delete from temp where ingredient = ?";
@@ -88,7 +108,7 @@ public class TempDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new TempVo(rs.getString(1), rs.getString(2)));
+				list.add(new TempVo(rs.getInt(1), rs.getString(2), rs.getString(3)));
 			}
 
 		} catch (SQLException e) {
