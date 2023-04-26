@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import foodlist.FoodListService;
 import foodmanage.FoodManageVo;
 import handler.Handler;
+import ingredient.IngredientService;
+import ingredient.IngredientVo;
 
 public class MyListHandler implements Handler {
 
@@ -17,12 +19,23 @@ public class MyListHandler implements Handler {
 		String id = request.getParameter("id");
 		System.out.println(id);
 		FoodListService service = new FoodListService();
-		
-//		service.checkDate(id);
-		System.out.println("asddf");
+		service.checkDate(id);
 		ArrayList<FoodManageVo> list = service.getbyId(id);
+		ArrayList<IngredientVo> listIng=new ArrayList<>();
+		IngredientService serviceIng = new IngredientService();
+		for(int i =0;i<list.size();i++) {
+			FoodManageVo vo = list.get(i);
+			System.out.println(vo);
+			String name = vo.getIngredient();
+			IngredientVo ingvo = serviceIng.getByName(name);
+			System.out.println(name);
+			listIng.add(ingvo);
+			
+		}
+		System.out.println(listIng);
 		request.setAttribute("list", list);
-		System.out.println(list);
+		request.setAttribute("listIng", listIng);
+		
 		return "/foodlist/mylist.jsp";
 	}
 
