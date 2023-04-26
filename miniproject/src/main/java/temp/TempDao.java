@@ -2,9 +2,12 @@ package temp;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import conn.DBConnect;
+import foodmanage.FoodManageVo;
 
 public class TempDao {
 	
@@ -35,7 +38,6 @@ public class TempDao {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
 	public void delete(String ingredient) {
@@ -75,6 +77,30 @@ public class TempDao {
 				e.printStackTrace();
 			}
 		}
+		
+	}
+	
+	public ArrayList<TempVo> select(){
+		Connection conn = dbconn.conn();
+		String sql = "select * from Temp";
+		ArrayList<TempVo> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new TempVo(rs.getString(1), rs.getString(2)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
 		
 	}
 	

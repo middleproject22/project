@@ -38,11 +38,13 @@ public class LoginHandler implements Handler {
 				if(vo.getManagenum()==1) {
 					session.setAttribute("loginId", id);
 					session.setAttribute("manager", "manager");
+					session.setAttribute("img", vo.getImgpath());
 					view = "/index.jsp";
 					request.setAttribute("ck", "ck");
 					request.setAttribute("msg", "로그인되었습니다.");
 				}else {
 					session.setAttribute("loginId", id);
+					session.setAttribute("img", vo.getImgpath());
 					view = "/index.jsp";
 					request.setAttribute("ck", "ck");
 					request.setAttribute("msg", "로그인되었습니다.");

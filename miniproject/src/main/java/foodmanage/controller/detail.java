@@ -17,33 +17,33 @@ import temp.TempService;
 import temp.TempVo;
 
 /**
- * Servlet implementation class add
+ * Servlet implementation class detail
  */
-@WebServlet("/product/add")
-public class add extends HttpServlet {
+@WebServlet("/product/detail")
+public class detail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public add() {
+    public detail() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 */			
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-		
-		
-		
-	
+		TempService service = new TempService();
+		ArrayList<TempVo> list = service.getTemp();
+		request.setAttribute("list", list);
+			
+			
+		RequestDispatcher dis = request.getRequestDispatcher("/bang/detail.jsp");
+		dis.forward(request, response);
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

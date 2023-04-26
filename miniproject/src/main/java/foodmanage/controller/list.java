@@ -34,14 +34,11 @@ public class list extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IngredientService service = new IngredientService();
-		CategoriesService service2 = new CategoriesService();
+		CategoriesService service = new CategoriesService();
 		
 		
-		ArrayList<IngredientVo> list =service.getAll();
-		ArrayList<CategoriesVo> list2 =service2.getCategories();
+		ArrayList<CategoriesVo> list =service.getCategories();
 		request.setAttribute("list", list);
-		request.setAttribute("list2", list2);
 
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/bang/list.jsp");

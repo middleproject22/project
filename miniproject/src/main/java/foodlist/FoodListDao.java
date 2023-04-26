@@ -167,4 +167,28 @@ public class FoodListDao {
 		}
 		return list;
 	} 
+	
+	public void updateAmount(int amount, int num ) {
+		System.out.println("dao");
+		Connection conn = dbconn.conn();
+		String sql = "update food_manage set amount=? where fm_num =? ";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, num);
+
+			int num2 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+
+		}
+	}
 }
