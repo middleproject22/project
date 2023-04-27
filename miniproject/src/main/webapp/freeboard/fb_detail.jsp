@@ -5,7 +5,7 @@
 <html>
 
 <head>
-	<script type="text/javascript">
+<script type="text/javascript">
     window.onload=function(){
         const xhttp = new XMLHttpRequest();
         
@@ -46,6 +46,27 @@
             xhttp.send();
         }
     }
+    
+    function likebutton(num){
+    	   const xhttp = new XMLHttpRequest();
+    	   
+    	   xhttp.onload = function(){
+    	      let val = xhttp.responseText;
+    	      console.log("val : " + val);
+    	      let arr = JSON.parse(val);
+    	      let html = '';
+    	      html = arr.cnt;
+    	      let res = document.getElementById("fb_num");
+    	      res.innerHTML = html;//responseText: 서버로부터 받은 응답값
+    	   }
+    	   
+    	   let param = "?fb_num=" + num;
+    	   param += "&id=${sessionScope.loginId}";
+    	   //요청 전송방식, 서버페이지 url 설정. get방식인 경우 url뒤에 파람 붙임
+    	   xhttp.open("GET", "${pageContext.request.contextPath}/freelike/fl_up.do"+param);
+    	   xhttp.send();
+    	}
+    
 </script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,34 +95,32 @@
 		<div class="container">
 			<div class="col col-md-3 text-start">
 				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">나의 냉장고</a>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
 							<li><a class="dropdown-item" href="#scrollspyHeading4">식품
 									전체 리스트</a></li>
 							<li><a class="dropdown-item" href="#scrollspyHeading5">냉장고를
 									부탁해</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">레시피</a>
+						</ul></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-expanded="false">레시피</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="#scrollspyHeading3">레시피
 									목록</a></li>
 							<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
 									픽 레시피</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">게시판</a>
+						</ul></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-expanded="false">게시판</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
-						</ul>
-					</li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
+						</ul></li>
 				</ul>
 			</div>
 			<div class="col col-md-6 text-center">
@@ -123,7 +142,7 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
 					<a href="${pageContext.request.contextPath }/member/detail.do"><img
-						src= "${sessionScope.img}" class="rounded-circle userimg"></a>
+						src="${sessionScope.img}" class="rounded-circle userimg"></a>
 					<h5>
 						<span class="text_margine"><a
 							href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
@@ -163,47 +182,42 @@
 	<a
 		href="${pageContext.request.contextPath}/freeboard/fb_delete.do?fb_num=${vo.fb_num}">삭제</a>
 
-		<h1>댓글 작성</h1>
-<form action="${pageContext.request.contextPath}/freecomment/fc_add.do" method="post">
-    <table>
-        <tr>
-            <th>글번호</th>
-            <td><input type="text" name="fb_num" value="${vo.fb_num }" readonly></td>
-        </tr>
-        <tr>
-            <th>작성자 ID</th>
-            <td><input type="text" name="fc_id" value="${sessionScope.loginId }" readonly></td>
-        </tr>
-        <tr>
-            <th>내용</th>
-            <td><textarea name="fc_content" rows="5" cols="50"></textarea></td>
-        </tr>
-    </table>
-    <input type="submit" value="작성">
-</form>
+	<h1>댓글 작성</h1>
+	<form action="${pageContext.request.contextPath}/freecomment/fc_add.do"
+		method="post">
+		<table>
+			<tr>
+				<th>글번호</th>
+				<td><input type="text" name="fb_num" value="${vo.fb_num }"
+					readonly></td>
+			</tr>
+			<tr>
+				<th>작성자 ID</th>
+				<td><input type="text" name="fc_id"
+					value="${sessionScope.loginId }" readonly></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name="fc_content" rows="5" cols="50"></textarea></td>
+			</tr>
+		</table>
+		<input type="submit" value="작성">
+	</form>
 
-<h1>댓글 목록</h1>
+	<h1>댓글 목록</h1>
 
-<table id ="test"> </table>
-<button class="recommend-button" onclick="increaseRecommendCount()">추천</button>
-
-<style>
-  .recommend-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-</style>
+	<table id="test">
+	</table>
 	
+	
+	<button class="button" onclick="likebutton()">추천</button>
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
-		
+
 
 </body>
 </html>
