@@ -138,7 +138,6 @@ function a(){
 	
 	//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
 	xhttp.onload = function(){ 
-		if {}
 	}
 	
 	xhttp.open("GET", "${pageContext.request.contextPath}/recipe/like.do?num=${num}");
