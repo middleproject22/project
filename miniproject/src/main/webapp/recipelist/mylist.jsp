@@ -8,7 +8,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<script src="./jquery-3.4.1.min.js"></script>
+	<script>
+	function recBttn(){
+		//체크 데이터를 담을 배열
+		const arr=[];
+		//Name 이 myrecipelist인 속성 취득
+		const myrecipelist = document.getElementsByName("myrecipelist");
+		//취득한 속성만큼 루프
+		for(let i=0;i<myrecipelist.length;i++){
+			//속성중에 체크 된 항목이 있을 경우
+			if(myrecipelist[i].checked == true){
+				arr.push(myrecipelist[i].value);
+			}
+		}
+		//결과 표시
+		document.getElementById("result").textContent = arr;
+		System.out.println(arr);
+	}
+// ${"input:checkbox[name=myrecipelist]:checked }.length{
 
+// }
+</script>
 </head>
 <body>
     <div class="row">
@@ -41,11 +61,12 @@
 				</select>
     <c:forEach var="vo" items="${list }">
 		<div class="col">
-                <input class="form-check-input me-1" type="checkbox">
+                <input class="form-check-input me-1" type="checkbox" name="myrecipelist">
                 
                 [${vo.dday }]
                 ${vo.ingredient }
         </div>
+        <input type="button" value="recbttn" onclick="recBttn()">
 	</c:forEach>
 	</div>
 </body>

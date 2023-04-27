@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import foodlist.FoodListService;
 import foodmanage.FoodManageVo;
@@ -16,11 +17,13 @@ public class MyListHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("loginId");
 		System.out.println(id);
 		FoodListService service = new FoodListService();
 		service.checkDate(id);
 		ArrayList<FoodManageVo> list = service.getbyId(id);
+		//영양소 내용 꺼내기
 		ArrayList<IngredientVo> listIng=new ArrayList<>();
 		IngredientService serviceIng = new IngredientService();
 		for(int i =0;i<list.size();i++) {

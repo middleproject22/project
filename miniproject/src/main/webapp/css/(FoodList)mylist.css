@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+hr.line {
+	width: 100px;
+	color: red;
+	border: thin solid red;
+}

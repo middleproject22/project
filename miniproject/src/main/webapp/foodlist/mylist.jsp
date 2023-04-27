@@ -132,7 +132,7 @@
                 <div class="col-2">
 				
 				<!-- 영양소 불러오기. MyList에서 listIng 받아옴. varstatus -->
-				<table border="1">
+				<table>
                     	<tr>
                     		<td> 칼로리 :${listIng[status.index].ig_kcal }</td>
                     		<td>단백질 :${listIng[status.index].ig_pt }</td>

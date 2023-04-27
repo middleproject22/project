@@ -43,7 +43,7 @@ public class FoodListDao {
 	// 카테고리별 검색
 	public ArrayList<FoodManageVo> selectByCategories(int cat_num) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage where cat_num = ?";
+		String sql = "select * from food_manage where cat_num = ? order by dday";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
