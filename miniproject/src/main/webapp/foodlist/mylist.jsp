@@ -87,13 +87,13 @@
 						육류,어패류, 달걀, 콩류
 					</c:if>    
 					 <c:if test="${vo.cat_lnum ==2}" >
-						과일류
+						곡류
 					</c:if> 
 					 <c:if test="${vo.cat_lnum ==3}" >
-						유제품류
+						과일류
 					</c:if> 
 					 <c:if test="${vo.cat_lnum ==4}" >
-						곡류
+						유제품류
 					</c:if> 
 					 <c:if test="${vo.cat_lnum ==5}" >
 						채소류

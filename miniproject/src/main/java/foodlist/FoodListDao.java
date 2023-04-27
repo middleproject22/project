@@ -188,13 +188,15 @@ public class FoodListDao {
 	//id별 리스트 뽑기
 	public ArrayList<FoodManageVo> selectById(String id) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage f, categories c where id = ? and f.cat_num=c.cat_num order by dday";
+		String sql = "select fm_num, id, ingredient, f.cat_num, today, expiredate, dday,amount,memo,cat_lnum from food_manage f, categories c where id = ? and f.cat_num=c.cat_num order by dday";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 
+			
+			
 			while (rs.next()) {
 				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
 						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9),rs.getInt(10)));
