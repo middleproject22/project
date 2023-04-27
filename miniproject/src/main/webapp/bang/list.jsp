@@ -32,15 +32,13 @@ function select() {
 		let igname = document.getElementById("igname");
 		igname.innerHTML = html ;	
 	}			
-	if(document.getElementById("id").value==""){
 		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/select.do?name="+param);
-	} else{
-		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/search.do?name="+param);
-	}
+	
 	xhttp.send();	
-}					
-				
-				
+}			
+
+
+
 function sele(ingredient){
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload= function(){

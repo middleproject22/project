@@ -8,9 +8,23 @@
 <title>Insert title here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	
 	<script type="text/javascript">
-	
-	
+	function addIng(){
+		let inin = document.getElementById("ing");
+		let ingredient = inin.innerHTML;
+		
+		let expiredate = document.getElementById("expiredate").value;
+		let content = document.getElementById("content").value;
+		
+		let param = "?ingredient="+ingredient;
+		param += "&expiredate="+expiredate;
+		param += "&content="+content;
+// 		let param = `?ingredient=${ingredient}&expiredate=${expiredate}&content=${content}`;
+// 		window.location.href ="${pageContext.request.contextPath}/foodmanage/add.do?ingredient="+ingredient+"&expiredate="+expiredate+"&content="+content;
+		window.location.href ="${pageContext.request.contextPath}/foodmanage/add.do"+param	;
+		
+	}
 	
 	</script>
 </head>
@@ -42,7 +56,7 @@
            
         </div>
     </div>
-	<form id="add" action="">
+	<form id="add">
 
     <!--  for 문으로 리스트 돌리기 -->
     <c:forEach var="vo" items="${list}">
@@ -51,22 +65,22 @@
             <div class="row">
                 
                 
-                <div class="col-2">
-                    <h6>${vo.ingredient }</h6>
+                <div class="col-2" >
+                    <h6 id="ing" >${vo.ingredient }</h6>
                 </div>
                 <div class="col-2">
-                <h6><input type="text"></h6>
+                <h6><input type="date" id="expiredate"></h6>
             	</div>
                 <div class="col">
-                    <h6><input type="text" id="date"></h6>
+                    <h6><input type="text" id="content"></h6>
                 </div>
                 <div class="col-2">	
-                    <input type="button" id="delete" value="삭제" onclick='location.href="${pageContext.request.contextPath}/foodmanage/delete.do?num="${vo.temp_num}"'>
+                    <input type="button" id="delete" value="삭제" onclick='location.href="${pageContext.request.contextPath}/foodmanage/delete.do?num=${vo.temp_num}"'>
                 </div>
             </div>
         </div>
     </c:forEach>
-    <div><input type="submit" value="등록"></div>
+    <div><input type="button" onclick='addIng()' value="등록"></div>
     	</form>
     
 </body>

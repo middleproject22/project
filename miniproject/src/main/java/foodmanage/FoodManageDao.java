@@ -17,19 +17,19 @@ public class FoodManageDao {
 	}
 
 	public void insert(FoodManageVo vo) {
+		System.out.println("dao1");
 		Connection conn = dbconn.conn();
-		String sql = "insert into food_manage values (seq_fmnum.nextval,?,?,?,?,?,?,?,?)";
+		String sql = "insert into food_manage values (seq_fmnum.nextval,?,?,?,sysdate,to_date(?, 'yyyy-MM-dd'),null,?,?)";
+		System.out.println("dao2");
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getIngredient());
 			pstmt.setInt(3, vo.getCat_num());
-			pstmt.setDate(4, vo.getToday());
-			pstmt.setDate(5, vo.getExpiredate());
-			pstmt.setInt(6, vo.getDday());
-			pstmt.setInt(7, vo.getAmount());
-			pstmt.setString(8, vo.getMemo());
-
+			pstmt.setString(4, vo.getExpiredate_str());
+			pstmt.setInt(5, vo.getAmount());
+			pstmt.setString(6, vo.getMemo());
+			System.out.println("dao3");
 			int num = pstmt.executeUpdate();
 			System.out.println(num + "줄이 추가되었습니다.");
 		} catch (SQLException e) {

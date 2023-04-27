@@ -13,4 +13,7 @@ public class CategoriesService {
 	public ArrayList<CategoriesVo> getCategories(){
 		return dao.selectCategories();
 	}
+	public int getCat_num(String ingredient) {
+		return dao.selectCat_num(ingredient);
+	}
 }

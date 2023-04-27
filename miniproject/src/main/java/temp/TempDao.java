@@ -42,7 +42,7 @@ public class TempDao {
 public void deleteByNum(int num) {
 		
 		Connection conn = dbconn.conn();
-		String sql = "delete from temp where ingredient = ?";
+		String sql = "delete temp where temp_num = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -60,13 +60,13 @@ public void deleteByNum(int num) {
 		
 	}
 	
-	public void deleteByName(String ingredient) {
+	public void deleteByName(String id) {
 		
 		Connection conn = dbconn.conn();
-		String sql = "delete from temp where ingredient = ?";
+		String sql = "delete from temp where id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ingredient);
+			pstmt.setString(1, id);
 			int num = pstmt.executeUpdate();
 			System.out.println(num + "줄이 삭제되었습니다.");
 		} catch (SQLException e) {
