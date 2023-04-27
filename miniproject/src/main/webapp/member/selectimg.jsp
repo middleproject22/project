@@ -8,16 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/member/selectimg.do" method="post" enctype="multipart/form-data">
-<input type="file" name="file">
+<form action="${pageContext.request.contextPath }/member/selectimg.do" method="post">
  <table>
 <c:forEach var="img" items="${list }" varStatus="status">
+<c:if test = '${status.index%3 ==0}'>
 <tr>
- <td class="view_img"><img src='${ img.imgpath}' style="width:200px;height:230px" onclick="select('${img.imgpath}')"></td>
+</c:if>
+ <td class="view_img"  style="border:none" id="${status.index}" onclick="b(${status.index})"><img src='${ img.imgpath}' style="width:200px;height:230px;" onclick="select('${img.imgpath}')" ></td>
+ <c:if test = '${status.index%3==2 }'>
  </tr>
+ </c:if>
 </c:forEach>
 </table>
-<input type="hidden" id="path" name="path" value="">
+<input type="hidden" id="path" name="path" value="" >
 <button type="submit">선택</button>
 </form>
 
@@ -31,6 +34,17 @@ window.onload=function(){
 	if('${ck}'=="ck"){
 		opener.location.reload();
 		window.close();
+	}
+}
+
+function b(num){
+	for(let i=0;i<9;i++){
+		let bordline = document.getElementById(i);
+		if(num == i){
+			bordline.style.border='1px solid blue'
+		}else if(num!=i){
+			bordline.style.border= '';
+		}
 	}
 }
 </script>

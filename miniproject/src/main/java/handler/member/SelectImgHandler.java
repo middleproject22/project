@@ -35,37 +35,14 @@ public class SelectImgHandler implements Handler {
 			view = "/member/selectimg.jsp";
 		}else {
 			
-			String path = "/Users/steve/git/project/miniproject/src/main/webapp/userimg";
-
-			int size = 100 * 1024 * 1024; // 100M
-
-			MultipartRequest multipart;
-			try {
-				multipart = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());
-				File f = multipart.getFile("file");
-				if(f==null) {
-					String defaultimgpath = multipart.getParameter("path");
-					mservice.imgUpdate(defaultimgpath, id);
-				}else {
-				// getName(): 파일명 반환
-				String fname = "/miniproject/userimg/"+f.getName();// 파일명
-				mservice.imgUpdate(fname, id);
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			
-			
-			
-			
+			String path = request.getParameter("path");
+			mservice.imgUpdate(path, id);
 			MemberVo vo = mservice.getById(id);
 			request.setAttribute("ck", "ck");
 			session.setAttribute("img", vo.getImgpath());
 			view = "/member/selectimg.jsp";
 			}
+		
 		
 		
 		return view;
