@@ -20,7 +20,7 @@ public class TempVo {
 	public int getTemp_num() {
 		return temp_num;
 	}
-
+	
 	public void setTemp_num(int temp_num) {
 		this.temp_num = temp_num;
 	}

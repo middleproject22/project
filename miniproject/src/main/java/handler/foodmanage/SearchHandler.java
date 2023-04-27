@@ -22,7 +22,10 @@ public class SearchHandler implements Handler {
 		
 		IngredientService service = new IngredientService();
 		String name = request.getParameter("name"); 
-		ArrayList<IngredientVo> list = service.getByMid(name); 
+		
+		System.out.println(name);
+		ArrayList<IngredientVo> list = service.getByNames(name); 
+
 		JSONArray arr = new JSONArray();
 		
 		for(IngredientVo vo : list) {
