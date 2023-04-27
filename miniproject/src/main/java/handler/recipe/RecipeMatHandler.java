@@ -15,7 +15,7 @@ public class RecipeMatHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		
+		String view= "/recipe/namelist.jsp";
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -23,6 +23,7 @@ public class RecipeMatHandler implements Handler {
 			e1.printStackTrace();
 		}
 		response.setCharacterEncoding("utf-8");
+		if(request.getMethod().equals("GET")) {
 		String rcppd = request.getParameter("rcp");
 		String[] rcpArr =  new String[3];
 		String[] splitArr = rcppd.split(" ");
@@ -38,12 +39,22 @@ public class RecipeMatHandler implements Handler {
 		String mat1 = rcpArr[0];
 		String mat2 = rcpArr[1];
 		String mat3 = rcpArr[2];
-		String view= "/recipe/namelist.jsp";
+		
 		RecipeBoardService service = new RecipeBoardService();
 		ArrayList<RecipeBoardVo> list = service.selectMat(mat1, mat2, mat3);
 		
 		request.setAttribute("list", list);
-		
+		} else {
+			String[] mats = request.getParameterValues("inglist");
+			String mat1 = mats[0];
+			String mat2 = mats[1];
+			String mat3 = mats[2];
+			
+			RecipeBoardService service = new RecipeBoardService();
+			ArrayList<RecipeBoardVo> list = service.selectMat(mat1, mat2, mat3);
+			request.setAttribute("list", list);
+
+		}
 		return view;
 	}
 

@@ -39,6 +39,9 @@
 
     <div class="p-4"></div>
 
+	<div class="container text-right">
+	<a href="${pageContext.request.contextPath }/foodmanage/list.do">식품 추가하기</a>
+	</div>
     <div class="container text-center">
         <div class="row">
 
