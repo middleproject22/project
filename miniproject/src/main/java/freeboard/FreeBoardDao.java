@@ -182,4 +182,56 @@ public class FreeBoardDao {
 		}
 		return null;
 	}
+	
+	public ArrayList<FreeBoardVo> selectByTitle(String title) {
+		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
+		Connection conn = dbconn.conn();
+		String sql = "select * from free_board where title like ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+title+"%");
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public ArrayList<FreeBoardVo> selectById(String id) {
+		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
+		Connection conn = dbconn.conn();
+		String sql = "select * from free_board where id like ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+id+"%");
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }

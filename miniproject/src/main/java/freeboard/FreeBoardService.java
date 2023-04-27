@@ -37,4 +37,12 @@ public class FreeBoardService {
 	public FreeBoardVo page() {
 		return dao.page();
 	}
+	
+	public ArrayList<FreeBoardVo> getByTitle(String title) {
+		return dao.selectByTitle(title);
+	}
+	
+	public ArrayList<FreeBoardVo> getById(String id) {
+		return dao.selectById(id);
+	}
 }
