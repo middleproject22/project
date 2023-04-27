@@ -76,6 +76,8 @@ public class FreeBoardVo {
 		return "FreeBoardVo [fb_num=" + fb_num + ", id=" + id + ", w_date=" + w_date + ", title=" + title + ", content="
 				+ content + ", cnt=" + cnt + "]";
 	}
+
 	
+
 	
 }
