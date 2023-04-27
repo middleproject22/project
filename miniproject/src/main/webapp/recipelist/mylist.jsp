@@ -62,7 +62,7 @@ $(document).ready(function(){
         </div>
         <div class = "col">
 		<c:if test="${vo.cat_lnum == 3 }">
-				과일류
+				과일류 
                 <input class="inglist" type="checkbox" value="${vo.ingredient }" name="inglist">
                 [${vo.dday }]
                 ${vo.ingredient }
