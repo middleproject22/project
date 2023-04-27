@@ -135,19 +135,6 @@
 </head>
 <body>
 	<h1>자유게시판 상세 페이지</h1>
-	<button class="recommend-button" onclick="increaseRecommendCount()">추천</button>
-
-<style>
-  .recommend-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-</style>
-	
 	<table>
 		<tr>
 			<th>작성자 ID</th>
@@ -198,6 +185,19 @@
 <h1>댓글 목록</h1>
 
 <table id ="test"> </table>
+<button class="recommend-button" onclick="increaseRecommendCount()">추천</button>
+
+<style>
+  .recommend-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+	
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
