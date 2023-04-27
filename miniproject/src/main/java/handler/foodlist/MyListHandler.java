@@ -17,25 +17,25 @@ public class MyListHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		//로그인 세션 확인 ${sessionScope.loginId}
 		HttpSession session = request.getSession(false);
 		String id = (String) session.getAttribute("loginId");
-		System.out.println(id);
+		
 		FoodListService service = new FoodListService();
+		// dday 확인
 		service.checkDate(id);
+		// 리스트 목록 출력
 		ArrayList<FoodManageVo> list = service.getbyId(id);
 		//영양소 내용 꺼내기
 		ArrayList<IngredientVo> listIng=new ArrayList<>();
 		IngredientService serviceIng = new IngredientService();
 		for(int i =0;i<list.size();i++) {
 			FoodManageVo vo = list.get(i);
-			System.out.println(vo);
 			String name = vo.getIngredient();
 			IngredientVo ingvo = serviceIng.getByName(name);
-			System.out.println(name);
 			listIng.add(ingvo);
 			
 		}
-		System.out.println(listIng);
 		request.setAttribute("list", list);
 		request.setAttribute("listIng", listIng);
 		

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import foodlist.FoodListService;
 import foodmanage.FoodManageVo;
@@ -16,9 +17,14 @@ public class CategoryHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		int cat_num=Integer.parseInt( request.getParameter("cat_num"));
+		
+		//로그인 세션 확인 ${sessionScope.loginId}
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("loginId");
+				
+		int cat_lnum=Integer.parseInt( request.getParameter("cat_lnum"));
 		FoodListService service = new FoodListService();
-		ArrayList<FoodManageVo> list = service.getByCategories(cat_num);
+		ArrayList<FoodManageVo> list = service.getByCategories(id, cat_lnum);
 //		ArrayList<IngredientVo> listIng=new ArrayList<>();
 //
 //		IngredientService serviceIng = new IngredientService();

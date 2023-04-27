@@ -45,12 +45,12 @@
             <div class="col-2">
                 <select name="categories" onchange="window.open(value,'_self');" >
  					 <option>--카테고리--</option>
- 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=1">육류,어패류, 달걀, 콩류</option>
- 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=3">과일류</option>
-					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=4">유제품류</option>
-					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=2">곡류</option>
-					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_num=5">채소류</option>
-					<option value="${pageContext.request.contextPath}/foodlist/mylist.do?id=test">전체보기</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_lnum=1">육류,어패류, 달걀, 콩류</option>
+ 					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_lnum=3">과일류</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_lnum=4">유제품류</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_lnum=2">곡류</option>
+					 <option value="${pageContext.request.contextPath}/foodlist/category.do?cat_lnum=5">채소류</option>
+					<option value="${pageContext.request.contextPath}/foodlist/mylist.do">전체보기</option>
 					
 				</select>
             </div>
@@ -83,19 +83,19 @@
             <div class="row">
  
                 <div class="col-2">
-	                <c:if test="${vo.cat_num ==1}" >
+	                <c:if test="${vo.cat_lnum ==1}" >
 						육류,어패류, 달걀, 콩류
 					</c:if>    
-					 <c:if test="${vo.cat_num ==2}" >
+					 <c:if test="${vo.cat_lnum ==2}" >
 						과일류
 					</c:if> 
-					 <c:if test="${vo.cat_num ==3}" >
+					 <c:if test="${vo.cat_lnum ==3}" >
 						유제품류
 					</c:if> 
-					 <c:if test="${vo.cat_num ==4}" >
+					 <c:if test="${vo.cat_lnum ==4}" >
 						곡류
 					</c:if> 
-					 <c:if test="${vo.cat_num ==5}" >
+					 <c:if test="${vo.cat_lnum ==5}" >
 						채소류
 					</c:if>       
                 </div>

@@ -12,8 +12,8 @@ public class FoodListService {
 		dao = new FoodListDao();
 	}
 	
-	public ArrayList<FoodManageVo> getByCategories(int cat_num) {
-		return dao.selectByCategories(cat_num);
+	public ArrayList<FoodManageVo> getByCategories(String id,int cat_num) {
+		return dao.selectByCategories(id,cat_num);
 	}
 	
 	public void updateToday(String id) {

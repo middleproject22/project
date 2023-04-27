@@ -1,6 +1,7 @@
 package foodlist;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ public class FoodListDao {
 	public FoodListDao() {
 		dbconn = DBConnect.getInstance();
 	}
+	
 	public ArrayList<FoodManageVo> selectAll(){
 		Connection conn = dbconn.conn();
 		String sql = "select * from food_manage order by status desc, expiredate desc";
@@ -41,18 +43,32 @@ public class FoodListDao {
 	}
 	
 	// 카테고리별 검색
-	public ArrayList<FoodManageVo> selectByCategories(int cat_num) {
+	public ArrayList<FoodManageVo> selectByCategories(String id, int cat_lnum) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage where cat_num = ? order by dday";
+		String sql = "select * from categories c, food_manage f where id=? and f.cat_num = c.cat_num and c.cat_lnum = ? order by dday";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cat_num);
+			pstmt.setString(1,id);
+			pstmt.setInt(2, cat_lnum);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
+				
+//				System.out.println(rs.getInt(1)); //cat_num
+//				System.out.println(rs.getString(2)); //cat_name
+//				System.out.println(rs.getInt(3)); //cat_lnum
+//				System.out.println(rs.getInt(4)); //fm_num
+//				System.out.println(rs.getString(5)); //id
+//				System.out.println(rs.getString(6)); //ingredient
+//				System.out.println(rs.getInt(7)); //cat_num
+//				System.out.println(rs.getDate(8)); //today
+//				System.out.println(rs.getDate(9)); //expiredate
+//				System.out.println(rs.getInt(10)); //dday
+//				System.out.println(rs.getInt(11)); //amount
+//				System.out.println(rs.getString(12)); //memo
+				list.add( new FoodManageVo(rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(1),rs.getDate(8),rs.getDate(9),rs.getInt(10),
+						rs.getInt(11),rs.getString(12),rs.getInt(3)));
 			}
 
 		} catch (SQLException e) {
@@ -172,7 +188,7 @@ public class FoodListDao {
 	//id별 리스트 뽑기
 	public ArrayList<FoodManageVo> selectById(String id) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage where id = ? order by dday";
+		String sql = "select * from food_manage f, categories c where id = ? and f.cat_num=c.cat_num order by dday";
 		ArrayList<FoodManageVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -181,7 +197,7 @@ public class FoodListDao {
 
 			while (rs.next()) {
 				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
+						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9),rs.getInt(10)));
 			}
 
 		} catch (SQLException e) {
