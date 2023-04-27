@@ -20,6 +20,7 @@
 			let res = document.getElementById("res");
 			res.innerHTML = html;
 			f.id.value = "";
+			f.id.focus();
 		}
 
 		else {
@@ -37,6 +38,8 @@
 					html += 'style="color : blue">사용가능한 아이디입니다.</p>'
 				} else {
 					html += 'style="color : red">이미 사용중인 아이디 입니다.</p>'
+						f.id.value = "";
+					f.id.focus();
 				}
 				let res = document.getElementById("res");
 				res.innerHTML = html;
@@ -83,12 +86,12 @@
 		<h1>JOIN</h1>
 	</div>
 	<section class=loginform>
-		<form name="f"
+		<form name="f" id="f"
 			action="${pageContext.request.contextPath}/member/join.do"
 			method="post">
 			<div class=int-area>
 				<input type="text" class='id' name="id" id="id" required autocomplete="off"
-					onblur="a()"> <label for="id">USER ID</label>
+					onblur="a()" > <label for="id">USER ID</label>
 				<div class="ck-res" id="res"></div>
 
 			</div>
@@ -118,10 +121,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
-	<script type="text/javascript">
-	if(document.querySelector(".id").value==null){
-		document.querySelector(".id").setAttribute('autofocus','autofocus');
-	}
-	</script>
+	
 </body>
 </html>
