@@ -46,7 +46,7 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 								href="#" role="button" aria-expanded="false">레시피</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#scrollspyHeading3">레시피
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 									목록</a></li>
 							<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
 									픽 레시피</a></li>
