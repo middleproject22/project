@@ -20,22 +20,24 @@ public class DeleteHandler implements Handler {
 		response.setContentType("application/json");		
 		
 		HttpSession session = request.getSession(false);
+		TempService service = new TempService();
+		ArrayList<TempVo> list = new ArrayList<>();
+
 		String id = (String)session.getAttribute("loginId");
 		String ingredient = request.getParameter("ingredient");
 		int num = Integer.parseInt(request.getParameter("num"));
 		
-		TempService service = new TempService();
-		ArrayList<TempVo> list = new ArrayList<>();
-		service.outByNum(0);
 		
+		service.outByNum(num);
 		
-		list.add(new TempVo(0,id,ingredient));
-		
+		list = service.getTemp();
+
+				
 		request.setAttribute("list", list);
 		
 		
 		
-		return "/bang/detail.jsp";
+		return "redirect:/foodmanage/detail.do";
 		
 	}
 
