@@ -9,20 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	
-	<script type="text/javascript">
-	function addIng(){
-		let inin = document.getElementsByClassName("ing").innerHTML;
-		let expiredate = document.getElementsByClassName("expiredate").value;
-		let content = document.getElementsByClassName("content").value;
-		let param = "?ingredient="+ingredient;
-		param += "&expiredate="+expiredate;
-		param += "&content="+content;
-// 		let param = `?ingredient=${ingredient}&expiredate=${expiredate}&content=${content}`;
-// 		window.location.href ="${pageContext.request.contextPath}/foodmanage/add.do?ingredient="+ingredient+"&expiredate="+expiredate+"&content="+content;
-		window.location.href ="${pageContext.request.contextPath}/foodmanage/add.do"+param	;
-		
-	}			
-				
+	<script type="text/javascript">		
+
+			
 	</script>	
 </head>
 <body>
@@ -53,8 +42,8 @@
            
         </div>
     </div>
+    
 	<form id="add" action= "${pageContext.request.contextPath}/foodmanage/add.do" method="post">
-
     <!--  for 문으로 리스트 돌리기 -->
     <c:forEach var="vo" items="${list}">
 
@@ -71,6 +60,7 @@
                 </div>
                 <div class="col-2">	
                     <input type="button" id="delete" value="삭제" onclick='location.href="${pageContext.request.contextPath}/foodmanage/delete.do?num=${vo.temp_num}"'>
+                	
                 </div>
             </div>
         </div>

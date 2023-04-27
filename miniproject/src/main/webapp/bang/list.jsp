@@ -16,7 +16,6 @@ function a(el){
 		param = el;
 	}				
 function select() {	
-	
 	const xhttp = new XMLHttpRequest();
 				
 				
@@ -37,7 +36,29 @@ function select() {
 	xhttp.send();	
 }			
 
-
+function searing() {	
+	
+	const xhttp = new XMLHttpRequest();
+				
+				
+	xhttp.onload= function(){
+		let val = xhttp.responseText;
+		let arr = JSON.parse(val);
+		let html = '';
+		for(let obj of arr){
+			html += "<span id='"+obj.ig_name +"'" ;
+			html += " onclick=\"sele('" + obj.ig_name + "')\">" + obj.ig_name;
+			html += "</span>";
+		}								
+		let igname = document.getElementById("igname");
+		igname.innerHTML = html ;	
+	}			
+	
+	param = document.getElementById("searchIng").value;
+	
+	xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/search.do?name="+param);
+	xhttp.send();	
+}	
 
 function sele(ingredient){
 	const xhttp = new XMLHttpRequest();
@@ -67,8 +88,8 @@ function sele(ingredient){
 </div>
 <div style="width:1200px;height:80px">
 <form id="ff">
-<input type="text" id="searchIng" autocomplete="off" style="width:350px;height:33px"><button style="width:45px;height:38px" onclick="location.href='${pageContext.request.contextPath}/foodmanage/search.do'">
-검색</button>
+<input type="text" id="searchIng" autocomplete="off" style="width:350px;height:33px">
+<input type="button" style="width:45px;height:38px" value ="검색" onclick="searing()">
 </form>
 </div>
 <div style="width:1200px;height:200px;display:flex">

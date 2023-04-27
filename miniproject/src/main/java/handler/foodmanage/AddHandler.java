@@ -42,13 +42,6 @@ public class AddHandler implements Handler {
 			int cat_num = catservice.getCat_num(ingredient);
 			String date = arrdate[i];
 			service.addFood(new FoodManageVo(0,id,ingredient,cat_num,null,null,dday,amount,content,date));
-			System.out.println(id);
-			System.out.println(ingredient);  
-			System.out.println(cat_num);
-			System.out.println(date);
-			System.out.println(dday);
-			System.out.println(amount);
-			System.out.println(content);
 		}
 		
 		
