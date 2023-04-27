@@ -57,7 +57,7 @@ $(document).ready(function(){
                 <input class="inglist" type="checkbox" value="${vo.ingredient }" name="inglist" >
                 [${vo.dday }]
                 ${vo.ingredient }
-               
+              
 		</c:if>
         </div>
         <div class = "col">
