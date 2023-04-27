@@ -16,6 +16,7 @@ public class FoodManageVo {
 	private int amount;
 	private String memo;
 	private String expiredate_str;
+	private int cat_lnum;
 				
 				
 	public FoodManageVo () {
@@ -54,6 +55,33 @@ public class FoodManageVo {
 	}
 
 	
+	public FoodManageVo(int fm_num, String id, String ingredient, int cat_num, Date today, Date expiredate, int dday,
+			int amount, String memo, int cat_lnum) {
+		super();
+		this.fm_num = fm_num;
+		this.id = id;
+		this.ingredient = ingredient;
+		this.cat_num = cat_num;
+		this.today = today;
+		this.expiredate = expiredate;
+		this.dday = dday;
+		this.amount = amount;
+		this.memo = memo;
+		this.expiredate_str = expiredate_str;
+		this.cat_lnum = cat_lnum;
+	}
+
+
+	public int getCat_lnum() {
+		return cat_lnum;
+	}
+
+
+	public void setCat_lnum(int cat_lnum) {
+		this.cat_lnum = cat_lnum;
+	}
+
+
 	public String getExpiredate_str() {
 		return expiredate_str;
 	}
