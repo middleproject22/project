@@ -1,5 +1,7 @@
 package handler.freeboard;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +13,13 @@ public class EditHandler implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			response.setCharacterEncoding("UTF-8");
 	    String view = null;
 	    if (request.getMethod().equals("GET")) {
 	        int fb_num = Integer.parseInt(request.getParameter("fb_num"));

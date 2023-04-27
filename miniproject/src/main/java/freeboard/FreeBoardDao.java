@@ -43,36 +43,10 @@ public class FreeBoardDao {
 	//원글 모두 검색
 	public ArrayList<FreeBoardVo> selectAll() {
 		Connection conn = dbconn.conn();
-		String sql = "select * from free_board where parent=0 order by num desc";
+		String sql = "select * from free_board order by fb_num desc";
 		ArrayList<FreeBoardVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6)));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
-	//댓글 검색
-	public ArrayList<FreeBoardVo> selectReps(int parent) {
-		Connection conn = dbconn.conn();
-		String sql = "select * from free_board where parent=? order by num desc";
-		ArrayList<FreeBoardVo> list = new ArrayList<>();
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, parent);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
@@ -92,7 +66,7 @@ public class FreeBoardDao {
 		return list;
 	}
 	
-	//원글, 댓글 작성
+	//원글 작성
 	public void insert(FreeBoardVo vo) {
 		Connection conn = dbconn.conn();
 
@@ -170,7 +144,6 @@ public class FreeBoardDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, num);
 			int num1 = pstmt.executeUpdate();
 			System.out.println(num1 + " 줄이 수정됨");
 		} catch (SQLException e) {
@@ -184,5 +157,29 @@ public class FreeBoardDao {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public FreeBoardVo page() {
+		Connection conn = dbconn.conn();
+		String sql = "select * from(select * from free_board order by rownum desc) where rownum = 1";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();// select 실행
+			if (rs.next()) {
+				return new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		return null;
 	}
 }

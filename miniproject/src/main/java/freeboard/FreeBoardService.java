@@ -33,4 +33,8 @@ public class FreeBoardService {
 	public void cnt(int num) {
 		dao.cnt(num);
 	}
+	
+	public FreeBoardVo page() {
+		return dao.page();
+	}
 }
