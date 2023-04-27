@@ -14,29 +14,43 @@
 <link rel='stylesheet' type="text/css" href="../css/join.css">
 <script type="text/javascript">
 	function a() {
-		const xhttp = new XMLHttpRequest();
-		//비동기 요청 응답이 왔을때 자동 실행될 핸들러 등록
-		xhttp.onload = function() {
-			let val = xhttp.responseText;
-			let html = '<p class="h6"' ;
-			let obj = JSON.parse(val);
-			
-			if(obj.flag=="insertid"){
-				html += 'style="color : red">Insert Id</p>'
-			}else if (obj.flag) {
-				html += 'style="color : blue">available </p>'
-			}else{
-				html += 'style="color : red">already in use</p>'
-			}
+		let chkvalue = /^[a-zA-Z0-9]{4,12}$/
+		if (!chkvalue.test(f.id.value)) {
+			let html = '<p class="h6"'+'style="color : red">4~12자의 영문으로 입력해주세요</p>'
 			let res = document.getElementById("res");
 			res.innerHTML = html;
+			f.id.value = "";
+		}
+
+		else {
+			const xhttp = new XMLHttpRequest();
+			//비동기 요청 응답이 왔을때 자동 실행될 핸들러 등록
+			xhttp.onload = function() {
+				let val = xhttp.responseText;
+				let html = '<p class="h6"';
+				let obj = JSON.parse(val);
+
+				if (obj.flag == "insertid") {
+					html += 'style="color : red">아이디를 입력해주세요</p>'
+
+				} else if (obj.flag) {
+					html += 'style="color : blue">사용가능한 아이디입니다.</p>'
+				} else {
+					html += 'style="color : red">이미 사용중인 아이디 입니다.</p>'
+				}
+				let res = document.getElementById("res");
+				res.innerHTML = html;
+
+			}
+
+			let param = "?id=" + f.id.value;
+			xhttp.open("GET",
+					"${pageContext.request.contextPath}/member/checkid.do"
+							+ param);
+			xhttp.send();
 
 		}
 
-		let param = "?id=" + f.id.value;
-		xhttp.open("GET", "${pageContext.request.contextPath}/member/checkid.do"
-				+ param);
-		xhttp.send();
 	}
 
 	function b() {
@@ -55,30 +69,28 @@
 <body>
 	<nav class="navbar navbar-expand-lg py-3 sicky-top bgc shadow-lg">
 		<div class="container">
-			<div class="col col-md-3 text-start">
-			</div>
+			<div class="col col-md-3 text-start"></div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/index.jsp"><img class="logo" src="../imgs/logo3.png"></a>
+					<a href="${pageContext.request.contextPath }/index.jsp"><img
+						class="logo" src="../imgs/logo3.png"></a>
 				</nav>
 			</div>
-			<div class="col col-md-3 text-end">
-			</div>
+			<div class="col col-md-3 text-end"></div>
 		</div>
 	</nav>
 	<div class="title">
 		<h1>JOIN</h1>
 	</div>
 	<section class=loginform>
-		<form name="f" action="${pageContext.request.contextPath}/member/join.do"
+		<form name="f"
+			action="${pageContext.request.contextPath}/member/join.do"
 			method="post">
 			<div class=int-area>
-				<input type="text" name="id" id="id" required autocomplete="off"
-					onfocus="b()" onblur="c()"> <label for="id">USER ID</label>
+				<input type="text" class='id' name="id" id="id" required autocomplete="off"
+					onblur="a()"> <label for="id">USER ID</label>
 				<div class="ck-res" id="res"></div>
-				<div class="checkbtn" id="ckid">
-					<button onclick='a()'>CHECK</button>
-				</div>
+
 			</div>
 			<div class=int-area>
 				<input type="password" name="pwd" id="pwd" required
@@ -106,5 +118,10 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+	if(document.querySelector(".id").value==null){
+		document.querySelector(".id").setAttribute('autofocus','autofocus');
+	}
+	</script>
 </body>
 </html>

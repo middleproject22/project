@@ -36,9 +36,9 @@
 								href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do?id=test">식품
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
 									전체 리스트</a></li>
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipelist/mylist.do?id=test">냉장고를
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
 									부탁해</a></li>
 						</ul>
 					</li>

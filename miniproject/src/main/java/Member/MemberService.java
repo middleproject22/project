@@ -1,5 +1,7 @@
 package Member;
 
+import java.util.regex.Pattern;
+
 public class MemberService {
 	private MemberDao dao;
 	
@@ -29,6 +31,9 @@ public class MemberService {
 	
 	public MemberVo getByPnum(String pnum) {
 		return dao.SelectByPnum(pnum);
+	}
+	public boolean chkId(String id) {
+		return Pattern.matches("^[a-zA-Z0-9]{4,12}$", id);
 	}
 
 }
