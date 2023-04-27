@@ -17,6 +17,7 @@
  <td class="view_img"  style="border:none" id="${status.index}" onclick="b(${status.index})"><img src='${ img.imgpath}' style="width:200px;height:230px;" onclick="select('${img.imgpath}')" ></td>
  <c:if test = '${status.index%3==2 }'>
  </tr>
+ 
  </c:if>
 </c:forEach>
 </table>
