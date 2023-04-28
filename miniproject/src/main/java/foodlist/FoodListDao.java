@@ -130,19 +130,17 @@ public class FoodListDao {
 	}
 
 	// 3일전
-		public ArrayList<FoodManageVo> ddayThree() {
+		public int ddayThree(String id) {
 			
 			Connection conn = dbconn.conn();
-			String sql = "select * from food_manage where dday<=3";
-			ArrayList<FoodManageVo> list = new ArrayList<>();
+			String sql = "select count(*) from food_manage where dday<=3 and id=?";
+			int count=0;
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
 				ResultSet rs = pstmt.executeQuery();
-
-				while (rs.next()) {
-					list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-							rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
-				}
+				rs.next();
+			    count = rs.getInt(1);			
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -153,24 +151,22 @@ public class FoodListDao {
 					e.printStackTrace();
 				}
 			}
-			return list;
+			return count;
 
 		}
 	
-	// 7일전
-	public ArrayList<FoodManageVo> ddaySeven() {
+	// 3~7일전
+	public int ddaySeven(String id) {
 		
 		Connection conn = dbconn.conn();
-		String sql = "select * from food_manage where 3 < dday and Dday <=7";
-		ArrayList<FoodManageVo> list = new ArrayList<>();
+		String sql = "select count(*) from food_manage where 3 < dday and Dday <=7 and id= ?";
+		int count=0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				list.add( new FoodManageVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDate(5),
-						rs.getDate(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
-			}
+			rs.next();
+		    count = rs.getInt(1);			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -181,7 +177,59 @@ public class FoodListDao {
 				e.printStackTrace();
 			}
 		}
-		return list;
+		return count;
+
+	}
+	
+	//7일 이상 남은 식품
+	public int ddayetc(String id) {
+		
+		Connection conn = dbconn.conn();
+		String sql = "select count(*) from food_manage where dday>7 and id=?";
+		ArrayList<FoodManageVo> list = new ArrayList<>();
+		int count=0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+		    count = rs.getInt(1);			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+
+	}
+	
+	//전체 식품 개수 구하기
+	public int ddayAll(String id) {
+		Connection conn = dbconn.conn();
+		String sql = "select count(*) from food_manage where id= ?";
+		int count=0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+		    count = rs.getInt(1);
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
 
 	}
 	

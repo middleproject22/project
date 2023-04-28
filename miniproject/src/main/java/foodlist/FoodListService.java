@@ -25,9 +25,24 @@ public class FoodListService {
 		dao.checkDate(id);
 	}
 	
-	public ArrayList<FoodManageVo> ddaySeven() {
-		return dao.ddaySeven();
+	//남은 날짜별 식품 개수
+	public int ddayThree(String id) {
+		return dao.ddayThree(id);
 	}
+	
+	public int ddaySeven(String id) {
+		return dao.ddaySeven(id);
+	}
+	
+	public int ddayetc(String id) {
+		return dao.ddayetc(id);
+	}
+	
+	//전체 식품 개수 구하기
+	public int ddayAll(String id) {
+		return dao.ddayAll(id);
+	}
+	
 	public ArrayList<FoodManageVo> getbyId (String id) {
 		return dao.selectById(id);
 	}

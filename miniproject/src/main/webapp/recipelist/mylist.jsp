@@ -21,10 +21,12 @@ $(document).ready(function(){
 				alert("3개만 선택 가능합니다.");
 		}
 	});
-	$("input:checkbox[name=${vo.ingredient }]").length; 
-	$("input:checkbox[name=${vo.ingredient }]:checked").length; 
+	$("input:checkbox[name=${vo.ingredient }]").length(function(){
+		alert(length);
+	}) 
+	$("input:checkbox[name=inglist]:checked").length; 
 	
-	$("input:checkbox[name=menu]").each(function(){
+	$("input:checkbox[name=inglist]").each(function(){
 		if(this.checked){
 			//체크된 것 수행할 것 구현
 		}
