@@ -50,4 +50,5 @@ public class FoodListService {
 	public void updateAmount(int amount, int num ) {
 		dao.updateAmount(amount, num);
 	}
+	
 }
