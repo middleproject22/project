@@ -35,10 +35,10 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 								href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
+							<li><a class="dropdown-item needlogin" onclick='checkId(this)'  href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
 									전체 리스트</a></li>
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
+							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
 									부탁해</a></li>
 						</ul>
 					</li>
@@ -127,6 +127,17 @@
 				autoplaySpeed : 2000,
 			});
 		})
+		
+		function checkId(el){
+   
+   
+   <c:if test="${empty sessionScope.loginId}">
+   alert("로그인이 필요한 서비스입니다.");
+   	el.href="${pageContext.request.contextPath}/member/login.do";
+	   
+   </c:if>
+   }   
+
 	</script>
 	
 </body>

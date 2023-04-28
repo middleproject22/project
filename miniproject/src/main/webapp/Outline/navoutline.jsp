@@ -42,17 +42,17 @@
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading4">식품
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
 										전체 리스트</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading5">냉장고를
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipelist/mylist.do">냉장고를
 										부탁해</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">리시피</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#scrollspyHeading3">레시피
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
 								<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
 										픽 레시피</a></li>
@@ -61,7 +61,7 @@
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#scrollspyHeading3">자유게시판</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -75,10 +75,10 @@
 			<div class="col col-md-3 text_flex">
 				<c:if test="${empty sessionScope.loginId }">
 					<h3 class="text_margine">
-						<a href="#">로그인</a>
+						<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
 					</h3>
 					<h3 class="text_margine">
-						<a href="#">회원가입</a>
+						<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
 					</h3>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
