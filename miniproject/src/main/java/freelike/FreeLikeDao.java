@@ -16,7 +16,7 @@ public class FreeLikeDao {
 	
 	public void insert(FreeLikeVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into free_liketable values(?, ?)";
+		String sql = "insert into free_like values(?, ?)";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getFl_id());
@@ -34,9 +34,10 @@ public class FreeLikeDao {
 		}
 	}
 	
+	//게시판 이름이 같고 좋아요 누른 사람이 둘다 같으면 삭제
 	public void delete(FreeLikeVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "delete from free_liketable where fl_id=? and fb_num=?";
+		String sql = "delete from free_like where fl_id=? and fb_num=?";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getFl_id());
@@ -54,11 +55,11 @@ public class FreeLikeDao {
 		}
 	}
 	
-	
+	// 추천 개수
 	public int selectLike(int board_num) {
 		int num = 0;
 		Connection conn = dbconn.conn();
-		String sql = "select count(*) from free_liketable where fb_num=?";
+		String sql = "select count(*) from free_like where fb_num=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
@@ -72,17 +73,19 @@ public class FreeLikeDao {
 		}
 		return num;
 	}
-	
+	// 그 사람이 쓴건지 안쓴건지 체
 	public FreeLikeVo selectByNum(int board_num, String id) {
 		Connection conn = dbconn.conn();
 		FreeLikeVo vo = null;
-		String sql = "select * from free_liketable where fb_num=? and fl_id=?";
+		String sql = "select * from free_like where fb_num=? and fl_id=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
 			pstmt.setString(2, id);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
+				System.out.println("FreeLike Dao Test : "+rs.getString(1));
+				System.out.println("FreeLike Dao Test2 : "+rs.getString(2));
 				vo = new FreeLikeVo(rs.getString(1),rs.getInt(2));
 			}
 		} catch (SQLException e) {

@@ -10,10 +10,11 @@
         const xhttp = new XMLHttpRequest();
         
         xhttp.onload = function() {
+ 
             let html = "";
             let txt = xhttp.responseText;
             let arr = JSON.parse(txt);
-            for (let obj of arr) {
+            for (let obj of arr) {//포문을 계속 돌린다
                 html += "<tr><td>"
                 html += obj.fc_id + "</td>"
                 html += "<td>" + obj.fc_content + "</td>"
@@ -48,23 +49,27 @@
     }
     
     function likebutton(num){
-    	   const xhttp = new XMLHttpRequest();
+    
+   
+    	   const xhttp = new XMLHttpRequest();//
     	   
     	   xhttp.onload = function(){
     	      let val = xhttp.responseText;
     	      console.log("val : " + val);
-    	      let arr = JSON.parse(val);
-    	      let html = '';
-    	      html = arr.cnt;
-    	      let res = document.getElementById("fb_num");
-    	      res.innerHTML = html;//responseText: 서버로부터 받은 응답값
+//     	      let html = '';
+//     	      let res = document.getElementById("fb_num");
+//     	      res.innerHTML = html;//responseText: 서버로부터 받은 응답값
     	   }
     	   
-    	   let param = "?fb_num=" + num;
-    	   param += "&id=${sessionScope.loginId}";
+//     	   let param = "?fb_num=" + num;기존코드
+		   let param = "?fb_num=";
+		   param += ${vo.fb_num};//테스트
+    	   param += "&fl_id=${sessionScope.loginId}";
     	   //요청 전송방식, 서버페이지 url 설정. get방식인 경우 url뒤에 파람 붙임
     	   xhttp.open("GET", "${pageContext.request.contextPath}/freelike/fl_up.do"+param);
+//     	   xhttp.open("GET", "${pageContext.request.contextPath}/freelike/fl_up.do"+param);
     	   xhttp.send();
+    	   alert("ok")
     	}
     
 </script>
@@ -207,6 +212,7 @@
 	<h1>댓글 목록</h1>
 
 	<table id="test">
+	
 	</table>
 	
 	
