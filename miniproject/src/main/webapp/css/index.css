@@ -10,9 +10,14 @@ a{
     color: black;
 }
 .userpick{
-    width: 270px;
-    height: 270px;
-    border: 1px solid black;
+    width: 474px;
+    height: 267px;
+   
+}
+.userpick>img{
+	 width: 474px;
+    height: 267px;
+     padding: 15px;
 }
 
 .logo{

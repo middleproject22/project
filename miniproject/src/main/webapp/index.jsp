@@ -36,9 +36,9 @@
 								href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item needlogin" onclick='checkId(this)'  href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
+							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
 									전체 리스트</a></li>
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
+							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath }/recipelist/mylist.do">냉장고를
 									부탁해</a></li>
 						</ul>
 					</li>
@@ -94,12 +94,9 @@
 			<div class="col col-md-8 m-auto">
 				<div class="recommandlist"
 					style="display: flex; justify-content: space-evenly; height: 291px;">
-					<div class="userpick">1</div>
-					<div class="userpick">2</div>
-					<div class="userpick">3</div>
-					<div class="userpick">4</div>
-					<div class="userpick">5</div>
-					<div class="userpick">6</div>
+					<div class="userpick"><img src="/miniproject/imgs/yeolmu.png"></div>
+					<div class="userpick"><img src="/miniproject/imgs/yeolmu.png"></div>
+					<div class="userpick"><img src="/miniproject/imgs/yeolmu.png"></div>
 				</div>
 			</div>
 		</div>
@@ -119,14 +116,15 @@
 
 
 	<script>
-		$(document).ready(function() {
-			$('.recommandlist').slick({
-				slidesToShow : 3,
-				slidesToScroll : 1,
-				autoplay : true,
-				autoplaySpeed : 2000,
-			});
-		})
+	$('.recommandlist').slick({
+		  dots: true,
+		  infinite: true,
+		  speed: 300,
+		  slidesToShow: 1,
+		  centerMode: true,
+		  variableWidth: true
+		});
+
 		
 		function checkId(el){
    
