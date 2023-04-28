@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.emptydiv{
+	
+	height:40px;
+}
+
+.middlecategories{
+	width:1200px;
+	height:200px;
+	display:flex;
+	
+}
+
+.categories{
+	width:60px;
+	
+}
+
+
+
+
+
+
+
+
+.ingredient{
+	
+	width:1200px;
+	height:200px;
+}

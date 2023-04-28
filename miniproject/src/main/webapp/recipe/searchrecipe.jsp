@@ -87,44 +87,56 @@
 			</div>
 		</div>
 	</nav>
-	<div class="main">
+	<div style="width: 1000px; margin: 0 auto;">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col_title">
+				<h1>레시피 목록</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container text-left">
 		<div class="row ">
-			<div class="col col-md-8 ">
-					<table border="1">
-		<tr>
-			<td colspan="3"><input type="button" value="제목" onclick="a()">
-				<input type="button" value="재료" onclick="b()"></td>
-		</tr>
-		<tr>
-			<td colspan="3">
+			<div class="col-sm3"></div>
+			<div style="display:flex">
+			<div class="col-sm2">
+			<input type="button" value="제목" onclick="a()">
+				<input type="button" value="재료" onclick="b()">
+			</div>
+			<div class="col-sm6">
 				<form id="f1"
 					action="${pageContext.request.contextPath }/recipe/getName.do"
 					method="post">
-					<input type="text" name="rcp"> <input type="submit"
-						value="검색">
+					<input type="text" name="rcp" id="input-field" placeholder="제목 입력"> <input type="submit" value="검색">
 				</form>
-			</td>
-		</tr>
-		<tr>
-			<td>번호</td>
-			<td>레시피 제목</td>
-			<td>조회수</td>
-			<td>추천수</td>
-		</tr>
-		<c:forEach var="vo" items="${list }">
-			<tr>
-				<td>${vo.seq_num}</td>
-				<td><a
-					href="${pageContext.request.contextPath }/recipe/byName.do?rcpnm=${vo.name }&num=${vo.seq_num}">${vo.name  }</a></td>
-				<td>${vo.cnt}</td>
-				<td>${vo.likes}</td>
-			</tr>
-		</c:forEach>
-	</table>
+				</div>
 			</div>
 		</div>
-
 	</div>
+	<div class="tableBox">
+		<table class="table">
+			 <thead
+				style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652; ">
+				<tr>
+					<th scope="col" style="width: 20%; text-align: center;">번호</th>
+					<th scope="col" style="width: 40%; text-align: center;">제목</th>
+					<th scope="col" style="width: 20%; text-align: center;">조회</th>
+					<th scope="col" style="width: 20%; text-align: center;">추천</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="vo" items="${list }">
+					<tr>
+						<th scope="col" style="text-align: center;">${vo.seq_num}</th>
+						<td scope="col" style="text-align: center;"><a href="${pageContext.request.contextPath }/recipe/byName.do?rcpnm=${vo.name }&num=${vo.seq_num}">${vo.name  }</a></td>
+						<td scope="col" style="text-align: center;">${vo.cnt}</td>
+						<td scope="col" style="text-align: center;">${vo.likes}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</div>
 
 
 	<script
@@ -139,6 +151,7 @@
 
 
 	<script>
+
 		$(document).ready(function() {
 			$('.recommandlist').slick({
 				slidesToShow : 3,
@@ -148,13 +161,14 @@
 			});
 		})
 		let f = document.getElementById("f1");
+		inputField = document.getElementById("input-field");
 		function a() {
 			f.action = "${pageContext.request.contextPath }/recipe/getName.do";
-
+			inputField.placeholder = "제목 입력";
 		}
 		function b() {
 			f.action = "${pageContext.request.contextPath }/recipe/getMat.do";
-
+			inputField.placeholder = "재료 입력";
 		}
 	</script>
 
