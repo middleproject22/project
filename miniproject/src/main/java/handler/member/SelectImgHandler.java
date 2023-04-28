@@ -1,6 +1,5 @@
 package handler.member;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,7 +13,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import Member.MemberService;
 import Member.MemberVo;
 import handler.Handler;
-import oracle.net.aso.d;
 import userimg.UserImgService;
 import userimg.UserImgVo;
 
@@ -35,8 +33,34 @@ public class SelectImgHandler implements Handler {
 			view = "/member/selectimg.jsp";
 		}else {
 			
-			String path = request.getParameter("path");
-			mservice.imgUpdate(path, id);
+			String path = request.getSession().getServletContext().getRealPath("/userimg/");
+
+			int size = 100 * 1024 * 1024; // 100M
+
+			// 업로드에 사용할 MultipartRequest 객체 생성
+			// param1: 요청객체
+			// param2: 업로드 경로
+			// param3: 파일 최대 크기
+			// param4: 인코딩
+			// param5: 파일명 중복됐을때 처리 방법
+			MultipartRequest multipart;
+			try {
+				multipart = new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());
+				String fname = multipart.getOriginalFileName("file");
+				if(fname != null) {
+					String myimg= "/miniproject/userimg/"+fname;
+					mservice.imgUpdate(myimg, id);
+					
+				}else if(fname==null){
+					String defaultpath = multipart.getParameter("path");
+					mservice.imgUpdate(defaultpath, id);
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// 업로드된 파일의 원본 이름
 			MemberVo vo = mservice.getById(id);
 			request.setAttribute("ck", "ck");
 			session.setAttribute("img", vo.getImgpath());
