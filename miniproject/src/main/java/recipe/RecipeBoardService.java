@@ -22,6 +22,10 @@ public class RecipeBoardService {
 		dao.addLikes(num);
 	}
 	
+	public void addmp(int num){
+		dao.addmp(num);
+	}
+	
 	public ArrayList<RecipeBoardVo>selectByCnt() {
 		return dao.selectAllcnt();
 	}

@@ -83,6 +83,27 @@ public class RecipeBoardDao {
 		}
 	}
 	
+	public void addmp(int num) {
+		Connection conn = dbconn.conn();
+		String sql = "update recipeboard set mp=mp+1 where seq_num=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			int num1 = pstmt.executeUpdate();
+			System.out.println(num1 + " 줄이 수정됨");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public ArrayList<RecipeBoardVo> selectAllcnt() {
 		Connection conn = dbconn.conn();
 		ArrayList<RecipeBoardVo> list = new ArrayList<RecipeBoardVo>();
@@ -91,7 +112,7 @@ public class RecipeBoardDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			while (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
-				list.add(new RecipeBoardVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+				list.add(new RecipeBoardVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
 			} 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -115,7 +136,7 @@ public class RecipeBoardDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			while (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
-				list.add( new RecipeBoardVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+				list.add( new RecipeBoardVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
 			} 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -253,6 +274,32 @@ public class RecipeBoardDao {
 			}
 		}
 		return cnt;
+	}
+	
+	public ArrayList<RecipeBoardVo> getAllList(int pageNum, int amount){
+		Connection conn = dbconn.conn();
+		ArrayList<RecipeBoardVo> list = new ArrayList<RecipeBoardVo>();
+		String sql = "select  from recipeboard where mat like ? and mat like ? and mat like ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();// select 실행
+			while (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+				list.add( new RecipeBoardVo(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
+		
 	}
 	
 }
