@@ -1,15 +1,30 @@
 @charset "UTF-8";
 
-.fb_title {
+.all-marjin {
+	padding-right: 10%;
+	padding-left: 10%;
+}
+
+.fb-title {
+	margin-left: 40px;
 	margin-top: 0px;
 	list-style: none;
-	font-size: 32px;
-	color:#00A652;
+	font-size: 80px;
+	color: #00A652;
 	text-align: left;
 	margin-bottom: 60px;
 }
 
+.fb-head {
+	
+}
+
 .tableBox {
-	padding-right: 50px;
-	padding-left: 50px;
+	
+}
+
+.thead {
+	border-top-width: 3px;
+	border-bottom-width: 3px;
+	border-color: #00A652;
 }

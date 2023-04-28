@@ -25,25 +25,6 @@
 <link rel="stylesheet" href="/miniproject/css/fb_list.css">
 <title>Document</title>
 
-<script>
-	function search() {
-	let url = '';
-		let selevalue = document.getElementById("selectvalue").value;
-		let val = document.getElementById("search-text").value;
-	
-		switch (selevalue) {
-		case "1":
-				url="${pageContext.request.contextPath}/freeboard/fb_searchtitle.do?title="+val;
-			break;
-		default:
-				url="${pageContext.request.contextPath}/freeboard/fb_searchid.do?id="+val;
-			break;
-		
-		}
-			window.location.href= url;
-	}
-</script>
-
 </head>
 
 <body>
@@ -55,17 +36,24 @@
 						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 						href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
-							<li><a class="dropdown-item" href="#scrollspyHeading4">식품
+							<li><a class="dropdown-item needlogin"
+								onclick='checkId(this)'
+								href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+							<li><a class="dropdown-item needlogin"
+								onclick='checkId(this)'
+								href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
 									전체 리스트</a></li>
-							<li><a class="dropdown-item" href="#scrollspyHeading5">냉장고를
+							<li><a class="dropdown-item needlogin"
+								onclick='checkId(this)'
+								href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
 									부탁해</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 						href="#" role="button" aria-expanded="false">레시피</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#scrollspyHeading3">레시피
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 									목록</a></li>
 							<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
 									픽 레시피</a></li>
@@ -107,10 +95,11 @@
 			</div>
 		</div>
 	</nav>
+	<div class="all-marjin">
 	<div class="container text-center">
 		<div class="row">
-			<div class="col-5 fb_title">
-				<h1>게 시 판</h1>
+			<div class="col-4 fb-title">
+				<h1 >게 시 판</h1>
 			</div>
 			<div class="col-2" style="padding-top: 5px">
 				<select class="form-select" aria-label="Default select example"
@@ -132,15 +121,14 @@
 				</div>
 			</div>
 			<div class="col-1" style="padding-top: 5px">
-				<button type="button" class="btn btn-outline-secondary"
-					style="float: right;">
-					<a href="${pageContext.request.contextPath }/freeboard/fb_add.do">글작성</a>
-				</button>
+				<a
+					href="${pageContext.request.contextPath}/freeboard/fb_add.do?id=${sessionScope.loginId}"
+					onclick='checkId(this)' class="btn btn-outline-secondary" style="float: right;">글작성</a>
 			</div>
 		</div>
 	</div>
 	<div class="tableBox">
-		<table class="table">
+		<table class="table" style="text-align: center;">
 			<thead
 				style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652">
 				<tr>
@@ -156,7 +144,7 @@
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<th scope="row">${vo.fb_num}</th>
-						<td><a
+						<td style="text-align: left;"><a
 							href="${pageContext.request.contextPath }/freeboard/fb_detail.do?fb_num=${vo.fb_num}">${vo.title}</a></td>
 						<td>${vo.id}</td>
 						<td>${vo.w_date}</td>
@@ -167,8 +155,37 @@
 			</tbody>
 		</table>
 	</div>
-
+	</div>
 	<br />
+	<script>
+		function search() {
+			let url = '';
+			let selevalue = document.getElementById("selectvalue").value;
+			let val = document.getElementById("search-text").value;
+
+			switch (selevalue) {
+			case "1":
+				url = "${pageContext.request.contextPath}/freeboard/fb_searchtitle.do?title="
+						+ val;
+				break;
+			default:
+				url = "${pageContext.request.contextPath}/freeboard/fb_searchid.do?id="
+						+ val;
+				break;
+
+			}
+			window.location.href = url;
+		}
+
+		function checkId(el) {
+
+			<c:if test="${empty sessionScope.loginId}">
+			alert("로그인이 필요한 서비스입니다.");
+			el.href = "${pageContext.request.contextPath}/member/login.do";
+
+			</c:if>
+		}
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

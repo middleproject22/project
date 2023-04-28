@@ -14,7 +14,7 @@ public class FreeLikeService {
 	        dao.delete(vo);
 	    }
 
-	    public int getLikes(int num) {
+	    public int getLike(int num) {
 	        return dao.selectLike(num);
 	    }
 

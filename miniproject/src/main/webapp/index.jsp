@@ -31,34 +31,39 @@
 		<div class="container">
 			<div class="col col-md-3 text-start">
 				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">나의 냉장고</a>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)'  href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
+							<li><a class="dropdown-item needlogin"
+								onclick='checkId(this)'
+								href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+							<li><a class="dropdown-item needlogin"
+								onclick='checkId(this)'
+								href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
 									전체 리스트</a></li>
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
+							<li><a class="dropdown-item needlogin"
+								onclick='checkId(this)'
+								href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
 									부탁해</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">레시피</a>
+						</ul></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-expanded="false">레시피</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 									목록</a></li>
 							<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
 									픽 레시피</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">게시판</a>
+						</ul></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+						href="#" role="button" aria-expanded="false">게시판</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
-						</ul>
-					</li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
+						</ul></li>
 				</ul>
 			</div>
 			<div class="col col-md-6 text-center">
@@ -80,7 +85,7 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
 					<a href="${pageContext.request.contextPath }/member/detail.do"><img
-						src= "${sessionScope.img}" class="rounded-circle userimg"></a>
+						src="${sessionScope.img}" class="rounded-circle userimg"></a>
 					<h5>
 						<span class="text_margine"><a
 							href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
@@ -127,19 +132,17 @@
 				autoplaySpeed : 2000,
 			});
 		})
-		
-		function checkId(el){
-   
-   
-   <c:if test="${empty sessionScope.loginId}">
-   alert("로그인이 필요한 서비스입니다.");
-   	el.href="${pageContext.request.contextPath}/member/login.do";
-	   
-   </c:if>
-   }   
 
+		function checkId(el) {
+
+			<c:if test="${empty sessionScope.loginId}">
+			alert("로그인이 필요한 서비스입니다.");
+			el.href = "${pageContext.request.contextPath}/member/login.do";
+
+			</c:if>
+		}
 	</script>
-	
+
 </body>
 
 

@@ -15,13 +15,13 @@ public class SearchTitleHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		 try {
-				request.setCharacterEncoding("UTF-8");
-			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-				response.setCharacterEncoding("UTF-8");
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.setCharacterEncoding("utf-8");
 		String title = request.getParameter("title");
 		FreeBoardService service = new FreeBoardService();
 		ArrayList<FreeBoardVo> list = service.getByTitle(title);

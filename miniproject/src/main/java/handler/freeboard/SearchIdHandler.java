@@ -21,7 +21,7 @@ public class SearchIdHandler implements Handler {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		// TODO Auto-generated method stub
+				response.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");		
 		FreeBoardService service = new FreeBoardService();
 		ArrayList<FreeBoardVo> list = service.getById(id);

@@ -90,7 +90,7 @@
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <link rel="stylesheet" href="/miniproject/css/index.css">
-<link rel="stylesheet" href="/miniproject/css/fb_list.css">
+<link rel="stylesheet" href="/miniproject/css/fb_detail.css">
 <title>Document</title>
 
 </head>
@@ -158,72 +158,57 @@
 	</nav>
 </head>
 <body>
-	<h1>자유게시판 상세 페이지</h1>
-	<table>
-		<tr>
-			<th>작성자 ID</th>
-			<td>${vo.id}</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td>${vo.title}</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>${vo.content}</td>
-		</tr>
-		<tr>
-			<th>작성일</th>
-			<td>${vo.w_date}</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${vo.cnt}</td>
-		</tr>
-	</table>
-	<a href="${pageContext.request.contextPath}/freeboard/fb_list.do">목록</a>
-	<a
-		href="${pageContext.request.contextPath}/freeboard/fb_edit.do?fb_num=${vo.fb_num}">수정</a>
-	<a
-		href="${pageContext.request.contextPath}/freeboard/fb_delete.do?fb_num=${vo.fb_num}">삭제</a>
+	<div class="all-marjin">
+		<div class="row">
 
-	<h1>댓글 작성</h1>
-	<form action="${pageContext.request.contextPath}/freecomment/fc_add.do"
-		method="post">
-		<table>
-			<tr>
-				<th>글번호</th>
-				<td><input type="text" name="fb_num" value="${vo.fb_num }"
-					readonly></td>
-			</tr>
-			<tr>
-				<th>작성자 ID</th>
-				<td><input type="text" name="fc_id"
-					value="${sessionScope.loginId }" readonly></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea name="fc_content" rows="5" cols="50"></textarea></td>
-			</tr>
+			<div class="col-4 fb-title">
+				<h1>게 시 판</h1>
+			</div>
+		</div>
+		<div class="fb-head">
+			<div class="fb-hup">
+				<h3>${vo.title}</h3>
+			</div>
+			<div class="row" style="margin-top:0px">
+				<div class="col-6">
+					<div class="fb-hl">${vo.id}${vo.w_date}</div>
+				</div>
+				<div class="col-6">
+					<div class="fb-hr">${vo.cnt}</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="fb-body">
+		${vo.content}
+		<div class="likebutton">
+		<button class="button" onclick="likebutton()">추천</button>
+		</div>
+		</div>
+		<a href="${pageContext.request.contextPath}/freeboard/fb_list.do">목록</a>
+		<a
+			href="${pageContext.request.contextPath}/freeboard/fb_edit.do?fb_num=${vo.fb_num}">수정</a>
+		<a
+			href="${pageContext.request.contextPath}/freeboard/fb_delete.do?fb_num=${vo.fb_num}">삭제</a>
+		<h1>댓글 작성</h1>
+		<form
+			action="${pageContext.request.contextPath}/freecomment/fc_add.do"
+			method="post">
+			<input type="hidden" name="fb_num" value="${vo.fb_num }"> <input
+				type="text" name="fc_id" value="${sessionScope.loginId }" readonly>
+			<textarea name="fc_content" rows="5" cols="50"></textarea>
+			<input type="submit" value="작성">
+		</form>
+		<h1>댓글 목록</h1>
+		<table id="test">
+
 		</table>
-		<input type="submit" value="작성">
-	</form>
 
-	<h1>댓글 목록</h1>
-
-	<table id="test">
-	
-	</table>
-	
-	
-	<button class="button" onclick="likebutton()">추천</button>
-
-
+	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
-
-
 </body>
 </html>
