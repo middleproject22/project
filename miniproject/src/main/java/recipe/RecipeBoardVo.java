@@ -6,6 +6,7 @@ public class RecipeBoardVo {
 	private String mat;
 	private int cnt;
 	private int likes;
+	private int mp;
 	
 	public RecipeBoardVo() {}
 
@@ -22,15 +23,17 @@ public class RecipeBoardVo {
 		this.cnt = cnt;
 	}
 
-	public RecipeBoardVo(int seq_num, String name, String mat, int cnt, int likes) {
+	public RecipeBoardVo(int seq_num, String name, String mat, int cnt, int likes, int mp) {
 		super();
 		this.seq_num = seq_num;
 		this.name = name;
 		this.mat = mat;
 		this.cnt = cnt;
 		this.likes = likes;
+		this.mp = mp;
 	}
 
+	
 	public int getSeq_num() {
 		return seq_num;
 	}
@@ -71,12 +74,19 @@ public class RecipeBoardVo {
 		this.likes = likes;
 	}
 
+	public int getMp() {
+		return mp;
+	}
+
+	public void setMp(int mp) {
+		this.mp = mp;
+	}
+
 	@Override
 	public String toString() {
 		return "RecipeBoardVo [seq_num=" + seq_num + ", name=" + name + ", mat=" + mat + ", cnt=" + cnt + ", likes="
-				+ likes + "]";
+				+ likes + ", mp=" + mp + "]";
 	}
-	
-	
-	
+
+
 }

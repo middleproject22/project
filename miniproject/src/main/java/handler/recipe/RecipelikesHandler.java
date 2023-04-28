@@ -25,7 +25,6 @@ public class RecipelikesHandler implements Handler {
 			if (!service.searchIdNum(id, num)) {
 				service.insert(new likesVo(id, num,0));
 				Rservice.addlike(num);
-				
 			}
 		}		
 		

@@ -1,3 +1,4 @@
+<%@page import="recipe.RecipeBoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -53,7 +54,7 @@
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-						href="#" role="button" aria-expanded="false">게시판</a>
+						href="#	" role="button" aria-expanded="false">게시판</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="#scrollspyHeading3">자유게시판</a></li>
 						</ul></li>
@@ -90,7 +91,7 @@
 	<div class="main">
 		<div class="row ">
 			<div class="col col-md-8 ">
-				<table border="1">
+				<table border="1" name=r>
 					<tr>
 						<th>번호</th>
 						<th>레시피 이름</th>
@@ -113,7 +114,10 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<input type="button" id=likebutton value="좋아요" onclick="a()"><br />
+				<input type="button" id=likebutton value="좋아요" onclick="a()"><br/>
+				<c:if test="${not empty sessionScope.manager}">
+   				 <input type="button" id=managepick value="관리자픽" onclick="b()">
+				</c:if>
 			</div>
 		</div>
 
@@ -138,17 +142,28 @@ function a(){
 	
 	//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
 	xhttp.onload = function(){ 
+		
 	}
 	
 	xhttp.open("GET", "${pageContext.request.contextPath}/recipe/like.do?num=${num}");
 	xhttp.send();
 }
 
+function b(){
+const xhttp = new XMLHttpRequest();
+	
+	//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
+	xhttp.onload = function(){ 
+		
+	}
+	
+	xhttp.open("GET", "${pageContext.request.contextPath}/recipe/Mp.do?num=${num}");
+	xhttp.send();
+}
 
 </script>
 
 </body>
-
 
 </html>
 
