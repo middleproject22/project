@@ -302,4 +302,28 @@ public class RecipeBoardDao {
 		
 	}
 	
+	public RecipeBoardVo SelectByNum(int seq_num) {
+	      Connection conn = dbconn.conn();
+	     RecipeBoardVo vo=new RecipeBoardVo();
+	      String sql = "select seq_num, name, cnt, likes from recipeboard where seq_num = ?";
+	      try {
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, seq_num);
+	         ResultSet rs = pstmt.executeQuery();// select 실행
+	         if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+	           vo = new RecipeBoardVo(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+	         } 
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            conn.close();
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	      }
+	      return vo;
+	   }	
 }

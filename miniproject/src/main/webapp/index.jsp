@@ -14,7 +14,7 @@ https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/mainindex/mainIndex.jsp"><video src="/miniproject/introvideo/opener.mp4" id="introvideo"style="width: 100%;height: 100%;" muted autoplay></video></a>
+<a href="${pageContext.request.contextPath}/mainindex/mainIndex.do"><video src="/miniproject/introvideo/opener.mp4" id="introvideo"style="width: 100%;height: 100%;" muted autoplay></video></a>
 
 <script type="text/javascript">
 document.getElementById('introvideo').addEventListener('ended', goToMain, false);
