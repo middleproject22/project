@@ -6,6 +6,7 @@
 <html lang="en">
 
 <head>
+
 <link rel="stylesheet" href="/miniproject/css/navoutline.css">
 <link href="/miniproject/css/(FoodList)mylist.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
@@ -44,6 +45,27 @@ $(document).ready(function(){
 	})
 });
 
+
+function check(){
+let list = document.getElementsByClassName("inglist");
+console.log(list);
+let tf = false;
+for(obj of list){
+	if(obj.checked == true){
+		tf = true;
+		break;
+	}
+}
+	if(!tf){
+		alert("선택한 재료가 없습니다.")
+	}else{
+		document.getElementById("submitbtn").type = "submit"
+	}
+	
+}
+
+
+
 </script>
 </head>
 
@@ -73,14 +95,13 @@ $(document).ready(function(){
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading4">식품
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodlist/mylist.do">식품
 										전체 리스트</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading5">냉장고를
-										부탁해</a></li>
+
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-							href="#" role="button" aria-expanded="false">리시피</a>
+							href="#" role="button" aria-expanded="false">레시피</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#scrollspyHeading3">레시피
 										목록</a></li>
@@ -129,35 +150,27 @@ $(document).ready(function(){
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
 
+<div class="contentsize">
 	<div class="row">
 		<div class="col ref">
-			${sessionScope.loginId} 님의 냉장고
+			${sessionScope.loginId} 님의 냉장고 (${countall}개)
+			
 		</div>
 	</div>
-	<div class="row">
-		<div class="col count" style="display: flex">
-			<h4>${countall}개</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col addfood" style="display: flex">
-			<button type="button" class="btn btn-success" onclick='location.href="${pageContext.request.contextPath }/foodmanage/list.do"'>식품
-				추가하기</button>
-		</div>
-	</div>
+
 		<div class="p-8"></div>
 
-	</div>
 	<div class="container text-center">
+	<div class="name">
 		<div class="row">
 		
 			<div class="col">
-				<h6>레시피</h6>
+				레시피
 			</div>
 
 			<div class="col-2 categorysel">
 				<select name="categories" onchange="window.open(value,'_self');">
-					<option>--카테고리--</option>
+					<option>카테고리</option>
 					<option
 						value="${pageContext.request.contextPath}/foodlist/category.do?cat_lnum=1">육류,어패류,
 						달걀, 콩류</option>
@@ -174,25 +187,26 @@ $(document).ready(function(){
 
 				</select>
 			</div>
-			<div class="col-2">
-				<h4>이름</h4>
-			</div>
-			<div class="col-2">
-				<h4>유통기한</h4>
-			</div>
 			<div class="col">
-				<h4>남은 날</h4>
-			</div>
-			<div class="col">
-				<h4>남은 양</h4>
+				이름
 			</div>
 			<div class="col-2">
-				<h4>영양소(100g)</h4>
+				유통기한
 			</div>
 			<div class="col">
-				<h4>삭제</h4>
+				남은 날
+			</div>
+			<div class="col">
+				남은 양
+			</div>
+			<div class="col-3">
+				영양소(100g)
+			</div>
+			<div class="col">
+				삭제
 			</div>
 		</div>
+	</div>
 	</div>
 	<hr class="line">
 
@@ -217,9 +231,13 @@ $(document).ready(function(){
 			
 <!-- 			레시피 체크박스 선택 -->
 			<div class="col">
-                <input class="inglist" type="checkbox" value="${vo.ingredient }" name="inglist">
+		<c:if test="${vo.dday<0}">
+		<input class="form-check-input" type="checkbox" id="inglist" value="${vo.ingredient }" id="flexCheckIndeterminateDisabled" disabled>
+		</c:if>
+		<c:if test="${vo.dday>=0}">
+                <input class="form-check-input inglist" type="checkbox" value="${vo.ingredient }" name="inglist">
+     	</c:if>
      	   </div>
-       
 			<!--  카테고리 선택 -->
 			<div class="col-2">
 				<c:if test="${vo.cat_lnum == 1}">
@@ -238,7 +256,7 @@ $(document).ready(function(){
 						채소류
 					</c:if>
 			</div>
-			<div class="col-2">
+			<div class="col">
 
 				<h6>${vo.ingredient }</h6>
 				<div class="col" style="display: flex; justify-content: center">
@@ -267,7 +285,7 @@ $(document).ready(function(){
 				</select>
 		</c:if>
 			</div>
-			<div class="col-2">
+			<div class="col-3 nutrient">
 
 				<!-- 영양소 불러오기. MyList에서 listIng 받아옴. varstatus -->
 				<table style="font-size: 15px;">
@@ -286,15 +304,18 @@ $(document).ready(function(){
 				</table>
 			</div>
 			<div class="col">
-				
 			<button type="button" class="btn btn-outline-danger" onclick="location.href='${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }'">삭제</button>
 			</div>
 		</div>
-		</div>
+		</div>	
 	</c:forEach>
-<div class="myrecipelist">
-	 <input type="submit" value="레시피 검색하기" class="submitbtn">
+	<div class="submitbtn">
+	<button type="button" class="btn btn-success" onclick='location.href="${pageContext.request.contextPath }/foodmanage/list.do"'>식품
+				추가하기</button>
+	<button type="button" class="btn btn-success" id="submitbtn" onclick="check()">레시피 검색하기</button>
+        </div>
         </form>
+        
 </div>
 </body>
 
