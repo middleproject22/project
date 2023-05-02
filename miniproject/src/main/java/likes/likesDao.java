@@ -18,7 +18,7 @@ public class likesDao {
 	public void insert(likesVo vo) {
 		Connection conn = dbconn.conn();
 
-		String sql = "insert into likes values(?,?,1)";
+		String sql = "insert into Rlikes values(?,?,1)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -42,7 +42,7 @@ public class likesDao {
 	public int addlikes(int num) {
 		Connection conn = dbconn.conn();
 		int likes = 0;
-		String sql = "select sum(likes) as total_likes from likes where seq_num = ?";
+		String sql = "select sum(likes) as total_likes from Rlikes where seq_num = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -67,7 +67,7 @@ public class likesDao {
 	public void selectAlllikes() {
 		Connection conn = dbconn.conn();
 		ArrayList<likesVo> list = new ArrayList<likesVo>();
-		String sql = "SELECT SUM(likes) AS total_likes FROM likes GROUP BY seq_num ORDER BY total_likes DESC";
+		String sql = "SELECT SUM(likes) AS total_likes FROM Rlikes GROUP BY seq_num ORDER BY total_likes DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();// select 실행
@@ -89,7 +89,7 @@ public class likesDao {
 	
 	public void Maxlikes() {
 		Connection conn = dbconn.conn();
-		String sql = "SELECT seq_num, SUM(likes) AS total_likes FROM likes GROUP BY seq_num ORDER BY total_likes DESC limit 6";
+		String sql = "SELECT seq_num, SUM(likes) AS total_likes FROM Rlikes GROUP BY seq_num ORDER BY total_likes DESC limit 6";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
@@ -110,7 +110,7 @@ public class likesDao {
 	
 	public boolean searchIdNum(String id, int seq_num) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from likes where id=? and seq_num=?";
+		String sql = "select * from Rlikes where id=? and seq_num=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

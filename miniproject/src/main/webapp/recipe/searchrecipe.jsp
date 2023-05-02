@@ -22,6 +22,7 @@
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <link rel="stylesheet" href="/miniproject/css/index.css">
+<link rel="stylesheet" href="/miniproject/css/recipe.css">
 <title>Document</title>
 
 </head>
@@ -88,55 +89,60 @@
 		</div>
 	</nav>
 	<div style="width: 1000px; margin: 0 auto;">
-	<div class="container text-center">
-		<div class="row">
-			<div class="col_title">
-				<h1>레시피 목록</h1>
-			</div>
-		</div>
-	</div>
-	<div class="container text-left">
-		<div class="row ">
-			<div class="col-sm3"></div>
-			<div style="display:flex">
-			<div class="col-sm2">
-			<input type="button" value="제목" onclick="a()">
-				<input type="button" value="재료" onclick="b()">
-			</div>
-			<div class="col-sm6">
-				<form id="f1"
-					action="${pageContext.request.contextPath }/recipe/getName.do"
-					method="post">
-					<input type="text" name="rcp" id="input-field" placeholder="제목 입력"> <input type="submit" value="검색">
-				</form>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-3 recipe_title">
+					<h1>레시피 목록</h1>
+				</div>
+				<div class="col-9" style="padding-top: 11px">
+					<div style="float: right">
+						<div style="display: flex">
+							<div class="col-sm2 ">
+						<form id="f1" action="${pageContext.request.contextPath }/recipe/getName.do" method="post">
+							<div class="btn-group btn-outline-primary" role="group" aria-label="Basic outlined example">
+								<div style="display: flex">
+   									 <button type="button" class="btn dropdown-toggle recipe_downtoggle" id="selecttype" data-bs-toggle="dropdown" aria-expanded="false">제목 검색</button>
+   									 <ul class="dropdown-menu">
+    									 <li><a href ="#" onclick ="chageLangSelect(1)" class="dropdown-item">제목으로 검색</a></li>
+     									 <li><a href ="#" onclick ="chageLangSelect(2)" class="dropdown-item">재료명로 검색</a></li>
+    								</ul>
+									<input type="text" class="form-control "  name="rcp" id="input-field" placeholder="제목 입력"> 
+									<input type="submit" value="검색">
+								</div>
+							</div>
+						</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="tableBox">
-		<table class="table">
-			 <thead
-				style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652; ">
-				<tr>
-					<th scope="col" style="width: 20%; text-align: center;">번호</th>
-					<th scope="col" style="width: 40%; text-align: center;">제목</th>
-					<th scope="col" style="width: 20%; text-align: center;">조회</th>
-					<th scope="col" style="width: 20%; text-align: center;">추천</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="vo" items="${list }">
+	
+		<div class="tableBox">
+			<table class="table">
+				<thead
+					style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652;">
 					<tr>
-						<th scope="col" style="text-align: center;">${vo.seq_num}</th>
-						<td scope="col" style="text-align: center;"><a href="${pageContext.request.contextPath }/recipe/byName.do?rcpnm=${vo.name }&num=${vo.seq_num}">${vo.name  }</a></td>
-						<td scope="col" style="text-align: center;">${vo.cnt}</td>
-						<td scope="col" style="text-align: center;">${vo.likes}</td>
+						<th scope="col" style="width: 20%; text-align: center;">번호</th>
+						<th scope="col" style="width: 40%; text-align: center;">제목</th>
+						<th scope="col" style="width: 20%; text-align: center;">조회</th>
+						<th scope="col" style="width: 20%; text-align: center;">추천</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<c:forEach var="vo" items="${list }">
+						<tr>
+							<th scope="col" style="text-align: center;">${vo.seq_num}</th>
+							<td scope="col" style="text-align: center;"><a
+								href="${pageContext.request.contextPath }/recipe/byName.do?rcpnm=${vo.name }&num=${vo.seq_num}">${vo.name  }</a></td>
+							<td scope="col" style="text-align: center;">${vo.cnt}</td>
+							<td scope="col" style="text-align: center;">${vo.likes}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
 
 
 	<script
@@ -151,7 +157,6 @@
 
 
 	<script>
-
 		$(document).ready(function() {
 			$('.recommandlist').slick({
 				slidesToShow : 3,
@@ -160,15 +165,24 @@
 				autoplaySpeed : 2000,
 			});
 		})
-		let f = document.getElementById("f1");
-		inputField = document.getElementById("input-field");
-		function a() {
-			f.action = "${pageContext.request.contextPath }/recipe/getName.do";
-			inputField.placeholder = "제목 입력";
-		}
-		function b() {
-			f.action = "${pageContext.request.contextPath }/recipe/getMat.do";
-			inputField.placeholder = "재료 입력";
+		let selecttype = document.getElementById("selecttype");
+		let key =0
+		function chageLangSelect(value) {
+
+			let f = document.getElementById("f1");
+			inputField = document.getElementById("input-field");
+			key = value
+			if(key ==1){
+				f.action = "${pageContext.request.contextPath }/recipe/getName.do";
+				inputField.placeholder = "제목 입력";
+				selecttype.innerHTML= "제목 검색"
+			}else{
+				
+			
+				f.action = "${pageContext.request.contextPath }/recipe/getMat.do";
+				inputField.placeholder = "재료 입력";
+				selecttype.innerHTML= "재료 검색"
+			}
 		}
 	</script>
 
