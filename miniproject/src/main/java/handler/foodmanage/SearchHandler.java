@@ -18,6 +18,7 @@ public class SearchHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		
+
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -28,11 +29,12 @@ public class SearchHandler implements Handler {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		IngredientService service = new IngredientService();
+
 		String name = request.getParameter("name"); 
 		
 		System.out.println(name);
 		ArrayList<IngredientVo> list = service.getByNames(name); 
-
+		
 		JSONArray arr = new JSONArray();
 		
 		for(IngredientVo vo : list) {

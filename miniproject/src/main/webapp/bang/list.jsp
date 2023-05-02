@@ -210,7 +210,8 @@ function sele(ingredient){
 			</div>
 		</div>
 	</form>
-</div>
+</div>	
+
 
 <div class="ingredient">
 		<div id="igname">
@@ -219,8 +220,8 @@ function sele(ingredient){
 
 <div class="empty_div">
 </div>
-
-
+	
+	
 <div class="addingredient">
 	<div class="addingredient_bt">
 		<input type="text" id="textingredient" class="form-control">
@@ -228,8 +229,13 @@ function sele(ingredient){
 	</div>
 </div>
 
+
+
+
 <div class="emptydiv">
 </div>
+
+
 
 </div>
 	</div>
