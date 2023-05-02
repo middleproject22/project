@@ -6,6 +6,7 @@
 <html lang="en">
 
 <head>
+<link rel="stylesheet" href="/miniproject/css/navoutline.css">
 <link href="/miniproject/css/(FoodList)mylist.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,46 +18,144 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
 <script>
-	
-// 	window.onload = function (){
-// 		const xhttp = new XMLHttpRequest();
-// 		xhttp.onload = function(){
-			
-// 		}
-// 		xhttp.open("GET", "${pageContext.request.contextPath}/foodlist/ingredient.do?name="+${vo.ingredient});
-// 		xhttp.send();
+
+//체크박스 개수 제한
+$(document).ready(function(){
+	$("input[type='checkbox']").on("click",function(){
+		let count = $("input:checked[type='checkbox']").length;
 		
-// 	}
-
+		if(count>3){
+			$(this).prop("checked",false);
+				alert("3개만 선택 가능합니다.");
+		}
+	});
+	$("input:checkbox[name=${vo.ingredient }]").length(function(){
+		alert(length);
+	}) 
+	$("input:checkbox[name=inglist]:checked").length; 
 	
+	$("input:checkbox[name=inglist]").each(function(){
+		if(this.checked){
+			//체크된 것 수행할 것 구현
+		}
+	})
+});
 
-	</script>
+</script>
 </head>
 
 <body>
+<body>
+	<nav class="navbar py-3 bgc shadow-lg ">
+		<div class="container">
+			<div class="col col-md-3 text-start location">
+				<button class="navbar-toggler outline" type="button"
+					data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+					<span class="material-symbols-outlined"> menu </span>
+				</button>
+				<h3>나의 냉장고</h3>
+			</div>
+			<div class="offcanvas offcanvas-start offwidth" tabindex="-1"
+				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+					<button type="button" class="btn-close text-reset"
+						data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							href="#" role="button" aria-expanded="false">나의 냉장고</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading4">식품
+										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading5">냉장고를
+										부탁해</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							href="#" role="button" aria-expanded="false">리시피</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#scrollspyHeading3">레시피
+										목록</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
+										픽 레시피</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							href="#" role="button" aria-expanded="false">게시판</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#scrollspyHeading3">자유게시판</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col col-md-6 text-center">
+				<nav class="navbar-brand">
+					<a href="${pageContext.request.contextPath }/index.jsp"><img class="logo"
+						src="/miniproject/imgs/logo3.png"></a>
+				</nav>
+			</div>
+			<div class="col col-md-3 text_flex">
+				<c:if test="${empty sessionScope.loginId }">
+					<h3 class="text_margine">
+						<a href="#">로그인</a>
+					</h3>
+					<h3 class="text_margine">
+						<a href="#">회원가입</a>
+					</h3>
+				</c:if>
+				<c:if test="${not empty sessionScope.loginId }">
+					<a href="${pageContext.request.contextPath }/member/detail.do"><img
+						src="${sessionScope.img}"
+						class="rounded-circle userimg"></a>
+					<h5>
+						<span class="text_margine"><a
+							href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
+					</h5>
+				</c:if>
+			</div>
+		</div>
+	</nav>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
 
 	<div class="row">
-		<div class="col-8">
-			<h2>${sessionScope.loginId} 님의 냉장고</h2>
+		<div class="col ref">
+			${sessionScope.loginId} 님의 냉장고
 		</div>
-		<div class="col" style="display: flex">
-			<h4>${countall}</h4>
-			<a href="${pageContext.request.contextPath }/foodmanage/list.do">식품
-				추가하기</a>
+	</div>
+	<div class="row">
+		<div class="col count" style="display: flex">
+			<h4>${countall}개</h4>
 		</div>
-
-		<div class="p-4"></div>
+	</div>
+	<div class="row">
+		<div class="col addfood" style="display: flex">
+			<button type="button" class="btn btn-success" onclick='location.href="${pageContext.request.contextPath }/foodmanage/list.do"'>식품
+				추가하기</button>
+		</div>
+	</div>
+		<div class="p-8"></div>
 
 	</div>
 	<div class="container text-center">
 		<div class="row">
+		
+			<div class="col">
+				<h6>레시피</h6>
+			</div>
 
-			<div class="col-2">
+			<div class="col-2 categorysel">
 				<select name="categories" onchange="window.open(value,'_self');">
 					<option>--카테고리--</option>
 					<option
@@ -97,8 +196,11 @@
 	</div>
 	<hr class="line">
 
+
 	<!--  for 문으로 리스트 돌리기 -->
+	<form method="post" action="${pageContext.request.contextPath }/recipe/getMat.do">
 	<c:forEach var="vo" items="${list }" varStatus="status">
+	
 		<div class="container">
 			<c:if test="${vo.dday<0}">
 				<div class="row ddayarea0 text-center" style="background-color: gainsboro">
@@ -112,6 +214,13 @@
 			<c:if test="${7<=vo.dday}">
 				<div class="row ddayareaAll text-center" >
 			</c:if>
+			
+<!-- 			레시피 체크박스 선택 -->
+			<div class="col">
+                <input class="inglist" type="checkbox" value="${vo.ingredient }" name="inglist">
+     	   </div>
+       
+			<!--  카테고리 선택 -->
 			<div class="col-2">
 				<c:if test="${vo.cat_lnum == 1}">
 						육류,어패류, 달걀, 콩류
@@ -183,7 +292,10 @@
 		</div>
 		</div>
 	</c:forEach>
-	
+<div class="myrecipelist">
+	 <input type="submit" value="레시피 검색하기" class="submitbtn">
+        </form>
+</div>
 </body>
 
 </html>
