@@ -15,7 +15,7 @@ public class LogoutHandler implements Handler {
 		
 		HttpSession session = request.getSession(false);
 		session.invalidate();
-		String view = "/index.jsp";
+		String view = "/mainindex/mainIndex.jsp";
 		request.setAttribute("ck", "ck");
 		request.setAttribute("msg", "로그아웃되었습니다.");
 		

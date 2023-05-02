@@ -61,3 +61,49 @@ a{
 	width : 250px;
 }
 
+
+.dday_simpleview {
+	margin: 3px;
+	text-align: center;
+	display: grid;
+	width: 40px;
+	height: 40px;
+	align-items: center;
+}
+
+.red {
+	background-color: #02F705;
+}
+
+.yellow {
+	background-color: gold;
+}
+
+.green {
+	background-color: red;
+}
+
+.myAcc {
+	background: none;
+	border: none;
+	box-shadow: none !important;
+}
+
+.btn-secondary {
+	--bs-btn-hover-bg: none;
+	--bs-btn-active-bg: none;
+	--bs-btn-active-border-color: none;
+}
+
+.logout {
+	position: relative;
+	top: 5px;
+}
+
+.key {
+	position: relative;
+	top: 5px;
+}
+
+
+
