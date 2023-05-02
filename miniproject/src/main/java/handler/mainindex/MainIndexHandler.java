@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import freeboard.FreeBoardService;
+import freeboard.FreeBoardVo;
 import handler.Handler;
 import likes.likesService;
 import likes.likesVo;
@@ -22,11 +24,14 @@ public class MainIndexHandler implements Handler {
 		if(request.getMethod().equals("GET")) {
 		likesService lservice = new likesService();
 		RecipeBoardService rservice = new RecipeBoardService();
-		ArrayList<likesVo> lvo = lservice.Maxlikes();
+		ArrayList<likesVo> llist = lservice.Maxlikes();
 		ArrayList<RecipeBoardVo> rlist = new ArrayList<>();
+		FreeBoardService fservice = new FreeBoardService();
+		ArrayList<FreeBoardVo> flist = new ArrayList<>();
 		
-		for(int i= 0; i<lvo.size();i++) {
-			int seqnum = lvo.get(i).getSeq_num();
+		
+		for(int i= 0; i<llist.size();i++) {
+			int seqnum = llist.get(i).getSeq_num();
 			RecipeBoardVo vo = rservice.SelectByNum(seqnum);
 			rlist.add(vo);
 			
