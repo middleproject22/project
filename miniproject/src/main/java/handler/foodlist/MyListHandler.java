@@ -17,6 +17,7 @@ public class MyListHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		
 		//로그인 세션 확인 ${sessionScope.loginId}
 		HttpSession session = request.getSession(false);
 		String id = (String) session.getAttribute("loginId");
@@ -36,10 +37,15 @@ public class MyListHandler implements Handler {
 			listIng.add(ingvo);
 			
 		}
+		int count = service.ddayAll(id);
+		
 		request.setAttribute("list", list);
 		request.setAttribute("listIng", listIng);
+		request.setAttribute("countall", count);
+		System.out.println(count);
 		
 		return "/foodlist/mylist.jsp";
+		}
 	}
 
-}
+

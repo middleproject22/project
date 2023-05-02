@@ -22,6 +22,7 @@
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <link rel="stylesheet" href="/miniproject/css/index.css">
+<link rel="stylesheet" href="/miniproject/css/fb_edit.css">
 <title>Document</title>
 
 </head>
@@ -89,24 +90,24 @@
 			</div>
 		</div>
 	</nav>
-	<h1>자유게시판 글 수정</h1>
-	
-	<c:if test="${empty vo}">
-		<p>수정할 글 정보를 가져올 수 없습니다.</p>
-	</c:if>
-	
-	<c:if test="${not empty vo}">
+	<div class="all-marjin">
+		<div class="row">
+			<div class="col-4 fb-title">
+				<h1>글 수 정</h1>
+			</div>
+		</div>
 		<form action="${pageContext.request.contextPath }/freeboard/fb_edit.do" method="post">
 			<input type="hidden" name="fb_num" value="${vo.fb_num}"/>
-			<p>작성자 : ${vo.id }</p>
-			<p>작성일 : ${vo.w_date }</p>
-			<p>제목 : <input type="text" name="title" value="${vo.title }"/></p>
-			<p>내용 : <textarea name="content" rows="10" cols="100">${vo.content }</textarea></p>
-			<p><input type="submit" value="수정"/></p>
+			<p><input type="text" name="title" 
+			class="form-control" aria-describedby="button-addon2" required
+			style="word-wrap: break-word; overflow-wrap: break-word"
+			value="${vo.title }"/></p>
+			<p><textarea name="content" class="form-control"
+			aria-describedby="button-addon2" style="height: 500px; overflow-y: auto; resize: none;"
+			>${vo.content }</textarea></p>
+			<p><input type="submit" value="수정" style="float:right; margin-bottom:50px"></p>
 		</form>
-	</c:if>
-	
-	<p><a href="${pageContext.request.contextPath }/freeboard/fb_list.do">목록으로 돌아가기</a></p>
+	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

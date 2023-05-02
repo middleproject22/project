@@ -19,6 +19,18 @@
 	border-top: solid 3px #00A652;
 }
 
+.fb-hl {
+	text-align: left;
+	font-size: 40px;
+}
+
+.fb-hr {
+	text-align: right;
+	font-size: 20px;
+	color: grey;
+	vertical-align : bottom;
+}
+
 .fb-body {
 	border-bottom: solid 3px #00A652;
 	border-top: solid 3px #00A652;
@@ -27,18 +39,14 @@
 	overflow: auto;
 }
 
-.fb-hup {
-	font-size: 40px;
+.likebutton {
+	text-align: center;
 }
 
-.fb-hl {
-	text-align: left;
-	font-size: 20px;
-	color:silver;
-}
-
-.fb-hr {
+.fb-tail {
 	text-align: right;
-	font-size: 20px;
-	color:silver;
+}
+
+.fc-table{
+	margin-bottom: 50px;
 }

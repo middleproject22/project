@@ -149,7 +149,7 @@
 						<td>${vo.id}</td>
 						<td>${vo.w_date}</td>
 						<td>${vo.cnt}</td>
-						<td>${vo.cnt}</td>
+						<td>${like}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

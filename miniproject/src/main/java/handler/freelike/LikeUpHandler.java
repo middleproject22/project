@@ -50,8 +50,10 @@ public class LikeUpHandler implements Handler {
 			System.out.println("2222222");
 			service.removeLike(getVo);
 		}
+		
+		int likenum = service.getLike(fb_num);
 		System.out.println("444얘는 무조건 찍히는 얘 정상적이라면 ");
-		 view = "/freeboard/fb_detail.do?fb_num="+getVo.getFb_num();
+		 view = "responsebody/"+likenum;
 		return view;
 		
 	}
