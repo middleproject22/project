@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+
+.all-marjin {
+	padding-right: 10%;
+	padding-left: 10%;
+}
+
+.fb-title {
+	margin-left: 40px;
+	margin-top: 0px;
+	list-style: none;
+	font-size: 80px;
+	color: #00A652;
+	text-align: left;
+	margin-bottom: 60px;
+}
