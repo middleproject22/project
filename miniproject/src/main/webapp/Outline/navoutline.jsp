@@ -68,7 +68,7 @@
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.jsp"><img class="logo"
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img class="logo"
 						src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>

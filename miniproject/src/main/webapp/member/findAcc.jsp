@@ -31,7 +31,7 @@ window.onload = function(){
 			<div class="col col-md-3 text-start"></div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/index.jsp"><img
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img
 						class="logo" src="../imgs/logo3.png"></a>
 				</nav>
 			</div>
