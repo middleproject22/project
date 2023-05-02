@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -30,7 +31,7 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-lg py-3 bgc shadow-lg">
+	<nav class="navbar navbar-expand-lg bgc shadow-lg">
 		<div class="container">
 			<div class="col col-md-3 text-start">
 				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -71,7 +72,7 @@
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.jsp"><img
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img
 						class="logo" src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
@@ -135,13 +136,19 @@
 		</div>
 		<div class="row justify-content-md-center">
 		<div class="col col-md-4 m-2">
-		<div>자유게시판</div>
-<%-- 		<c:forEach var="managerlist" items="${managerlist }"> --%>
-<!-- 		<div></div> -->
-<%-- 		</c:forEach> --%>
-<%-- 		<c:forEach var="userlist" items="${ userlist}"> --%>
-<!-- 		<div></div> -->
-<%-- 		</c:forEach> --%>
+		<h3>자유게시판</h3>
+		<table style="text-align: center;border-bottom: gray solid 1px;width: 100%">
+		<tr style="border-bottom:gray solid 1px "><th>제목</th><th>조회수</th><th>추천수</th></tr>
+		<c:forEach var="flist" items="${ flist}">
+		<tr>
+		
+		<td><a href="#">${flist.title}</a></td>
+		<td>${flist.cnt}</td>
+		<td>${flist.likes}</td>
+		</tr>
+		</c:forEach>
+		</table>
+
 		</div>
 		<div class="col col-md-4 m-2"">
 		<h3>인기레시피</h3>

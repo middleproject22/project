@@ -27,7 +27,7 @@ public class MainIndexHandler implements Handler {
 		ArrayList<likesVo> llist = lservice.Maxlikes();
 		ArrayList<RecipeBoardVo> rlist = new ArrayList<>();
 		FreeBoardService fservice = new FreeBoardService();
-		ArrayList<FreeBoardVo> flist = new ArrayList<>();
+		ArrayList<FreeBoardVo> flist = fservice.getByLikes();
 		
 		
 		for(int i= 0; i<llist.size();i++) {
@@ -36,7 +36,7 @@ public class MainIndexHandler implements Handler {
 			rlist.add(vo);
 			
 		}
-		
+		request.setAttribute("flist", flist);
 		request.setAttribute("rlist",rlist);
 		}
 		return view;
