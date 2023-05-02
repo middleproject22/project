@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import freeboard.FreeBoardService;
 import freeboard.FreeBoardVo;
+import freelike.FreeLikeService;
 import handler.Handler;
 
 public class DetailHandler implements Handler {
@@ -23,9 +24,13 @@ public class DetailHandler implements Handler {
         
         int fb_num = Integer.parseInt(request.getParameter("fb_num"));
         FreeBoardService service = new FreeBoardService();
+        FreeLikeService likeservice = new FreeLikeService();
+        int like=likeservice.getLike(fb_num);
+        System.out.println("추천개수:"+like);
         FreeBoardVo vo = service.getFreeBoard(fb_num);
         service.cnt(fb_num);
         request.setAttribute("vo", vo);
+        request.setAttribute("like", like);
         view = "/freeboard/fb_detail.jsp";
         
         return view;

@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="/miniproject/css/fb_list.css">
 <title>Document</title>
 
+
 </head>
 
 <body>
@@ -116,19 +117,19 @@
 					<input type="text" class="form-control" placeholder="검색어입력"
 						aria-label="Recipient's username" aria-describedby="button-addon2"
 						id="search-text">
-					<button class="btn btn-outline-secondary" type="button"
+					<button class="btn btn-success" type="button"
 						id="button-addon2" onclick="search()">검색</button>
 				</div>
 			</div>
 			<div class="col-1" style="padding-top: 5px">
 				<a
 					href="${pageContext.request.contextPath}/freeboard/fb_add.do?id=${sessionScope.loginId}"
-					onclick='checkId(this)' class="btn btn-outline-secondary" style="float: right;">글작성</a>
+					onclick='checkId(this)' class="btn btn-success" style="float: right;">글작성</a>
 			</div>
 		</div>
 	</div>
 	<div class="tableBox">
-		<table class="table" style="text-align: center;">
+		<table class="table">
 			<thead
 				style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652">
 				<tr>
@@ -149,7 +150,7 @@
 						<td>${vo.id}</td>
 						<td>${vo.w_date}</td>
 						<td>${vo.cnt}</td>
-						<td>${like}</td>
+						<td>${vo.likes}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -184,6 +185,10 @@
 			el.href = "${pageContext.request.contextPath}/member/login.do";
 
 			</c:if>
+		}
+		
+		function recommandcnt(){
+			
 		}
 	</script>
 	<script

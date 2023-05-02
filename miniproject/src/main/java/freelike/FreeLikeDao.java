@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import conn.DBConnect;
 
@@ -92,5 +93,30 @@ public class FreeLikeDao {
 			e.printStackTrace();
 		}
 		return vo;
+	}
+	
+	public ArrayList<FreeLikeVo> selectAll(){
+		ArrayList<FreeLikeVo> list = new ArrayList<>();
+		Connection conn = dbconn.conn();
+		String sql = "select * from free_like order by fb_num desc";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FreeLikeVo vo = new FreeLikeVo(rs.getString(1),rs.getInt(2));
+				list.add(vo);
+			}
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}return list;
 	}
 }
