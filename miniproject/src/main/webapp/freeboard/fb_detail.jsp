@@ -176,27 +176,29 @@
 				<h1>게 시 판</h1>
 			</div>
 		</div>
+		<div class="fb-all">
 		<div class="container text-left">
 			<div class="row"
-				style="margin-top: 0px; border-bottom: solid 3px #00A652; border-top: solid 3px #00A652;">
-				<div class="col-2" style="background-color:#F0FFF0">제목</div>
-				<div class="col-4">${vo.title}</div>
-				<div class="col-2" style="background-color:#F0FFF0">조회수</div>
-				<div class="col-4">${vo.cnt}</div>
-				<div class="col-2" style="background-color:#F0FFF0">작성자</div>
+				style="margin-top: 0px; border: solid 3px #00A652">
+				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">제목</div>
+				<div class="col-4" style="border-bottom: 2px solid #00A652">${vo.title}</div>
+				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">조회수</div>
+				<div class="col-4" style="border-bottom: 2px solid #00A652">${vo.cnt}</div>
+				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">작성자</div>
 				<div class="col-4">${vo.id}</div>
-				<div class="col-2" style="background-color:#F0FFF0">작성일</div>
+				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">작성일</div>
 				<div class="col-4">${vo.w_date}</div>
-			</div>
+		</div>
 		</div>
 		<div class="fb-body">${vo.content}</div>
+		</div>
 		<div class="container text-center">
 			<div class="row" style="margin-top: 5px">
 				<div class="col"></div>
 				<div class="col-5">
 					<div class="likebutton" style="text-align: center">
 						<button class="button" id="likebtn" onclick="likebutton(this)">추천:
-							${like}</button>
+							${like}</button>							
 					</div>
 				</div>
 				<div class="col">

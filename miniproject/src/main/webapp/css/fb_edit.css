@@ -24,34 +24,3 @@
 	text-align: left;
 	margin-bottom: 60px;
 }
-
-.thead {
-	border-top-width: 3px;
-	border-bottom-width: 3px;
-	border-color: #00A652;
-}
-
-.btn {
-	display: block;
-	width: 80px;
-	padding: 5px;
-}
-
-.form-select {
-	color: green;
-	border: 2px solid green;
-}
-
-.form-control {
-	color: green;
-	border: 2px solid green;
-}
-
-.form-control:focus, .form-control:active {
-	box-shadow: none;
-	border-color: green;
-}
-
-.table{
-	text-align: center;
-}
