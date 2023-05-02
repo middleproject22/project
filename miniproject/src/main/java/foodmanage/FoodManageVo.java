@@ -17,6 +17,7 @@ public class FoodManageVo {
 	private String memo;
 	private String expiredate_str;
 	private int cat_lnum;
+	private String path;
 				
 				
 	public FoodManageVo () {

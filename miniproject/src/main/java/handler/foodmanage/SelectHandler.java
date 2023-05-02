@@ -38,6 +38,7 @@ public class SelectHandler implements Handler {
 		for(IngredientVo vo : list) {
 			JSONObject obj = new JSONObject();
 			obj.put("ig_name", vo.getIg_name());
+			obj.put("ig_path", vo.getIg_path());
 			arr.add(obj);
 		}
 		

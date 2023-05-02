@@ -9,10 +9,11 @@ public class IngredientVo {
 	private int ig_car;
 	private int ig_sug;
 	private int ig_nat;
-	
-	public IngredientVo() {
-	}
-	
+	private String ig_path;
+								
+	public IngredientVo() {		
+	}							
+								
 	public IngredientVo(String ig_name, String ig_cc, int ig_kcal, int ig_pt, int ig_fat, int ig_car, int ig_sug,
 			int ig_nat) {
 		super();
@@ -24,6 +25,30 @@ public class IngredientVo {
 		this.ig_car = ig_car;
 		this.ig_sug = ig_sug;
 		this.ig_nat = ig_nat;
+	}
+
+	
+	
+	public IngredientVo(String ig_name, String ig_cc, int ig_kcal, int ig_pt, int ig_fat, int ig_car, int ig_sug,
+			int ig_nat, String ig_path) {
+		super();
+		this.ig_name = ig_name;
+		this.ig_cc = ig_cc;
+		this.ig_kcal = ig_kcal;
+		this.ig_pt = ig_pt;
+		this.ig_fat = ig_fat;
+		this.ig_car = ig_car;
+		this.ig_sug = ig_sug;
+		this.ig_nat = ig_nat;
+		this.ig_path = ig_path;
+	}
+
+	public String getIg_path() {
+		return ig_path;
+	}
+
+	public void setIg_path(String ig_path) {
+		this.ig_path = ig_path;
 	}
 
 	public String getIg_name() {
