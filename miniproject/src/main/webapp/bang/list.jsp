@@ -92,7 +92,7 @@ function sele(ingredient){
 		let arr = JSON.parse(val);
 		let html = '';
 		for(let obj of arr){
-			html += obj.ingredient;
+			html +=" " + obj.ingredient;
 		}		
 		let textingredient = document.getElementById("textingredient");
 		textingredient.value += html;
@@ -105,64 +105,93 @@ function sele(ingredient){
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg py-3 bgc shadow-lg">
+	<nav class="navbar bgc shadow-lg ">
 		<div class="container">
-			<div class="col col-md-3 text-start">
-				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">나의 냉장고</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)'  href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
-									전체 리스트</a></li>
-							<li><a class="dropdown-item needlogin" onclick='checkId(this)' href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
-									부탁해</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">레시피</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
-									목록</a></li>
-							<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
-									픽 레시피</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-								href="#" role="button" aria-expanded="false">게시판</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
-						</ul>
-					</li>
-				</ul>
+			<div class="col col-md-3 text-start location">
+				<button class="navbar-toggler outline" type="button"
+					data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+					<span class="material-symbols-outlined"> menu </span>
+				</button>
+				<h3>나의 냉장고</h3>
+			</div>
+			<div class="offcanvas offcanvas-start offwidth" tabindex="-1"
+				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+					<button type="button" class="btn-close text-reset"
+						data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							href="#" role="button" aria-expanded="false">나의 냉장고</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
+										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipelist/mylist.do">냉장고를
+										부탁해</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							href="#" role="button" aria-expanded="false">리시피</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
+										목록</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
+										픽 레시피</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							href="#" role="button" aria-expanded="false">게시판</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
+							</ul></li>
+					</ul>
+				</div>
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/index.jsp"><img
-						class="logo" src="/miniproject/imgs/logo3.png"></a>
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.jsp"><img class="logo"
+						src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
-			<div class="col col-md-3 text-end text_flex">
+			<div class="col col-md-3 text_flex">
 				<c:if test="${empty sessionScope.loginId }">
-					<h5>
-						<span class="text_margine"><a
-							href="${pageContext.request.contextPath }/member/login.do">로그인</a></span>
-					</h5>
-					<h5>
-						<span class="text_margine"><a
-							href="${pageContext.request.contextPath }/member/join.do">회원가입</a></span>
-					</h5>
+					<h3 class="text_margine">
+						<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
+					</h3>
+					<h3 class="text_margine">
+						<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
+					</h3>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
-					<a href="${pageContext.request.contextPath }/member/detail.do"><img
-						src= "${sessionScope.img}" class="rounded-circle userimg"></a>
-					<h5>
-						<span class="text_margine"><a
-							href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
-					</h5>
+
+					<div>
+						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
+					</div>
+					<div>
+						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
+					</div>
+					<div>
+						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
+					</div>
+					<div class="dropdown myAcc">
+						<button class="btn btn-secondary dropdown-toggle myAcc"
+							type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="${sessionScope.img}" class="rounded-circle userimg">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath}/member/detail.do"><span
+									class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/member/logout.do"><span
+									class="material-symbols-outlined logout"> logout </span> 로그아웃</a></li>
+						</ul>
+					</div>
 				</c:if>
 			</div>
 		</div>
@@ -214,7 +243,7 @@ function sele(ingredient){
 
 
 <div class="ingredient">
-		<div id="igname">
+		<div id="igname" class="overflow-auto">
 		</div>
 </div>
 
@@ -229,13 +258,8 @@ function sele(ingredient){
 	</div>
 </div>
 
-
-
-
 <div class="emptydiv">
 </div>
-
-
 
 </div>
 	</div>
