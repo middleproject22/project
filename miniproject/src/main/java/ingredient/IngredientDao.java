@@ -27,7 +27,7 @@ public class IngredientDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
+				list.add(new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9)));
 			}
 
 		} catch (SQLException e) {
@@ -54,7 +54,7 @@ public class IngredientDao {
 			
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8));
+				vo = new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9));
 			}
 			
 		} catch (SQLException e) {
@@ -81,7 +81,7 @@ public class IngredientDao {
 			
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
+				list.add(new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9)));
 			}
 			
 		} catch (SQLException e) {
@@ -106,7 +106,7 @@ public class IngredientDao {
 			
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
+				list.add(new IngredientVo(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9)));
 			}
 			
 		} catch (SQLException e) {

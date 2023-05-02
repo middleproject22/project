@@ -1,9 +1,7 @@
 package handler.foodmanage;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,6 +21,10 @@ public class ListHandler implements Handler {
 		
 		ArrayList<CategoriesVo> list =service.getCategories();
 		request.setAttribute("list", list);
+		
+		
+		
+		
 		return "/bang/list.jsp" ;
 	}
 

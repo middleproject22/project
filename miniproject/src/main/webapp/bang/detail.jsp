@@ -29,22 +29,13 @@ function expiredateselect(){
 	let selectdate = new Date(document.getElementById("datecheck").value); 
 	let sysdate = new Date();
 	
-	let year = sysdate.getFullYear();
-	let month = sysdate.getMonth()+1;
-	let date = sysdate.getDate();
-	
-	let sysdatestr = year+'-'+month+'-'+date;
-	
-	
-	let today = new Date(); //오늘 날짜 선언을 위한 today 변수 선언 
-	
 	if( selectdate < sysdate ){
 		alert("유효하지 않은 날짜입니다");
 		document.getElementById("datecheck").valueAsDate = new Date();
-		
-	} 		
-
+	}
 	
+	
+
 }
 
 

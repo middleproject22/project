@@ -23,7 +23,7 @@ public class AddHandler implements Handler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 		FoodManageService service = new FoodManageService();
 		CategoriesService catservice = new CategoriesService();

@@ -45,20 +45,22 @@ function select() {
 		let arr = JSON.parse(val);
 		let html = '';
 		for(let obj of arr){
-			html += "<span id='"+obj.ig_name +"'" ;
-			html += " onclick=\"sele('" + obj.ig_name + "')\">" + obj.ig_name;
+			html += "<span class='aa' id='"+obj.ig_name +"'" ;
+			html += " onclick=\"sele('" + obj.ig_name + "')\">";
+			html += "<img class='imgingredient' src ='../ingredientimg/"+obj.ig_path+"'>";
+			html += obj.ig_name ;
 			html += "</span>";
-		}								
+		}										
 		let igname = document.getElementById("igname");
 		igname.innerHTML = html ;	
-	}			
+	}				
 		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/select.do?name="+param);
-	
+					
 	xhttp.send();	
 }			
 
 function searing() {	
-	
+				
 	const xhttp = new XMLHttpRequest();
 				
 				
@@ -67,16 +69,18 @@ function searing() {
 		let arr = JSON.parse(val);
 		let html = '';
 		for(let obj of arr){
-			html += "<span id='"+obj.ig_name +"'" ;
-			html += " onclick=\"sele('" + obj.ig_name + "')\">" + obj.ig_name;
+			html += "<span class ='aa' id='"+obj.ig_name +"'" ;
+			html += " onclick=\"sele('" + obj.ig_name + "')\">";
+			html += "<img class='imgingredient' src ='../ingredientimg/"+obj.ig_path+"'>";
+			html += obj.ig_name ;
 			html += "</span>";
-		}								
+		}			
 		let igname = document.getElementById("igname");
 		igname.innerHTML = html ;	
 	}			
-	
 	param = document.getElementById("searchIng").value;
 	
+	document.getElementById("searchIng").value = '';
 	xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/search.do?name="+param);
 	xhttp.send();	
 }	
@@ -166,52 +170,78 @@ function sele(ingredient){
 	
 	
 <div class="body_container"> 
-<div class="emptydiv">
-</div>
-<div class="middlecategories">	
-<div class="categories" onclick='a("iii");select();'>전체</div>
+
+	<div class="empty_div">
+	</div>
+	
+	
+	
+
+<div class="category-container">
+
+
+
+
+  <div class="category-row">
+   <div class="category-item">   
+      <img src="../categoryimg/all.png" onclick='a("iii");select();'>
+    </div> 
 <c:forEach var="vo" items="${list}">
-<div class="categories" id="${vo.cat_name}" onclick='a("${vo.cat_name}");select();'>${vo.cat_name}</div>
+
+    <div class="category-item">   
+      <img src="../categoryimg/${vo.cat_name}.png" onclick='a("${vo.cat_name}");select();'>
+        </div> 
+    
+    
+ 	
 </c:forEach>
+    </div>
 
+
+<div class="empty_div">
 </div>
 
-
-
-
-<div class="ingredientsearch">
-<form id="ff">
-<input type="text" id="searchIng" autocomplete="off" style="width:350px;height:33px">
-<input type="button" style="width:45px;height:38px" value ="검색" onclick="searing()">
-</form>
+<div class="ingredient_search">
+	<form id="ff">
+	<div class="form-floating mb-3">
+			<div class="ingredient_search_bt">
+  		<input type="text" id="searchIng" class="form-control" autocomplete="off">
+		<button type="button" class="btn btn-success" onclick="searing()">검색</button>
+			</div>
+		</div>
+	</form>
 </div>
 
-
-
-
-
-<div class="ingredient" style="width:1200px;height:200px;display:flex">
-<div id="igname"></div>
+<div class="ingredient">
+		<div id="igname">
+		</div>
 </div>
 
+<div class="empty_div">
+</div>
 
 
 <div class="addingredient">
-<div style="width:1200px;height:80px"><input type="text" id="textingredient" style="width:350px;height:33px">
-<button style="width:45px;height:38px"onclick="location.href='${pageContext.request.contextPath}/foodmanage/detail.do'">등록</button></div>
+	<div class="addingredient_bt">
+		<input type="text" id="textingredient" class="form-control">
+		<button type="button" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/foodmanage/detail.do'">등록</button>
+	</div>
 </div>
-
 
 <div class="emptydiv">
 </div>
 
-
-
 </div>
+	</div>
+
+
+
 <script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"> 
+		
+		</script>
 
 </body>
 </html>

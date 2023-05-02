@@ -6,6 +6,7 @@ public class CategoriesVo {
 	private int  cat_num;
 	private	String cat_name;
 	private	String cat_lnum;
+	private String path;
 	
 	public CategoriesVo ()	{
 		
@@ -16,6 +17,16 @@ public class CategoriesVo {
 		this.cat_num = cat_num;
 		this.cat_name = cat_name;
 		this.cat_lnum = cat_lnum;
+	}
+	
+	
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public int getCat_num() {
