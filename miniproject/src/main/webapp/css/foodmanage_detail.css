@@ -1,1 +1,152 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+	font-family: 'NanumSquareNeo-Variable';
+}
+
+.col{
+	display:flex;
+	justify-content: center;
+  	align-items: center;
+}
+
+.btn btn-success {
+	display: block;
+	width: 80px;
+	padding: 5px;
+}
+
+.form-control {
+	color: green;
+	border: 2px solid green;
+	width:155px;
+	text-align:center;
+}
+
+.form-control:focus, .form-control:active {
+	box-shadow: none;
+	border-color: green;
+}
+
+.submit_btn{
+	text-align:right;
+	align-items:right;
+}
+
+.flistsel select {
+	width: 100px;
+	height:30px;
+	padding-left: 5px;
+	font-size:15px;
+	color:green;
+	border:2px solid green;
+	border-radius: 3px;
+}
+
+
+.name {
+	font-size: 140%;
+}
+
+/* 나의 냉장고 */
+
+.ref {
+	color:green;
+	font-size: 230%;
+	text-align: center;
+	padding-top:60px;
+	padding-bottom:70px;
+	font-weight: bold;
+}
+
+
+
+.hr line {
+	border:green;
+}
+
+
+.addfood{
+	padding-bottom:30px;
+	text-align:center;
+}
+
+.ddayarea0 {
+	border-bottom: 1px solid black;
+	border-left: 10px solid silver;
+	align-items:center;
+	background: repeating-linear-gradient(135deg, silver, silver 1px, rgba(255,255,255,0.5) 0, rgba(255,255,255,0.5) 10px);
+}
+.ddayarea3 {
+	border-bottom: 1px solid black;
+	border-left: 10px solid tomato;
+	align-items:center;
+}
+.ddayarea7 {
+	border-bottom: 1px solid black;
+	border-left: 10px solid gold;
+	align-items:center;
+}
+
+.ddayareaAll {
+	border-bottom: 1px solid black;
+	border-left: 10px solid white;
+	align-items:center;
+}
+
+.submitbtn {
+	text-align:right;
+	margin-top: 30px;
+
+}
+#submitbtn {
+	margin-left: 10px;
+}
+
+.nutrient table {
+	text-align:center;
+	margin: 10px;
+	padding: 10px;
+	
+}
+
+/* .container { */
+/* 	display:flex; */
+/* } */
+
+.contentsize {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.ingtext{
+	text-align:center;
+	width:140px;	
+}
+.row{
+	margin-top:30px;
+}
+.col{
+	text-align:center;	
+}
+
+.h6 {
+	text-align:center;
+	align-items:center;
+}
+
+
+.categorysel select {
+	color:black;
+	border: 2px solid black;
+	border-radius: 3px;
+	width: 120px;
+	height:30px;
+	font-size: 20px;
+	text-align: center;
+}
