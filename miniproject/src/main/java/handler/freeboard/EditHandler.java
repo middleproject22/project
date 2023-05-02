@@ -34,7 +34,7 @@ public class EditHandler implements Handler {
 	        String content = request.getParameter("content");
 
 	        FreeBoardService service = new FreeBoardService();
-	        service.editFreeBoard(new FreeBoardVo(fb_num, null, null, title, content, 0));
+	        service.editFreeBoard(new FreeBoardVo(fb_num, null, null, title, content, 0,0));
 	        view = "redirect:/freeboard/fb_detail.do?fb_num=" + fb_num;
 	    }
 	    

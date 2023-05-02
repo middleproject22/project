@@ -10,11 +10,11 @@ import conn.DBConnect;
 
 public class FreeBoardDao {
 	private DBConnect dbconn;
-	
+
 	public FreeBoardDao() {
 		dbconn = DBConnect.getInstance();
 	}
-	
+
 	// 글번호로 검색
 	public FreeBoardVo select(int num) {
 		Connection conn = dbconn.conn();
@@ -24,23 +24,24 @@ public class FreeBoardDao {
 			pstmt.setInt(1, num);
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			if (rs.next()) {
-				return new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6));
+				return new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getInt(7));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
-	//원글 모두 검색
+
+	// 원글 모두 검색
 	public ArrayList<FreeBoardVo> selectAll() {
 		Connection conn = dbconn.conn();
 		String sql = "select * from free_board order by fb_num desc";
@@ -48,9 +49,9 @@ public class FreeBoardDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6)));
+			while (rs.next()) {
+				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getInt(7)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -65,12 +66,12 @@ public class FreeBoardDao {
 		}
 		return list;
 	}
-	
-	//원글 작성
+
+	// 원글 작성
 	public void insert(FreeBoardVo vo) {
 		Connection conn = dbconn.conn();
 
-		String sql = "insert into free_board values(seq_fbnum.nextval, ?, sysdate, ?, ?, ?)";
+		String sql = "insert into free_board values(seq_fbnum.nextval, ?, sysdate, ?, ?, ?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -137,7 +138,7 @@ public class FreeBoardDao {
 			}
 		}
 	}
-	
+
 	public void cnt(int num) {
 		Connection conn = dbconn.conn();
 		String sql = "update free_board set cnt=cnt+1 where fb_num=?";
@@ -158,42 +159,68 @@ public class FreeBoardDao {
 			}
 		}
 	}
-	
+
 	public FreeBoardVo page() {
 		Connection conn = dbconn.conn();
-		String sql = "select * from(select * from free_board order by rownum desc) where rownum = 1";
+		String sql = "select * from(select * from free_board) order by fb_num desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			if (rs.next()) {
-				return new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6));
+				return new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getInt(7));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
-	
+
 	public ArrayList<FreeBoardVo> selectByTitle(String title) {
 		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
 		Connection conn = dbconn.conn();
 		String sql = "select * from free_board where title like ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+title+"%");
+			pstmt.setString(1, "%" + title + "%");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6)));
+				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getInt(7)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	public ArrayList<FreeBoardVo> selectById(String id) {
+		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
+		Connection conn = dbconn.conn();
+		String sql = "select * from free_board where id like ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + id + "%");
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getInt(7)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -209,17 +236,38 @@ public class FreeBoardDao {
 		return list;
 	}
 	
-	public ArrayList<FreeBoardVo> selectById(String id) {
-		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
+	public void updateLikes(int likenum,int fb_num) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from free_board where id like ?";
+		String sql = "update free_board set likes=? where fb_num=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+id+"%");
+			pstmt.setInt(1, likenum);
+			pstmt.setInt(2, fb_num);
+			int num = pstmt.executeUpdate();
+			System.out.println(num + " 줄이 수정됨");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public ArrayList<FreeBoardVo> selectByLikes() {
+		Connection conn = dbconn.conn();
+		String sql = "select * from free_board order by likes desc";
+		ArrayList<FreeBoardVo> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2),rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6)));
+				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getInt(7)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -234,4 +282,5 @@ public class FreeBoardDao {
 		}
 		return list;
 	}
+	
 }

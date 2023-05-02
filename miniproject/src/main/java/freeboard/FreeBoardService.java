@@ -45,4 +45,9 @@ public class FreeBoardService {
 	public ArrayList<FreeBoardVo> getById(String id) {
 		return dao.selectById(id);
 	}
+	
+	public ArrayList<FreeBoardVo> getByLikes(){
+		return dao.selectByLikes();
+	}
+	
 }

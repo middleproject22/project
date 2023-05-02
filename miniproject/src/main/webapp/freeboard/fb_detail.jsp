@@ -70,7 +70,6 @@
 	   param += "&fl_id=${sessionScope.loginId}";
 	   xhttp.open("GET", "${pageContext.request.contextPath}/freelike/fl_up.do"+param);
 	   xhttp.send();
-// 	   location.reload();
    }
 	   
    
@@ -173,21 +172,23 @@
 <body>
 	<div class="all-marjin">
 		<div class="row">
-			<div class="col-4 fb-title">
+			<div class="fb-title">
 				<h1>게 시 판</h1>
 			</div>
 		</div>
-		<div class="container text-center">
-			<div class="fb-head row" style="margin-top: 5px">
-				<div class="col">
-					<div class="fb-hl" style="color: black">
-						<h2>${vo.title}</h2>
-					</div>
-				</div>
-				<div class="col fb-hr">등록일:${vo.w_date} &nbsp; 조회수:${vo.cnt}</div>
+		<div class="container text-left">
+			<div class="row"
+				style="margin-top: 0px; border-bottom: solid 3px #00A652; border-top: solid 3px #00A652;">
+				<div class="col-2" style="background-color:#F0FFF0">제목</div>
+				<div class="col-4">${vo.title}</div>
+				<div class="col-2" style="background-color:#F0FFF0">조회수</div>
+				<div class="col-4">${vo.cnt}</div>
+				<div class="col-2" style="background-color:#F0FFF0">작성자</div>
+				<div class="col-4">${vo.id}</div>
+				<div class="col-2" style="background-color:#F0FFF0">작성일</div>
+				<div class="col-4">${vo.w_date}</div>
 			</div>
 		</div>
-
 		<div class="fb-body">${vo.content}</div>
 		<div class="container text-center">
 			<div class="row" style="margin-top: 5px">
@@ -232,8 +233,8 @@
 			</div>
 		</form>
 		<div class="fc-table">
-		<table id="test"></table>
-</div>
+			<table id="test"></table>
+		</div>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
