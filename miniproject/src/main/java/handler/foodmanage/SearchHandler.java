@@ -17,15 +17,15 @@ public class SearchHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		IngredientService service = new IngredientService();
+		response.setCharacterEncoding("UTF-8");					
+		response.setContentType("text/html; charset=UTF-8");	
+						
+		IngredientService service = new IngredientService();	
 		String name = request.getParameter("name"); 
 		
 		System.out.println(name);
 		ArrayList<IngredientVo> list = service.getByNames(name); 
-
+		
 		JSONArray arr = new JSONArray();
 		
 		for(IngredientVo vo : list) {
