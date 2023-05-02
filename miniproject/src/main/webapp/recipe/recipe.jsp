@@ -88,40 +88,48 @@
 			</div>
 		</div>
 	</nav>
-	<div class="main">
-		<div class="row ">
-			<div class="col col-md-8 ">
-				<table border="1" name=r>
-					<tr>
-						<th>번호</th>
-						<th>레시피 이름</th>
-						<th>조회수</th>
-						<th>추천</th>
-					</tr>
-					<tr>
-						<th>${num }</th>
-						<th>${RCP_NM }</th>
-						<th>${cnt }</th>
-						<th>${likes }</th>
-					</tr>
-					<tr>
-						<td colspan="4">재료 : ${RCP_PARTS_DTLS }</td>
-					</tr>
-					<c:forEach var="vo" items="${list }">
+	<div style="width: 1000px; margin: 0 auto;">
+		<div class="container text-left">
+			<div class="row">
+					<table class="table">
+						<thead
+							style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652;">
+							<tr>
+								<th>번호</th>
+								<th>레시피 이름</th>
+								<th>조회수</th>
+								<th>추천</th>
+							</tr>
+						</thead>
 						<tr>
-							<td colspan="2">${vo.manual }</td>
-							<td colspan="2"><img src="${vo.img }"></td>
+							<th>${num }</th>
+							<th>${RCP_NM }</th>
+							<th>${cnt }</th>
+							<th>${likes }</th>
 						</tr>
-					</c:forEach>
-				</table>
-				<input type="button" id=likebutton value="좋아요" onclick="a()"><br/>
-				<c:if test="${not empty sessionScope.manager}">
-   				 <input type="button" id=managepick value="관리자픽" onclick="b()">
-				</c:if>
-			</div>
+						<tr>
+							<td colspan="4">재료 : ${RCP_PARTS_DTLS }</td>
+						</tr>
+						<c:forEach var="vo" items="${list }">
+							<tr>
+								<td colspan="2" >${vo.manual }</td>
+								<td colspan="2"><img src="${vo.img }"></td>
+							</tr>
+						</c:forEach>
+					</table>
+					</div>
+					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div style="display: flex">
+					<input type="button" id=likebutton value="좋아요" onclick="a()"><br />
+					<c:if test="${not empty sessionScope.manager}">
+						<input type="button" id=managepick value="관리자픽" onclick="b()">
+					</c:if>
+					</div>
+					</div>
+				</div>
+			
 		</div>
 
-	</div>
 
 
 	<script
@@ -136,32 +144,35 @@
 
 
 	<script type="text/javascript">
-function a(){
-	//비동기 요청 객체 생성
-	const xhttp = new XMLHttpRequest();
-	
-	//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
-	xhttp.onload = function(){ 
-		
-	}
-	
-	xhttp.open("GET", "${pageContext.request.contextPath}/recipe/like.do?num=${num}");
-	xhttp.send();
-}
+		function a() {
+			//비동기 요청 객체 생성
+			const xhttp = new XMLHttpRequest();
 
-function b(){
-const xhttp = new XMLHttpRequest();
-	
-	//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
-	xhttp.onload = function(){ 
-		
-	}
-	
-	xhttp.open("GET", "${pageContext.request.contextPath}/recipe/Mp.do?num=${num}");
-	xhttp.send();
-}
+			//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
+			xhttp.onload = function() {
 
-</script>
+			}
+
+			xhttp
+					.open("GET",
+							"${pageContext.request.contextPath}/recipe/like.do?num=${num}");
+			xhttp.send();
+		}
+
+		function b() {
+			const xhttp = new XMLHttpRequest();
+
+			//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
+			xhttp.onload = function() {
+
+			}
+
+			xhttp
+					.open("GET",
+							"${pageContext.request.contextPath}/recipe/Mp.do?num=${num}");
+			xhttp.send();
+		}
+	</script>
 
 </body>
 
