@@ -144,10 +144,18 @@
 <%-- 		</c:forEach> --%>
 		</div>
 		<div class="col col-md-4 m-2"">
-		<div>user pick recipe</div>
+		<h3>인기레시피</h3>
+		<table style="text-align: center;border-bottom: gray solid 1px;width: 100%">
+		<tr style="border-bottom:gray solid 1px "><th>레시피 이름</th><th>조회수</th><th>추천수</th></tr>
 		<c:forEach var="rlist" items="${ rlist}">
-		<div>${rlist}</div>
+		<tr>
+		
+		<td><a href="${pageContext.request.contextPath }/recipe/byName.do?rcpnm=${rlist.name }&num=${rlist.seq_num}">${rlist.name}</a></td>
+		<td>${rlist.cnt}</td>
+		<td>${rlist.likes}</td>
+		</tr>
 		</c:forEach>
+		</table>
 		</div>
 		</div>
 	</div>

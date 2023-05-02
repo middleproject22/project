@@ -87,26 +87,28 @@ public class likesDao {
 		}
 	}
 	
-	public void Maxlikes() {
-		Connection conn = dbconn.conn();
-		String sql = "SELECT seq_num, total_likes from (SELECT seq_num, SUM(likes) AS total_likes FROM likes GROUP BY seq_num ORDER BY total_likes DESC) where rownum <=3";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			
-			int num = pstmt.executeUpdate();
-			System.out.println(num + " 줄이 추가되었다");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+	public ArrayList<likesVo> Maxlikes() {
+	      Connection conn = dbconn.conn();
+	      ArrayList<likesVo> list = new ArrayList<likesVo>();
+	      String sql = "SELECT seq_num, total_likes from (SELECT seq_num, SUM(likes) AS total_likes FROM Rlikes GROUP BY seq_num ORDER BY total_likes DESC) where rownum <=3";
+	      try {
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         ResultSet rs = pstmt.executeQuery();
+	         while (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+	            list.add(new likesVo(rs.getInt(1), rs.getInt(2)));
+	         } 
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            conn.close();
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	      }return list;
+	   }
 	
 	public boolean searchIdNum(String id, int seq_num) {
 		Connection conn = dbconn.conn();

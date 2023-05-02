@@ -18,6 +18,12 @@ public class likesVo {
 		this.likes = likes;
 		
 	}
+	
+	public likesVo(int seq_num, int likes) {
+	      super();
+	      this.seq_num = seq_num;
+	      this.likes = likes;
+	}
 
 	public likesVo(String id, int seq_num, int likes) {
 		super();

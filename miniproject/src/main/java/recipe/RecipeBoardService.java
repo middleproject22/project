@@ -54,4 +54,7 @@ public class RecipeBoardService {
 		return dao.selectcnt(num);
 	}
 	
+	public RecipeBoardVo SelectByNum(int num) {
+	      return dao.SelectByNum(num);
+	   }
 }
