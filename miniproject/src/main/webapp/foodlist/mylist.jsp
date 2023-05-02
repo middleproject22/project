@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/miniproject/css/navoutline.css">
 <link href="/miniproject/css/(FoodList)mylist.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
@@ -36,14 +36,11 @@ $(document).ready(function(){
 	$("input:checkbox[name=${vo.ingredient }]").length(function(){
 		alert(length);
 	}) 
-	$("input:checkbox[name=inglist]:checked").length; 
-	
-	$("input:checkbox[name=inglist]").each(function(){
-		if(this.checked){
-			//체크된 것 수행할 것 구현
-		}
-	})
+
 });
+
+
+
 
 
 function check(){
@@ -57,7 +54,15 @@ for(obj of list){
 	}
 }
 	if(!tf){
-		alert("선택한 재료가 없습니다.")
+		Swal.fire({
+	 	   title: '재료 검색 실패!',
+	 	   text: '선택된 재료가 없습니다.',
+	 	   icon: 'error',
+		   
+	 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+	 	   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+	 	})
+
 	}else{
 		document.getElementById("submitbtn").type = "submit"
 	}
