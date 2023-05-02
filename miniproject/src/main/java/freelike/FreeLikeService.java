@@ -14,11 +14,11 @@ public class FreeLikeService {
 	        dao.delete(vo);
 	    }
 
-	    public int getLikes(int num) {
-	        return dao.selectLike(num);
+	    public int getLike(int fb_num) {
+	        return dao.selectLike(fb_num);
 	    }
 
-	    public FreeLikeVo getLikeByNum(int num, String id) {
-	        return dao.selectByNum(num, id);
+	    public FreeLikeVo getLikeByNum(int fb_num, String fl_id) {
+	        return dao.selectByNum(fb_num, fl_id);
 	    }
 }

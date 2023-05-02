@@ -15,9 +15,9 @@
             let txt = xhttp.responseText;
             let arr = JSON.parse(txt);
             for (let obj of arr) {//포문을 계속 돌린다
-                html += "<tr><td>"
+            	html += "<tr style='border-bottom: 1px solid'><td style='width:50px; height:40px'>";
                 html += obj.fc_id + "</td>"
-                html += "<td>" + obj.fc_content + "</td>"
+                html += "<td style='width:400px'>" + obj.fc_content + "</td>"
                 html += "<td>" + obj.date + "</td>"
                 if (obj.fc_id === "${sessionScope.loginId}") {
                     html += "<td><button type='button' onclick='deleteComment(" + obj.fc_num + ")'>삭제</button></td><tr/>";
@@ -48,29 +48,42 @@
         }
     }
     
-    function likebutton(num){
+    function likebutton(el){
+    	console.log("el : " + el);
     
+   if(${empty sessionScope.loginId}){
+	   alert("로그인이 필요한 서비스입니다.");
+   }
+   else{
+	   const xhttp = new XMLHttpRequest();//
+	   
+	   xhttp.onload = function(){
+	      let val = xhttp.responseText;
+	      let html ="추천 :" + val;
+	      console.log("val : " + val);
+	      document.getElementById("likebtn").innerHTML=html;
+	      
+	   }
+	   
+	   let param = "?fb_num=";
+	   param += ${vo.fb_num};//테스트
+	   param += "&fl_id=${sessionScope.loginId}";
+	   xhttp.open("GET", "${pageContext.request.contextPath}/freelike/fl_up.do"+param);
+	   xhttp.send();
+// 	   location.reload();
+   }
+	   
    
-    	   const xhttp = new XMLHttpRequest();//
-    	   
-    	   xhttp.onload = function(){
-    	      let val = xhttp.responseText;
-    	      console.log("val : " + val);
-//     	      let html = '';
-//     	      let res = document.getElementById("fb_num");
-//     	      res.innerHTML = html;//responseText: 서버로부터 받은 응답값
-    	   }
-    	   
-//     	   let param = "?fb_num=" + num;기존코드
-		   let param = "?fb_num=";
-		   param += ${vo.fb_num};//테스트
-    	   param += "&fl_id=${sessionScope.loginId}";
-    	   //요청 전송방식, 서버페이지 url 설정. get방식인 경우 url뒤에 파람 붙임
-    	   xhttp.open("GET", "${pageContext.request.contextPath}/freelike/fl_up.do"+param);
-//     	   xhttp.open("GET", "${pageContext.request.contextPath}/freelike/fl_up.do"+param);
-    	   xhttp.send();
-    	   alert("ok")
     	}
+    
+    function checkId(el) {
+
+		<c:if test="${empty sessionScope.loginId}">
+		alert("로그인이 필요한 서비스입니다.");
+		el.href = "${pageContext.request.contextPath}/member/login.do";
+
+		</c:if>
+	}
     
 </script>
 <meta charset="UTF-8">
@@ -90,7 +103,7 @@
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <link rel="stylesheet" href="/miniproject/css/index.css">
-<link rel="stylesheet" href="/miniproject/css/fb_list.css">
+<link rel="stylesheet" href="/miniproject/css/fb_detail.css">
 <title>Document</title>
 
 </head>
@@ -158,72 +171,73 @@
 	</nav>
 </head>
 <body>
-	<h1>자유게시판 상세 페이지</h1>
-	<table>
-		<tr>
-			<th>작성자 ID</th>
-			<td>${vo.id}</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td>${vo.title}</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>${vo.content}</td>
-		</tr>
-		<tr>
-			<th>작성일</th>
-			<td>${vo.w_date}</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${vo.cnt}</td>
-		</tr>
-	</table>
-	<a href="${pageContext.request.contextPath}/freeboard/fb_list.do">목록</a>
-	<a
-		href="${pageContext.request.contextPath}/freeboard/fb_edit.do?fb_num=${vo.fb_num}">수정</a>
-	<a
-		href="${pageContext.request.contextPath}/freeboard/fb_delete.do?fb_num=${vo.fb_num}">삭제</a>
+	<div class="all-marjin">
+		<div class="row">
+			<div class="col-4 fb-title">
+				<h1>게 시 판</h1>
+			</div>
+		</div>
+		<div class="container text-center">
+			<div class="fb-head row" style="margin-top: 5px">
+				<div class="col">
+					<div class="fb-hl" style="color: black">
+						<h2>${vo.title}</h2>
+					</div>
+				</div>
+				<div class="col fb-hr">등록일:${vo.w_date} &nbsp; 조회수:${vo.cnt}</div>
+			</div>
+		</div>
 
-	<h1>댓글 작성</h1>
-	<form action="${pageContext.request.contextPath}/freecomment/fc_add.do"
-		method="post">
-		<table>
-			<tr>
-				<th>글번호</th>
-				<td><input type="text" name="fb_num" value="${vo.fb_num }"
-					readonly></td>
-			</tr>
-			<tr>
-				<th>작성자 ID</th>
-				<td><input type="text" name="fc_id"
-					value="${sessionScope.loginId }" readonly></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea name="fc_content" rows="5" cols="50"></textarea></td>
-			</tr>
-		</table>
-		<input type="submit" value="작성">
-	</form>
-
-	<h1>댓글 목록</h1>
-
-	<table id="test">
-	
-	</table>
-	
-	
-	<button class="button" onclick="likebutton()">추천</button>
-
-
+		<div class="fb-body">${vo.content}</div>
+		<div class="container text-center">
+			<div class="row" style="margin-top: 5px">
+				<div class="col"></div>
+				<div class="col-5">
+					<div class="likebutton" style="text-align: center">
+						<button class="button" id="likebtn" onclick="likebutton(this)">추천:
+							${like}</button>
+					</div>
+				</div>
+				<div class="col">
+					<div class="fb-tail" style="text-align: right">
+						<a href="${pageContext.request.contextPath}/freeboard/fb_list.do">목록</a>
+						<c:if test="${sessionScope.loginId == vo.id}">
+							<a
+								href="${pageContext.request.contextPath}/freeboard/fb_edit.do?fb_num=${vo.fb_num}">수정</a>
+							<a
+								href="${pageContext.request.contextPath}/freeboard/fb_delete.do?fb_num=${vo.fb_num}">삭제</a>
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
+		<form
+			action="${pageContext.request.contextPath}/freecomment/fc_add.do"
+			method="post">
+			<div class="row" style="margin-top: 5px">
+				<div class="col-8">
+					<input type="hidden" name="fb_num" value="${vo.fb_num }"> <input
+						type="hidden" name="fc_id" value="${sessionScope.loginId }"
+						readonly>
+					<div class="form-floating">
+						<textarea class="form-control" placeholder="Leave a comment here"
+							id="floatingTextarea2" style="height: 100px; width: 800px"
+							name="fc_content" required></textarea>
+						<label for="floatingTextarea2">${sessionScope.loginId }</label>
+					</div>
+				</div>
+				<div class="col-4">
+					<input type="submit" value="작성">
+				</div>
+			</div>
+		</form>
+		<div class="fc-table">
+		<table id="test"></table>
+</div>
+	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
-
-
 </body>
 </html>

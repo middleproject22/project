@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.all-marjin {
+	padding-right: 10%;
+	padding-left: 10%;
+}
+
+.fb-title {
+	margin-left: 40px;
+	margin-top: 0px;
+	list-style: none;
+	font-size: 80px;
+	color: #00A652;
+	text-align: left;
+	margin-bottom: 60px;
+}
+
+.fb-head {
+	border-top: solid 3px #00A652;
+}
+
+.fb-hl {
+	text-align: left;
+	font-size: 40px;
+}
+
+.fb-hr {
+	text-align: right;
+	font-size: 20px;
+	color: grey;
+	vertical-align : bottom;
+}
+
+.fb-body {
+	border-bottom: solid 3px #00A652;
+	border-top: solid 3px #00A652;
+	height: auto;
+	min-height: 800px;
+	overflow: auto;
+}
+
+.likebutton {
+	text-align: center;
+}
+
+.fb-tail {
+	text-align: right;
+}
+
+.fc-table{
+	margin-bottom: 50px;
+}
