@@ -1,5 +1,7 @@
 package likes;
 
+import java.util.ArrayList;
+
 public class likesService {
 	private likesDao dao;
 
@@ -14,8 +16,8 @@ public class likesService {
 		return dao.addlikes(num);
 	}
 	
-	public void Maxlikes() {
-		dao.Maxlikes();
+	public ArrayList<likesVo> Maxlikes() {
+		return dao.Maxlikes();
 	}
 	
 	public boolean searchIdNum(String id, int num) {

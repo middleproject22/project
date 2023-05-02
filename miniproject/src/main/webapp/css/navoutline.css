@@ -2,7 +2,11 @@
 .bgc{
     background-color: #00A652
     
-}   
+}  
+
+.navbar{
+	padding : 0;
+} 
 
 a{
     text-decoration: none;

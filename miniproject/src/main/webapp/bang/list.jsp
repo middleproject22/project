@@ -71,7 +71,7 @@ function searing() {
 		for(let obj of arr){
 			html += "<span class ='aa' id='"+obj.ig_name +"'" ;
 			html += " onclick=\"sele('" + obj.ig_name + "')\">";
-			html += "<img class='imgingredient' src ='../ingredientimg/"+obj.ig_path+"'>";
+			html += "<img class='imgingredient' src ='/miniproject/ingredientimg/"+obj.ig_path+"'>";
 			html += obj.ig_name ;
 			html += "</span>";
 		}			

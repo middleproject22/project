@@ -19,7 +19,7 @@
 </head>
 
 <body>
-	<nav class="navbar py-3 bgc shadow-lg ">
+	<nav class="navbar bgc shadow-lg ">
 		<div class="container">
 			<div class="col col-md-3 text-start location">
 				<button class="navbar-toggler outline" type="button"
