@@ -89,7 +89,7 @@ public class likesDao {
 	
 	public void Maxlikes() {
 		Connection conn = dbconn.conn();
-		String sql = "SELECT seq_num, SUM(likes) AS total_likes FROM Rlikes GROUP BY seq_num ORDER BY total_likes DESC limit 6";
+		String sql = "SELECT seq_num, total_likes from (SELECT seq_num, SUM(likes) AS total_likes FROM likes GROUP BY seq_num ORDER BY total_likes DESC) where rownum <=3";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
