@@ -10,7 +10,7 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-.flistsel select {
+.abledclass {
 	width: 100px;
 	height:30px;
 	padding-left: 5px;
@@ -18,6 +18,18 @@
 	color:green;
 	border:2px solid green;
 	border-radius: 3px;
+	
+}
+
+.disabledclass {
+	width: 100px;
+	height:30px;
+	padding-left: 5px;
+	font-size:15px;
+	color:gray;
+	border:2px solid gray;
+	border-radius: 3px;
+	background-color: gainsboro;
 }
 
 
@@ -29,11 +41,11 @@
 
 .ref {
 	color:green;
-	font-size: 230%;
+	font-size: 240%;
 	text-align: center;
 	padding-top:60px;
 	padding-bottom:70px;
-	font-weight: bold;
+	font-weight: 1000;
 }
 
 
@@ -74,19 +86,26 @@
 .submitbtn {
 	text-align:right;
 	margin-top: 30px;
-
+	margin-bottom: 30px;
 }
 #submitbtn {
 	margin-left: 10px;
 }
 
 .nutrient table {
-	text-align:center;
+	text-align:left;
 	margin: 10px;
 	padding: 10px;
-	
+	align-items: center;
 }
 
+.memocss {
+	display: flex; 
+	justify-content: center;
+	border-bottom: 1px solid black;
+	color:green;
+	font-size: 15px;
+}
 
 .contentsize {
 	margin-left: 10%;

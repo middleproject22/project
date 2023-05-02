@@ -55,18 +55,6 @@ public class FoodListDao {
 
 			while (rs.next()) {
 				
-//				System.out.println(rs.getInt(1)); //cat_num
-//				System.out.println(rs.getString(2)); //cat_name
-//				System.out.println(rs.getInt(3)); //cat_lnum
-//				System.out.println(rs.getInt(4)); //fm_num
-//				System.out.println(rs.getString(5)); //id
-//				System.out.println(rs.getString(6)); //ingredient
-//				System.out.println(rs.getInt(7)); //cat_num
-//				System.out.println(rs.getDate(8)); //today
-//				System.out.println(rs.getDate(9)); //expiredate
-//				System.out.println(rs.getInt(10)); //dday
-//				System.out.println(rs.getInt(11)); //amount
-//				System.out.println(rs.getString(12)); //memo
 				list.add( new FoodManageVo(rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(1),rs.getDate(8),rs.getDate(9),rs.getInt(10),
 						rs.getInt(11),rs.getString(12),rs.getInt(3)));
 			}
@@ -106,7 +94,6 @@ public class FoodListDao {
 
 	// 남은 날 확인
 	public void checkDate(String id) {
-		System.out.println("dao");
 		Connection conn = dbconn.conn();
 		String sql = "update food_manage set dday=expiredate-sysdate where id =? ";
 		//String sql = "update food_manage set dday =round((expiredate-sysdate),0)";
@@ -263,7 +250,6 @@ public class FoodListDao {
 	} 
 	
 	public void updateAmount(int amount, int num ) {
-		System.out.println("dao");
 		Connection conn = dbconn.conn();
 		String sql = "update food_manage set amount=? where fm_num =? ";
 		try {

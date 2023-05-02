@@ -237,10 +237,10 @@ for(obj of list){
 <!-- 			레시피 체크박스 선택 -->
 			<div class="col">
 		<c:if test="${vo.dday<0}">
-		<input class="form-check-input" type="checkbox" id="inglist" value="${vo.ingredient }" id="flexCheckIndeterminateDisabled" disabled>
+		<input class="form-check-input" type="checkbox" value="${vo.ingredient }"  disabled>
 		</c:if>
 		<c:if test="${vo.dday>=0}">
-                <input class="form-check-input inglist" type="checkbox" value="${vo.ingredient }" name="inglist">
+        <input class="form-check-input inglist" type="checkbox" value="${vo.ingredient }" name="inglist">
      	</c:if>
      	   </div>
 			<!--  카테고리 선택 -->
@@ -264,8 +264,10 @@ for(obj of list){
 			<div class="col">
 
 				<h6>${vo.ingredient }</h6>
-				<div class="col" style="display: flex; justify-content: center">
+				<c:if test="${not empty vo.memo  }">
+				<div class="col memocss" >
 					${vo.memo }</div>
+				</c:if>
 			</div>
 			<div class="col-2">
 				<h6>${vo.expiredate }</h6>
@@ -277,8 +279,13 @@ for(obj of list){
 			<div class="col flistsel">
 				<!--       vo.amount 일때 기본값으로 보여줌. 근데 바꾸면 저장되도록. 근데 db값이 디폴트되도록 -->
 
+			<c:if test="${vo.dday<0 }">
+				<select class="disabledclass" onchange="window.open(value,'_self');" disabled>
+					<option selected>${vo.amount}%</option>
+				</select>
+			</c:if>
 			<c:if test="${0<=vo.dday}">
-				<select name="selamount" onchange="window.open(value,'_self');">
+				<select class="abledclass" name="selamount" onchange="window.open(value,'_self');">
 				
 					<option selected>--${vo.amount}%--</option>
 					<option value="${pageContext.request.contextPath}/foodlist/delete.do?num=${vo.fm_num }">0%</option>
@@ -293,7 +300,7 @@ for(obj of list){
 			<div class="col-3 nutrient">
 
 				<!-- 영양소 불러오기. MyList에서 listIng 받아옴. varstatus -->
-				<table style="font-size: 15px;">
+				<table style="font-size: 15px;"  class="table table-sm">
 					<tr>
 						<td>칼로리 :${listIng[status.index].ig_kcal }</td>
 						<td>단백질 :${listIng[status.index].ig_pt }</td>
