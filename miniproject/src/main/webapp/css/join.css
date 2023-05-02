@@ -148,4 +148,10 @@ body ::before {
 .h6{
 	font-size: 15px;
 }
-
+#inputinfo{
+	position: absolute;
+	left: 150px;
+	width:400px;
+	justify-content: end;
+	z-index: 2;
+}

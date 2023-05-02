@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import Member.MemberService;
 import Member.MemberVo;
+import foodlist.FoodListService;
 import handler.Handler;
 
 public class LoginHandler implements Handler {
@@ -31,6 +32,11 @@ public class LoginHandler implements Handler {
 			String pwd =request.getParameter("pwd");
 			
 			MemberService service = new MemberService();
+			FoodListService fservice = new FoodListService();
+			int red = fservice.ddayThree(id);
+			int yellow = fservice.ddaySeven(id);
+			int green = fservice.ddayetc(id);
+			int[] dday = {red,yellow,green};
 			MemberVo vo = service.getById(id);
 			
 			if( vo !=null && pwd.equals(vo.getPwd())) {
@@ -39,13 +45,15 @@ public class LoginHandler implements Handler {
 					session.setAttribute("loginId", id);
 					session.setAttribute("manager", "manager");
 					session.setAttribute("img", vo.getImgpath());
-					view = "/index.jsp";
+					session.setAttribute("dday", dday);
+					view = "/mainindex/mainIndex.jsp";
 					request.setAttribute("ck", "ck");
 					request.setAttribute("msg", "로그인되었습니다.");
 				}else {
 					session.setAttribute("loginId", id);
 					session.setAttribute("img", vo.getImgpath());
-					view = "/index.jsp";
+					session.setAttribute("dday", dday);
+					view = "/mainindex/mainIndex.jsp";
 					request.setAttribute("ck", "ck");
 					request.setAttribute("msg", "로그인되었습니다.");
 				}

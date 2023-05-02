@@ -37,12 +37,16 @@ public class JoinHandler implements Handler {
 			String imgpath = null;
 			int managenum = 0;	
 			
-			
-			MemberVo vo = new MemberVo(id, pwd, name, email, pnum, imgpath, managenum);
 			MemberService service = new MemberService();
+			MemberVo vo = new MemberVo(id, pwd, name, email, pnum, imgpath, managenum);
+			MemberVo ckvo = service.getByPnum(pnum);
+			if(ckvo == null) {
 			service.Join(vo);
-			
-			view = "redirect:/index.jsp";
+			view = "redirect:/mainindex/mainIndex.jsp";
+			}else {
+				request.setAttribute("ck", "ck");
+				view = "/member/join.jsp";
+			}
 		}
 		return view;
 	}

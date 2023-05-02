@@ -68,7 +68,7 @@
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/index.jsp"><img class="logo"
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.jsp"><img class="logo"
 						src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
@@ -82,13 +82,30 @@
 					</h3>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
-					<a href="${pageContext.request.contextPath }/member/detail.do"><img
-						src="${sessionScope.img}"
-						class="rounded-circle userimg"></a>
-					<h5>
-						<span class="text_margine"><a
-							href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
-					</h5>
+
+					<div>
+						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
+					</div>
+					<div>
+						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
+					</div>
+					<div>
+						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
+					</div>
+					<div class="dropdown myAcc">
+						<button class="btn btn-secondary dropdown-toggle myAcc"
+							type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="${sessionScope.img}" class="rounded-circle userimg">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath}/member/detail.do"><span
+									class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/member/logout.do"><span
+									class="material-symbols-outlined logout"> logout </span> 로그아웃</a></li>
+						</ul>
+					</div>
 				</c:if>
 			</div>
 		</div>

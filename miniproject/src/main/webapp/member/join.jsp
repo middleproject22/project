@@ -14,6 +14,8 @@
 <link rel='stylesheet' type="text/css" href="../css/join.css">
 <script type="text/javascript">
 	function a() {
+		let inputinfo = document.getElementById("inputinfo");
+		inputinfo.style.display='none';
 		let chkvalue = /^[a-zA-Z0-9]{4,12}$/
 		if (!chkvalue.test(f.id.value)) {
 			let html = '<p class="h6"'+'style="color : red">4~12자의 영문으로 입력해주세요</p>'
@@ -67,6 +69,13 @@
 		x.style.opacity = '0';
 		x.style.visibility = 'hidden';
 	}
+	
+	window.onload=function(){
+		if('${ck}'=="ck"){
+			alert("이미 가입된 회원입니다.")
+			history.go(-1);
+		}
+	}
 </script>
 </head>
 <body>
@@ -75,7 +84,7 @@
 			<div class="col col-md-3 text-start"></div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/index.jsp"><img
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.jsp"><img
 						class="logo" src="../imgs/logo3.png"></a>
 				</nav>
 			</div>
@@ -92,6 +101,7 @@
 			<div class=int-area>
 				<input type="text" class='id' name="id" id="id" required autocomplete="off"
 					onblur="a()" > <label for="id">USER ID</label>
+				<div class="ck-res" id="inputinfo">* 4~12자의 영문과 숫자로 입력해주세요</div>
 				<div class="ck-res" id="res"></div>
 
 			</div>

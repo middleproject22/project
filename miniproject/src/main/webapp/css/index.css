@@ -1,76 +1,128 @@
 @charset "UTF-8";
 
-.bgc{
-    background-color: #00A652    
-}  
-
-
-a{
-    text-decoration: none;
-    color: black;
-}
-.userpick{
-    width: 474px;
-    height: 267px;
-   
-}
-.userpick>img{
-	 width: 474px;
-    height: 267px;
-     padding: 15px;
+.bgc {
+	background-color: #00A652
 }
 
-.logo{
-    width: 227px;
+a {
+	text-decoration: none;
+	color: black;
 }
 
-.text_margine{
-    padding: 5px;
+.userpick {
+	width: 474px;
+	height: 267px;
 }
 
-.dropdown>a{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-decoration: none;
-    color: #fff;
-    font-size: 20px;
+.userpick>img {
+	width: 474px;
+	height: 267px;
+	padding: 15px;
 }
 
-.text_flex{
-    display: flex;
-    justify-content: end;
-    align-items: center;
+.logo {
+	width: 227px;
 }
-.text_margine{
+
+.text_margine {
+	padding: 5px;
+}
+
+.dropdown>a {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+		sans-serif;
+	text-decoration: none;
+	color: #fff;
+	font-size: 20px;
+}
+
+.text_flex {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.text_margine {
 	padding-top: 20px;
 }
-h5>.text_margine>a{
-    font-size: 20px;
-    color: #fff;
-   	padding-left : 10px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-}
-.slick-next.slick-arrow{
-    position: relative;
-    top :50%;
-    height: 30px;
-    border-radius: 50px;
-}
-.slick-prev.slick-arrow{
-    position: relative;
-    top: 50%;
-    height: 30px;
-    border-radius: 50px;
 
+h5>.text_margine>a {
+	font-size: 20px;
+	color: #fff;
+	padding-left: 10px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+		sans-serif
 }
+
+.slick-next.slick-arrow {
+	position: relative;
+	top: 50%;
+	height: 30px;
+	border-radius: 50px;
+}
+
+.slick-prev.slick-arrow {
+	position: relative;
+	top: 50%;
+	height: 30px;
+	border-radius: 50px;
+}
+
 .row {
-    margin-top: 80px;
+	margin-top: 80px;
 }
 
 .slick-prev:before, .slick-next:before {
-    color: #444444;
-  }
-
-.userimg{
-	width: 50px;
-	height:50px;
+	color: #444444;
 }
+
+.userimg {
+	width: 50px;
+	height: 50px;
+	margin: 2px;
+}
+
+
+.dday_simpleview {
+	margin: 3px;
+	text-align: center;
+	display: grid;
+	width: 40px;
+	height: 40px;
+	align-items: center;
+}
+
+.red {
+	background-color: #02F705;
+}
+
+.yellow {
+	background-color: gold;
+}
+
+.green {
+	background-color: red;
+}
+
+.myAcc {
+	background: none;
+	border: none;
+	box-shadow: none !important;
+}
+
+.btn-secondary {
+	--bs-btn-hover-bg: none;
+	--bs-btn-active-bg: none;
+	--bs-btn-active-border-color: none;
+}
+
+.logout {
+	position: relative;
+	top: 5px;
+}
+
+.key {
+	position: relative;
+	top: 5px;
+}
+
