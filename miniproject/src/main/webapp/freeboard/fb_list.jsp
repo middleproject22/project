@@ -14,6 +14,8 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 <link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -25,10 +27,10 @@
 <link rel="stylesheet" href="/miniproject/css/fb_list.css">
 <title>Document</title>
 
-
 </head>
 
 <body>
+
 	<nav class="navbar navbar-expand-lg py-3 bgc shadow-lg">
 		<div class="container">
 			<div class="col col-md-3 text-start">
@@ -42,11 +44,11 @@
 								href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
 							<li><a class="dropdown-item needlogin"
 								onclick='checkId(this)'
-								href="${pageContext.request.contextPath}/foodlist/mylist.do?id=${sessionScope.loginId}">식품
+								href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
 									전체 리스트</a></li>
 							<li><a class="dropdown-item needlogin"
 								onclick='checkId(this)'
-								href="${pageContext.request.contextPath }/recipelist/mylist.do?id=${sessionScope.loginId}">냉장고를
+								href="${pageContext.request.contextPath }/recipelist/mylist.do">냉장고를
 									부탁해</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
@@ -70,7 +72,7 @@
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/index.jsp"><img
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.jsp"><img
 						class="logo" src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
@@ -86,12 +88,30 @@
 					</h5>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
-					<a href="${pageContext.request.contextPath }/member/detail.do"><img
-						src="${sessionScope.img}" class="rounded-circle userimg"></a>
-					<h5>
-						<span class="text_margine"><a
-							href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
-					</h5>
+
+					<div>
+						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
+					</div>
+					<div>
+						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
+					</div>
+					<div>
+						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
+					</div>
+					<div class="dropdown myAcc">
+						<button class="btn btn-secondary dropdown-toggle myAcc"
+							type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="${sessionScope.img}" class="rounded-circle userimg">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath}/member/detail.do"><span
+									class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/member/logout.do"><span
+									class="material-symbols-outlined logout"> logout </span> 로그아웃</a></li>
+						</ul>
+					</div>
 				</c:if>
 			</div>
 		</div>
@@ -141,7 +161,7 @@
 					<th scope="col" style="width: 10%">추천</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody style="border-bottom: 3px solid #00A652;">
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<th scope="row">${vo.fb_num}</th>
@@ -158,25 +178,26 @@
 	</div>
 	</div>
 	<br />
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
 	<script>
-		function search() {
-			let url = '';
-			let selevalue = document.getElementById("selectvalue").value;
-			let val = document.getElementById("search-text").value;
-
-			switch (selevalue) {
-			case "1":
-				url = "${pageContext.request.contextPath}/freeboard/fb_searchtitle.do?title="
-						+ val;
-				break;
-			default:
-				url = "${pageContext.request.contextPath}/freeboard/fb_searchid.do?id="
-						+ val;
-				break;
-
-			}
-			window.location.href = url;
-		}
+		$('.recommandlist').slick({
+			dots : true,
+			infinite : true,
+			speed : 300,
+			slidesToShow : 1,
+			centerMode : true,
+			variableWidth : true
+		});
 
 		function checkId(el) {
 
@@ -186,14 +207,9 @@
 
 			</c:if>
 		}
-		
-		function recommandcnt(){
-			
-		}
 	</script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
+
 </body>
+
+
 </html>

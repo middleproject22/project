@@ -18,7 +18,7 @@
             	html += "<tr style='border-bottom: 1px solid'><td style='width:50px; height:40px'>";
                 html += obj.fc_id + "</td>"
                 html += "<td style='width:400px'>" + obj.fc_content + "</td>"
-                html += "<td>" + obj.date + "</td>"
+                html += "<td style='width:130px'>" + obj.date + "</td>"
                 if (obj.fc_id === "${sessionScope.loginId}") {
                     html += "<td><button type='button' onclick='deleteComment(" + obj.fc_num + ")'>삭제</button></td><tr/>";
                 } else {
@@ -59,7 +59,7 @@
 	   
 	   xhttp.onload = function(){
 	      let val = xhttp.responseText;
-	      let html ="추천 :" + val;
+	      let html ="&#127808; :" + val;
 	      console.log("val : " + val);
 	      document.getElementById("likebtn").innerHTML=html;
 	      
@@ -177,29 +177,30 @@
 			</div>
 		</div>
 		<div class="fb-all">
-		<div class="container text-left">
-			<div class="row"
-				style="margin-top: 0px; border: solid 3px #00A652">
-				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">제목</div>
-				<div class="col-4" style="border-bottom: 2px solid #00A652">${vo.title}</div>
-				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">조회수</div>
-				<div class="col-4" style="border-bottom: 2px solid #00A652">${vo.cnt}</div>
-				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">작성자</div>
-				<div class="col-4">${vo.id}</div>
-				<div class="col-2" style="background-color:#00A652; color:white; font-size: 20px">작성일</div>
-				<div class="col-4">${vo.w_date}</div>
-		</div>
-		</div>
-		<div class="fb-body">${vo.content}</div>
+			<div class="container text-left">
+				<div class="row" style="margin-top: 0px; border: solid 3px #00A652">
+					<div class="col-2"
+						style="background-color: #00A652; color: white; font-size: 20px">제목</div>
+					<div class="col-4" style="border-bottom: 2px solid #00A652">${vo.title}</div>
+					<div class="col-2"
+						style="background-color: #00A652; color: white; font-size: 20px">조회수</div>
+					<div class="col-4" style="border-bottom: 2px solid #00A652">${vo.cnt}</div>
+					<div class="col-2"
+						style="background-color: #00A652; color: white; font-size: 20px">작성자</div>
+					<div class="col-4">${vo.id}</div>
+					<div class="col-2"
+						style="background-color: #00A652; color: white; font-size: 20px">작성일</div>
+					<div class="col-4">${vo.w_date}</div>
+				</div>
+			</div>
+			<div class="fb-body">${vo.content}</div>
 		</div>
 		<div class="container text-center">
 			<div class="row" style="margin-top: 5px">
 				<div class="col"></div>
 				<div class="col-5">
-					<div class="likebutton" style="text-align: center">
-						<button class="button" id="likebtn" onclick="likebutton(this)">추천:
-							${like}</button>							
-					</div>
+					<button class="button" id="likebtn" onclick="likebutton(this)">&#127808;:
+						${like}</button>
 				</div>
 				<div class="col">
 					<div class="fb-tail" style="text-align: right">
@@ -224,14 +225,17 @@
 						readonly>
 					<div class="form-floating">
 						<textarea class="form-control" placeholder="Leave a comment here"
-							id="floatingTextarea2" style="height: 100px; width: 800px"
+							id="floatingTextarea2"
+							style="height: 100px; width: 820px; overflow-y: auto; resize: none"
 							name="fc_content" required></textarea>
 						<label for="floatingTextarea2">${sessionScope.loginId }</label>
 					</div>
 				</div>
-				<div class="col-4">
-					<input type="submit" value="작성">
-				</div>
+				<c:if test="${not empty sessionScope.loginId }">
+					<div class="col-4">
+						<input type="submit" value="작성" class="btn btn-success"	>
+					</div>
+				</c:if>
 			</div>
 		</form>
 		<div class="fc-table">

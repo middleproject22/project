@@ -1,12 +1,15 @@
 @charset "UTF-8";
+
 @font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
-*{
+* {
 	font-family: 'NanumSquareNeo-Variable';
 }
 
@@ -26,31 +29,27 @@
 }
 
 .fb-all {
-	border-bottom:2px solid #00A652;
-}
-
-.fb-hl {
-	text-align: left;
-	font-size: 40px;
-}
-
-.fb-hr {
-	text-align: right;
-	font-size: 20px;
-	color: #F0FFF0;
-	vertical-align: bottom;
+	border-bottom: 2px solid #00A652;
+	margin-bottom: 20px;
 }
 
 .fb-body {
-	/* 	border-bottom: solid 3px #00A652; */
-	/* 	border-top: solid 3px #00A652; */
 	height: auto;
-	min-height: 350px;
+	min-height: 240px;
 	overflow: auto;
+	padding-top: 20px;
+	padding-inline: 20px;
+	padding-bottom: 20px;
 }
 
-.likebutton {
+.button {
 	text-align: center;
+	margin-bottom: 20px;
+	width: 100px;
+	height: 30px;
+	color: #00A652;
+	border-color: #00A652;
+	background: white;
 }
 
 .fb-tail {
@@ -59,4 +58,20 @@
 
 .fc-table {
 	margin-bottom: 50px;
+}
+
+.btn {
+	display: block;
+	width: 80px;
+	padding: 5px;
+}
+
+.form-control {
+	color: green;
+	border: 2px solid green;
+}
+
+.form-control:focus, .form-control:active {
+	box-shadow: none;
+	border-color: green;
 }
