@@ -260,7 +260,7 @@ public class FreeBoardDao {
 	
 	public ArrayList<FreeBoardVo> selectByLikes() {
 		Connection conn = dbconn.conn();
-		String sql = "select * from free_board order by likes desc";
+		String sql = "select * from (select * from free_board order by likes desc) WHERE rownum <=5;";
 		ArrayList<FreeBoardVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
