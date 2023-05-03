@@ -167,11 +167,12 @@ body ::before {
 }
 
 .btn-area {
+	display: flex;
 	margin-top: 30px;
 }
 
 .btn-area button {
-	width: 100%;
+	width: 50%;
 	height: 50px;
 	background: #00A652;
 	color: #fff;

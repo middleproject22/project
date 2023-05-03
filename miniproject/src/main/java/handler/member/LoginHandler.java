@@ -46,16 +46,14 @@ public class LoginHandler implements Handler {
 					session.setAttribute("manager", "manager");
 					session.setAttribute("img", vo.getImgpath());
 					session.setAttribute("dday", dday);
-					view = "/mainindex/mainIndex.do";
-					request.setAttribute("ck", "ck");
-					request.setAttribute("msg", "로그인되었습니다.");
+					view = "redirect:/mainindex/mainIndex.do";
+					
 				}else {
 					session.setAttribute("loginId", id);
 					session.setAttribute("img", vo.getImgpath());
 					session.setAttribute("dday", dday);
-					view = "/mainindex/mainIndex.do";
-					request.setAttribute("ck", "ck");
-					request.setAttribute("msg", "로그인되었습니다.");
+					view = "redirect:/mainindex/mainIndex.do";
+					
 				}
 			}else {
 				request.setAttribute("ck", "ck");
