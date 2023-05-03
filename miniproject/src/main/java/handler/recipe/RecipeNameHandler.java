@@ -22,12 +22,10 @@ public class RecipeNameHandler implements Handler {
 		}
 		response.setCharacterEncoding("utf-8");
 		String rcpnm = request.getParameter("rcp");
-		String view= "/recipe/namelist.jsp";
 		RecipeBoardService service = new RecipeBoardService();
 		ArrayList<RecipeBoardVo> list = service.selectName(rcpnm);
-		
 		request.setAttribute("list", list);
-		
+		String view= "/recipe/namelist.jsp";
 		return view;
 	}
 

@@ -155,7 +155,7 @@ public class RecipeBoardDao {
 	public ArrayList<RecipeBoardVo> selectAllName() {
 		Connection conn = dbconn.conn();
 		ArrayList<RecipeBoardVo> list = new ArrayList<RecipeBoardVo>();
-		String sql = "select seq_num, name, cnt, likes from recipeboard ";
+		String sql = "select seq_num, name, cnt, likes from recipeboard order by seq_num";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();// select 실행

@@ -52,11 +52,11 @@
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-							href="#" role="button" aria-expanded="false">리시피</a>
+							href="#" role="button" aria-expanded="false">레시피</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
 										픽 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
@@ -85,15 +85,15 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
 
-					<div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
-					</div>
+					</a></div>	
 					<div class="dropdown myAcc">
 						<button class="btn btn-secondary dropdown-toggle myAcc"
 							type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -116,16 +116,16 @@
 	<div style="width: 1000px; margin: 0 auto;">
 		<div class="container text-center">
 			<div class="row">
-				<div class="col-3 recipe_title">
+				<div class="col-3 ref">
 					<h1>레시피 목록</h1>
 				</div>
-				<div class="col-9" style="padding-top: 11px">
+				<div class="col-9">
 					<div style="float: right">
 						<div style="display: flex">
 							<div class="col-sm2 ">
-						<form id="f1" action="${pageContext.request.contextPath }/recipe/getName.do" method="post">
+							<form id="f1" action="${pageContext.request.contextPath }/recipe/getName.do" method="post">
 							<div class="btn-group btn-outline-primary" role="group" aria-label="Basic outlined example">
-								<div style="display: flex">
+								<div style="display: flex; padding-top:60px">
    									 <button type="button" class="btn dropdown-toggle recipe_downtoggle btn-outline-success" id="selecttype" data-bs-toggle="dropdown" aria-expanded="false">제목 검색</button>
    									 <ul class="dropdown-menu">
     									 <li><a href ="#" onclick ="chageLangSelect(1)" class="dropdown-item">제목으로 검색</a></li>
@@ -156,6 +156,9 @@
 				</thead>
 				<tbody>
 					<c:forEach var="vo" items="${list }">
+						<c:if test="${null==list }">
+  							"잘못된 검색입니다"
+						</c:if>
 						<tr>
 							<th scope="col" style="text-align: center;">${vo.seq_num}</th>
 							<td scope="col" style="text-align: center;"><a
