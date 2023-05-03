@@ -115,21 +115,29 @@
 		</div>
 	</nav>
 	<div class="all-marjin">
-		<div class="row">
-			<div class="col-4 fb-title">
-				<h1>글 수 정</h1>
-			</div>
+		<div class="row" style="margin-top: 60px; margin-bottom: 60px">
+			<div class="fb-title">수 정 폼</div>
 		</div>
-		<form action="${pageContext.request.contextPath }/freeboard/fb_edit.do" method="post">
-			<input type="hidden" name="fb_num" value="${vo.fb_num}"/>
-			<p><input type="text" name="title" 
-			class="form-control" aria-describedby="button-addon2" required
-			style="word-wrap: break-word; overflow-wrap: break-word"
-			value="${vo.title }"/></p>
-			<p><textarea name="content" class="form-control"
-			aria-describedby="button-addon2" style="height: 500px; overflow-y: auto; resize: none;"
-			>${vo.content }</textarea></p>
-			<p><input type="submit" value="수정" class="btn btn-success" style="float:right; margin-bottom:50px"></p>
+		<form
+			action="${pageContext.request.contextPath }/freeboard/fb_edit.do"
+			method="post">
+			<input type="hidden" name="fb_num" value="${vo.fb_num}" />
+			<p>
+				<input type="text" name="title" class="form-control"
+					aria-describedby="button-addon2" required
+					style="word-wrap: break-word; overflow-wrap: break-word; border: solid 1px #00A652"
+					value="${vo.title }" />
+			</p>
+			<p>
+				<textarea name="content" class="form-control"
+					aria-describedby="button-addon2"
+					style="height: 500px; overflow-y: auto; resize: none; border: solid 1px #00A652"
+					required>${vo.content }</textarea>
+			</p>
+			<p>
+				<input type="submit" value="수정" class="btn btn-success"
+					style="float: right; margin-bottom: 50px">
+			</p>
 		</form>
 	</div>
 	<script

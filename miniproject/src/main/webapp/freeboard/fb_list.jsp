@@ -116,16 +116,12 @@
 	</nav>
 	<div class="all-marjin">
 		<div class="container text-center">
-			<div class="row">
-				<div class="col-4 fb-title">
-					<h1>게 시 판</h1>
-				</div>
+			<div class="row" style="margin-top: 60px; margin-bottom: 60px">
+				<div class="col-4 fb-title">게 시 판</div>
 				<div class="col-2" style="padding-top: 5px">
 					<select class="form-select" aria-label="Default select example"
 						id="selectvalue">
-
-						<option selected value="0">선택하기</option>
-						<option value="1">제목</option>
+						<option selected value="1">제목</option>
 						<option value="2">작성자</option>
 					</select>
 
@@ -143,7 +139,7 @@
 					<a
 						href="${pageContext.request.contextPath}/freeboard/fb_add.do?id=${sessionScope.loginId}"
 						onclick='checkId(this)' class="btn btn-success"
-						style="float: right;">글작성</a>
+						style="float: right; height: 39px">글작성</a>
 				</div>
 			</div>
 		</div>
@@ -167,11 +163,11 @@
 
 				<tbody style="border-bottom: 1px solid black;">
 					<c:forEach var="vo" items="${flist }">
-						<tr style="color: #FF4E59; background-color: #F9F9F8">
-							<th scope="row">
-								<div>공지사항</div>
-							</th>
-							<td style="text-align: left"><a style="color: #FF4E59"
+						<tr
+							style="color: #FF4E59; background-color: #F9F9F8; font-weight: bold">
+							<th scope="row">공지사항</th>
+							<td style="text-align: left"><a
+								style="color: #FF4E59; font-weight: bold"
 								href="${pageContext.request.contextPath }/freeboard/fb_detail.do?fb_num=${vo.fb_num}">${vo.title}</a></td>
 							<td>관리자</td>
 							<td>${vo.w_date}</td>
@@ -208,7 +204,7 @@
 		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-		<script>
+	<script>
 		function search() {
 			let url = '';
 			let selevalue = document.getElementById("selectvalue").value;

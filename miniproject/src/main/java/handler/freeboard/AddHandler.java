@@ -5,7 +5,7 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Member.MemberDao;
+import Member.MemberService;
 import Member.MemberVo;
 import freeboard.FreeBoardService;
 import freeboard.FreeBoardVo;
@@ -32,20 +32,19 @@ public class AddHandler implements Handler {
 		    String id = request.getParameter("id");
 		    String title = request.getParameter("title");
 		    String content = request.getParameter("content");
-		    int mg_num = Integer.parseInt(request.getParameter("mg_num"));
+		   
 
-		    FreeBoardVo freeBoard = new FreeBoardVo(0, id, null, title, content, 0, 0, mg_num);
-		    MemberDao memberDao = new MemberDao();
-		    MemberVo vo = memberDao.SelectById(id);
+		    FreeBoardService fservice = new FreeBoardService();
+		    MemberService mservice = new MemberService();
+		    MemberVo vo = mservice.getById(id);
 		    if (vo.getManagenum() == 1) {
-		        freeBoard.setMg_num(1);
+		       fservice.addFreeBoard( new FreeBoardVo(0, id, null, title, content, 0, 0, 1));
+		    }else {
+		    	 fservice.addFreeBoard( new FreeBoardVo(0, id, null, title, content, 0, 0, 0));
 		    }
 
-		    FreeBoardService service = new FreeBoardService();
-		    service.addFreeBoard(freeBoard);
-
-		    FreeBoardVo vo = service.page();
-		    int fb_num = vo.getFb_num();
+		    FreeBoardVo fvo = fservice.page();
+		    int fb_num = fvo.getFb_num();
 		    System.out.println(fb_num);
 
 		    view = "/freeboard/fb_detail.do?fb_num=" + fb_num;
