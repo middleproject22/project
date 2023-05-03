@@ -116,6 +116,7 @@
 	</nav>
 	<div style="width: 1000px; margin: 0 auto;">
 		<div class="container text-left">
+		<div style="margin-top: 60px; margin-bottom: 60px">
 			<div class="row">
 				<table class="table">
 					<thead
@@ -152,7 +153,7 @@
 			</div>
 			<div class="d-md-flex justify-content-md-end" id ="res" style="text-align: center;"> 추천 : ${likes }</div>
 		</div>
-
+</div>
 	</div>
 
 

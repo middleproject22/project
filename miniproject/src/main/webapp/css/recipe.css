@@ -29,5 +29,14 @@
 	--bs-btn-active-border-color: #00A652;
 }
 
+.ref {
+	color:green;
+	font-size: 240%;
+	text-align: center;
+	padding-top:60px;
+	padding-bottom:70px;
+	font-weight: 1000;
+}
+
 
 
