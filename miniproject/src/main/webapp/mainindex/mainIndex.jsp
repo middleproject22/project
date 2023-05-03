@@ -134,7 +134,7 @@
 		<c:forEach var="flist" items="${ flist}">
 		<tr>
 		
-		<td><a href="#">${flist.title}</a></td>
+		<td><a href="${pageContext.request.contextPath}/freeboard/fb_detail.do?fb_num=${flist.fb_num}">${flist.title}</a></td>
 		<td>${flist.cnt}</td>
 		<td>${flist.likes}</td>
 		</tr>
