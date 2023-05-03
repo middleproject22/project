@@ -38,6 +38,15 @@
 	border-color: green;
 }
 
+.basket_div{
+	width:200px;
+}
+
+.basket{
+	width:90px;
+	height:55px;
+}
+
 .text {
 	width: 300px;
 }

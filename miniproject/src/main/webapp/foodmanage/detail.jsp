@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link
@@ -16,90 +15,92 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/miniproject/css/navoutline.css">
-<link rel="stylesheet" href="/miniproject/css/foodmanage_list.css">
-
-
+<link rel="stylesheet" href="/miniproject/css/foodmanage_detail.css">
+<title>Document</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="text/javascript">
-	let param =""; 
-window.onload= function (){
-	a("iii");		
-	select();		
-}		
 
-function a(el){		
-		param = el;
-	}
+	function expiredateselect(el){
 
-function select() {	
-	const xhttp = new XMLHttpRequest();
-				
-				
-	xhttp.onload= function(){
-		let val = xhttp.responseText;
-		let arr = JSON.parse(val);
-		let html = '';
-		for(let obj of arr){
-			html += "<span id='spanid' class='aa' id='"+obj.ig_name +"'" ;
-			html += " onclick=\"sele('" + obj.ig_name + "')\">";
-			html += "<img class='imgingredient' src ='../ingredientimg/"+obj.ig_path+"'>";
-			html += obj.ig_name ;
-			html += "</span>";
-		}										
-		let igname = document.getElementById("igname");
-		igname.innerHTML = html ;	
-	}				
-		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/select.do?name="+param);
-					
-	xhttp.send();	
-}			
-			
-function searing() {	
-				
-	const xhttp = new XMLHttpRequest();
-				
-				
-	xhttp.onload= function(){
-		let val = xhttp.responseText;
-		let arr = JSON.parse(val);
-		let html = '';
-		for(let obj of arr){
-			html += "<span class ='aa' id='"+obj.ig_name +"'" ;
-			html += " onclick=\"sele('" + obj.ig_name + "')\">";
-			html += "<img class='imgingredient' src ='/miniproject/ingredientimg/"+obj.ig_path+"'>";
-			html += obj.ig_name ;
-			html += "</span>";
-		}			
-		let igname = document.getElementById("igname");
-		igname.innerHTML = html ;	
-	}			
-	param = document.getElementById("searchIng").value;
+		let selectdate = new Date(el.value);
+		let sysdate = new Date();
 	
-	document.getElementById("searchIng").value = '';
-	xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/search.do?name="+param);
-	xhttp.send();	
-}	
-
-function sele(ingredient){
-	const xhttp = new XMLHttpRequest();
-	xhttp.onload= function(){
-		let val = xhttp.responseText;
-		let arr = JSON.parse(val);
-		let html = '';
-		for(let obj of arr){
-			html +=" " + obj.ingredient;
-		}		
-		let textingredient = document.getElementById("textingredient");
-		textingredient.value += html;
-	}
-		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/temp.do?ingredient="+ingredient);
-		xhttp.send();
-}		
+			
+		if( selectdate < sysdate ){
+			Swal.fire({
+			 	   title: '날짜 선택 실패!',
+			 	   text: '유효하지 않은 날짜입니다.',
+			 	   icon: 'error',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	})
+			
+			el.valueAsDate = new Date();
+		}
 		
+	}
+	
+	function alram(){
+		let check = document.getElementById("text_ing");
+		let obj = '';
+		let chknum =0
+		let btntype = document.getElementById("addbtn")
+		if(check==null){
+			Swal.fire({
+			 	   title: '등록할 수 없습니다.',
+			 	   text: '식재료를 선택해주세요',
+			 	   icon: 'error',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	})
+		
+				document.getElementById("add").action="${pageContext.request.contextPath }/foodmanage/list.do";	
+				document.getElementById("add").method="GET";	
+			 			
+						
+						
+						
+				}		
+							
+				else{		
+			 				
+			 		let selectdate = document.getElementsByClassName("expiredate");
+// 					alert(selectdate.length);
+// 					alert(selectdate.value);
+// 					alert(chknum);
+							
+					for(i=0;i<selectdate.length;i++){
+// 						alert(selectdate[i].value)
+					if(selectdate[i].value != null){
+									chknum++
+								}
+					}
+//  					alert(chknum)
+ 					if(chknum==selectdate.length){
+						btntype.type = "submit";
+					}
+					
+					else{
+						alert("날짜를 입력하세요")
+						
+					}
+				
+						
+					
+					window.location.href="${pageContext.request.contextPath }/foodmanage/detail.do"	
+					
+					}
+
+			 	}
+	
+
 </script>
 </head>
 <body>
-<nav class="navbar bgc shadow-lg ">
+	<nav class="navbar bgc shadow-lg ">
 		<div class="container">
 			<div class="col col-md-3 text-start location">
 				<button class="navbar-toggler outline" type="button"
@@ -122,13 +123,13 @@ function sele(ingredient){
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+								<li><a class="dropdown-item" href=>식품등록</a></li>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
 										전체 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-							href="#" role="button" aria-expanded="false">리시피</a>
+							href="#" role="button" aria-expanded="false">레시피</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
@@ -190,80 +191,67 @@ function sele(ingredient){
 	</nav>
 	
 	
+
+<div class="contentsize">
 	
-	<div>
-	
-<!-- 	<img src ="/miniproject/categories/ " -->
-	
-	</div>
-	
-	
-<div class="body_container"> 
+		<div class="p-8"></div>
 
-	<div class="empty_div">
-	</div>
-	
-	
-	
-
-<div class="category-container">
-
-
-
-
-  <div class="category-row">
-   <div class="category-item">   
-      <img src="../categoryimg/all.png" onclick='a("iii");select();'>
-    </div> 
-<c:forEach var="vo" items="${list}">
-
-    <div class="category-item">   
-      <img src="../categoryimg/${vo.cat_name}.png" onclick='a("${vo.cat_name}");select();'>
-        </div> 
-    
-    
- 	
-</c:forEach>
-    </div>
-
-
+	<div class="container text-center">
+	<div class="name">
+		
 <div class="empty_div">
 </div>
+		<div class="row">
 
-<div class="ingredient_search">
-	<form id="ff">
-	<div class="form-floating mb-3">
-			<div class="ingredient_search_bt">
-  		<input type="text" id="searchIng" class="form-control" autocomplete="off">
-		<button type="button" class="btn btn-success" onclick="searing()">검색</button>
+			<div class="col">
+				<h4>이름</h4>
+			</div>
+			<div class="col-2">
+				<h4>유통기한</h4>
+			</div>
+			<div class="col">
+				<h4>메모</h4>
+			</div>
+			<div class="col">
+				<h4>삭제</h4>
 			</div>
 		</div>
-	</form>
-</div>	
+	</div>
+	</div>
+	
+	<hr class="line">
 
 
-<div class="ingredient">
-		<div id="igname" class="overflow-auto">
+
+
+	<form id="add" action= "${pageContext.request.contextPath}/foodmanage/add.do" method="post">
+		<div class="container text-center ">
+	<c:forEach var="vo" items="${list }">
+		<div class ="row justify-content-md-center margin">
+			<div class="col">
+				<h6><input type="text" id="text_ing" name="ing" class="form-control" value="${vo.ingredient}"></h6>
+			</div>
+			<div class="col-2">
+				<h6><input type="date" id="datecheck" name="expiredate" class="expiredate form-control" onchange="expiredateselect(this)"></h6>
+			</div>
+			 <div class="col">
+                 <h6><input type="text" id="memo" name="content" class="content_memo form-control" autocomplete="off"></h6>
+             </div>
+			<div class="col">
+			<button type="button" id="delete" class="btn btn-outline-danger" onclick='location.href="${pageContext.request.contextPath}/foodmanage/delete.do?num=${vo.temp_num}"'>삭제</button>
+			</div>
+			</div>	
+			<hr class="line">
+	</c:forEach>
 		</div>
-</div>
-
-<div class="empty_div">
-</div>
 	
-	
-<div class="addingredient">
-	<div class="addingredient_bt">
-		<input type="text" id="textingredient" class="form-control">
-		<button type="button" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/foodmanage/detail.do'">등록</button>
+	<div id="align_btn" class="submitbtn">
+        <div class="form-floating mb-3">
+		  		<input type="button" id="addbtn" class="btn btn-success" value="등록" onclick='alram()'>
+        </div>
 	</div>
+</form>
 </div>
-
-<div class="emptydiv">
-</div>
-
-</div>
-	</div>
-
 
 
 <script
