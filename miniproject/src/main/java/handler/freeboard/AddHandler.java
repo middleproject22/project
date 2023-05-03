@@ -31,7 +31,7 @@ public class AddHandler implements Handler {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");		
 			FreeBoardService service = new FreeBoardService();
-			service.addFreeBoard(new FreeBoardVo(0, id, null, title, content, 0,0));
+			service.addFreeBoard(new FreeBoardVo(0, id, null, title, content, 0,0,0));
 			request.setAttribute("ck", "ck");
 			FreeBoardVo vo = service.page();
 			int fb_num = vo.getFb_num();

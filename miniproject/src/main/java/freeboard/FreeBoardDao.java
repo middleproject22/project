@@ -25,7 +25,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			if (rs.next()) {
 				return new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7));
+						rs.getInt(6), rs.getInt(7), rs.getInt(8));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,7 +51,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7)));
+						rs.getInt(6), rs.getInt(7), rs.getInt(8)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,7 +71,7 @@ public class FreeBoardDao {
 	public void insert(FreeBoardVo vo) {
 		Connection conn = dbconn.conn();
 
-		String sql = "insert into free_board values(seq_fbnum.nextval, ?, sysdate, ?, ?, ?,?)";
+		String sql = "insert into free_board values(seq_fbnum.nextval, ?, sysdate, ?, ?, ?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -168,7 +168,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();// select 실행
 			if (rs.next()) {
 				return new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7));
+						rs.getInt(6), rs.getInt(7), rs.getInt(8));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -194,7 +194,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7)));
+						rs.getInt(6), rs.getInt(7), rs.getInt(8)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -220,7 +220,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7)));
+						rs.getInt(6), rs.getInt(7), rs.getInt(8)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -267,7 +267,7 @@ public class FreeBoardDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7)));
+						rs.getInt(6), rs.getInt(7), rs.getInt(8)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

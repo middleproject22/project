@@ -10,12 +10,14 @@ public class FreeBoardVo {
 	private String content;
 	private int cnt;
 	private int likes;
+	private int mg_num;
 	
 	public FreeBoardVo() {
 		
 	}
 
-	public FreeBoardVo(int fb_num, String id, Date w_date, String title, String content, int cnt, int likes) {
+	public FreeBoardVo(int fb_num, String id, Date w_date, String title, String content, int cnt, int likes,
+			int mg_num) {
 		this.fb_num = fb_num;
 		this.id = id;
 		this.w_date = w_date;
@@ -23,6 +25,7 @@ public class FreeBoardVo {
 		this.content = content;
 		this.cnt = cnt;
 		this.likes = likes;
+		this.mg_num = mg_num;
 	}
 
 	public int getFb_num() {
@@ -81,11 +84,20 @@ public class FreeBoardVo {
 		this.likes = likes;
 	}
 
+	public int getMg_num() {
+		return mg_num;
+	}
+
+	public void setMg_num(int mg_num) {
+		this.mg_num = mg_num;
+	}
+
 	@Override
 	public String toString() {
 		return "FreeBoardVo [fb_num=" + fb_num + ", id=" + id + ", w_date=" + w_date + ", title=" + title + ", content="
-				+ content + ", cnt=" + cnt + ", likes=" + likes + "]";
+				+ content + ", cnt=" + cnt + ", likes=" + likes + ", mg_num=" + mg_num + "]";
 	}
 
+	
 	
 }
