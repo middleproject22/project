@@ -58,7 +58,6 @@ function searing() {
 				
 	const xhttp = new XMLHttpRequest();
 				
-				
 	xhttp.onload= function(){
 		let val = xhttp.responseText;
 		let arr = JSON.parse(val);
@@ -81,6 +80,9 @@ function searing() {
 }	
 
 function sele(ingredient){
+	
+	document.getElementById("basket_id").src ="../categoryimg/장바구니2.png" ;
+	
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload= function(){
 		let val = xhttp.responseText;
@@ -128,11 +130,11 @@ function sele(ingredient){
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-							href="#" role="button" aria-expanded="false">리시피</a>
+							href="#" role="button" aria-expanded="false">레시피</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
 										픽 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
@@ -161,15 +163,15 @@ function sele(ingredient){
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
 
-					<div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
-					</div>
+					</a></div>	
 					<div class="dropdown myAcc">
 						<button class="btn btn-secondary dropdown-toggle myAcc"
 							type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -190,7 +192,9 @@ function sele(ingredient){
 	</nav>
 	
 	<div class="basket_div">
-	<img src ="../categoryimg/장바구니.png" class="basket">
+	<img src ="../categoryimg/장바구니.png" id="basket_id" class="basket">
+	
+	<span class="basket_span">장바구니</span>
 	</div>
 	
 <div class="body_container"> 

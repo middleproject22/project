@@ -39,12 +39,21 @@
 }
 
 .basket_div{
-	width:200px;
+	display:flex;
+	flex-direction:column;
+	position:fixed;
+	top:260px;
+	right:20px;
+	height:200px;
 }
 
 .basket{
-	width:90px;
+	width:80px;
 	height:55px;
+}
+.basket_span{
+	margin-top:0px;
+	text-align:center;
 }
 
 .text {
@@ -154,7 +163,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: green; /* 스크롤바 색상 */
+/*   background-color: green; 스크롤바 색상 */
   border-radius: 10px; /* 스크롤바 모서리 둥글게 */
 }
 
