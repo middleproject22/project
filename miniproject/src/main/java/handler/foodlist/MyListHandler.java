@@ -22,6 +22,7 @@ public class MyListHandler implements Handler {
 		HttpSession session = request.getSession(false);
 		String id = (String) session.getAttribute("loginId");
 		
+		
 		FoodListService service = new FoodListService();
 		// dday 확인
 		service.checkDate(id);

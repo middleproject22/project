@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -63,7 +65,14 @@
 	<script type="text/javascript">
 		window.onload = function() {
 			if ('${ck}' == "ck") {
-				alert('${msg}')
+				Swal.fire({
+				 	   title: '로그인 불가!',
+				 	   text: '${msg}',
+				 	   icon: 'error',
+					   
+				 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+				 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+				 	})
 			}
 		}
 	</script>

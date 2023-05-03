@@ -7,8 +7,8 @@
 
 <head>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="/miniproject/css/navoutline.css">
-<link href="/miniproject/css/(FoodList)mylist.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/miniproject/css/navoutline.css" type="text/css">
+<link href="/miniproject/css/(FoodList)mylist.css" rel="stylesheet" >
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,14 @@ $(document).ready(function(){
 		
 		if(count>3){
 			$(this).prop("checked",false);
-				alert("3개만 선택 가능합니다.");
+			Swal.fire({
+			 	   title: '선택 불가!',
+			 	   text: '3개까지만 선택이 가능합니다.',
+			 	   icon: 'error',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	})
 		}
 	});
 	$("input:checkbox[name=${vo.ingredient }]").length(function(){
@@ -60,7 +67,7 @@ for(obj of list){
 	 	   icon: 'error',
 		   
 	 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
-	 	   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+	 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
 	 	})
 
 	}else{
@@ -215,6 +222,11 @@ for(obj of list){
 	</div>
 	<hr class="line">
 
+	<div class="emptyalert">
+	<c:if test="${empty list }" >
+	냉장고가 비었습니다. 식품을 추가해주세요.
+	</c:if>
+	</div>
 
 	<!--  for 문으로 리스트 돌리기 -->
 	<form method="post" action="${pageContext.request.contextPath }/recipe/getMat.do">
@@ -243,7 +255,7 @@ for(obj of list){
         <input class="form-check-input inglist" type="checkbox" value="${vo.ingredient }" name="inglist">
      	</c:if>
      	   </div>
-			<!--  카테고리 선택 -->
+			<!--  카테고리 보여줌 -->
 			<div class="col-2">
 				<c:if test="${vo.cat_lnum == 1}">
 						육류,어패류, 달걀, 콩류

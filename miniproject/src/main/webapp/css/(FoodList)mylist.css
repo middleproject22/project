@@ -89,6 +89,7 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
+
 #submitbtn {
 	margin-left: 10px;
 }
@@ -121,4 +122,10 @@
 	height:30px;
 	font-size: 20px;
 	text-align: center;
+}
+
+.emptyalert {
+/* 	align-items: center; */
+	text-align: center;
+	margin-top: 30px;
 }
