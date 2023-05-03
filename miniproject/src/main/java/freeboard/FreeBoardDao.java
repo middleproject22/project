@@ -189,7 +189,7 @@ public class FreeBoardDao {
 	public ArrayList<FreeBoardVo> selectByTitle(String title) {
 		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
 		Connection conn = dbconn.conn();
-		String sql = "SELECT * FROM free_board WHERE title LIKE ? ORDER BY fb_num DESC";
+		String sql = "SELECT * FROM free_board WHERE title LIKE ? AND mg_num = 0 ORDER BY fb_num DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + title + "%");
@@ -215,7 +215,7 @@ public class FreeBoardDao {
 	public ArrayList<FreeBoardVo> selectById(String id) {
 		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
 		Connection conn = dbconn.conn();
-		String sql = "SELECT * FROM free_board WHERE id LIKE ? ORDER BY fb_num DESC";
+		String sql = "SELECT * FROM free_board WHERE id LIKE ? AND mg_num = 0 ORDER BY fb_num DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + id + "%");

@@ -115,25 +115,24 @@
 		</div>
 	</nav>
 	<div class="all-marjin">
-		<div class="row">
-			<div class="fb-title">
-				<h1>글 작 성</h1>
-			</div>
+		<div class="row" style="margin-top: 60px; margin-bottom: 60px">
+			<div class="fb-title">글 작 성</div>
 		</div>
 		<form action="${pageContext.request.contextPath }/freeboard/fb_add.do"
 			method="post">
 			<input type="hidden" name="id" value="${sessionScope.loginId }">
 			<div class="input-group mb-3">
-				<input type="text" name="title" class="form-control"
-					placeholder="제목을 입력해 주세요." aria-label="Recipient's username"
-					aria-describedby="button-addon2" required>
+				<input type="text" name="title" style="border: solid 1px #00A652"
+					class="form-control" placeholder="제목을 입력해 주세요."
+					aria-label="Recipient's username" aria-describedby="button-addon2"
+					required>
 			</div>
 			<div class="input-group mb-3"
 				style="height: 500px; overflow-y: auto;">
 				<textarea name="content" class="form-control"
 					placeholder="글 내용을 입력해 주세요." aria-label="Recipient's username"
-					aria-describedby="button-addon2"
-					style="overflow-y: auto; resize: none" required></textarea>
+					aria-describedby="button-addon2" required
+					style="overflow-y: auto; resize: none; border: solid 1px #00A652"></textarea>
 			</div>
 			<button class="btn btn-success" type="submit" value="저장"
 				id="button-addon2" style="float: right">저장</button>

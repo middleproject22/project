@@ -22,10 +22,10 @@
 	margin-left: 40px;
 	margin-top: 0px;
 	list-style: none;
-	font-size: 80px;
-	color: #00A652;
+	color: green;
+	font-size: 240%;
+	font-weight: 1000;
 	text-align: left;
-	margin-bottom: 60px;
 }
 
 .thead {
