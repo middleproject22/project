@@ -30,6 +30,7 @@ $(document).ready(function(){
 	$("input[type='checkbox']").on("click",function(){
 		let count = $("input:checked[type='checkbox']").length;
 		
+		
 		if(count>3){
 			$(this).prop("checked",false);
 			Swal.fire({
