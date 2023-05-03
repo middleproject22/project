@@ -31,7 +31,7 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-lg bgc shadow-lg">
+	<nav class="navbar navbar-expand-lg bgc ">
 		<div class="container">
 			<div class="col col-md-3 text-start">
 				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
