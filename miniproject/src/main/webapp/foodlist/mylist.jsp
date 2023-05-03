@@ -6,21 +6,23 @@
 <html lang="en">
 
 <head>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="/miniproject/css/navoutline.css" type="text/css">
-<link href="/miniproject/css/(FoodList)mylist.css" rel="stylesheet" >
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>나의 식품 리스트</title>
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="/miniproject/css/(FoodList)mylist.css" rel="stylesheet">
+<link rel="stylesheet" href="/miniproject/css/navoutline.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
 //체크박스 개수 제한
@@ -40,9 +42,9 @@ $(document).ready(function(){
 			 	})
 		}
 	});
-	$("input:checkbox[name=${vo.ingredient }]").length(function(){
-		alert(length);
-	}) 
+// 	$("input:checkbox[name=${vo.ingredient }]").length(function(){
+// 		alert(length);
+// 	}) 
 
 });
 
@@ -83,7 +85,7 @@ for(obj of list){
 
 <body>
 <body>
-	<nav class="navbar py-3 bgc shadow-lg ">
+<nav class="navbar bgc shadow-lg ">
 		<div class="container">
 			<div class="col col-md-3 text-start location">
 				<button class="navbar-toggler outline" type="button"
@@ -106,60 +108,77 @@ for(obj of list){
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#scrollspyHeading3">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodlist/mylist.do">식품
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
 										전체 리스트</a></li>
-
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">레시피</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#scrollspyHeading3">레시피
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
 										픽 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#scrollspyHeading3">자유게시판</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
 							</ul></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/index.jsp"><img class="logo"
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img class="logo"
 						src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
 			<div class="col col-md-3 text_flex">
 				<c:if test="${empty sessionScope.loginId }">
 					<h3 class="text_margine">
-						<a href="#">로그인</a>
+						<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
 					</h3>
 					<h3 class="text_margine">
-						<a href="#">회원가입</a>
+						<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
 					</h3>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
-					<a href="${pageContext.request.contextPath }/member/detail.do"><img
-						src="${sessionScope.img}"
-						class="rounded-circle userimg"></a>
-					<h5>
-						<span class="text_margine"><a
-							href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></span>
-					</h5>
+
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
+					</a></div>	
+					<div class="dropdown myAcc">
+						<button class="btn btn-secondary dropdown-toggle myAcc"
+							type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="${sessionScope.img}" class="rounded-circle userimg">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath}/member/detail.do"><span
+									class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/member/logout.do"><span
+									class="material-symbols-outlined logout"> logout </span> 로그아웃</a></li>
+						</ul>
+					</div>
 				</c:if>
 			</div>
 		</div>
 	</nav>
+
 	
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
 
 <div class="contentsize">
