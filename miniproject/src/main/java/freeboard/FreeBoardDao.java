@@ -79,6 +79,7 @@ public class FreeBoardDao {
 			pstmt.setString(3, vo.getContent());
 			pstmt.setInt(4, vo.getCnt());
 			pstmt.setInt(5, vo.getLikes());
+
 			int num = pstmt.executeUpdate();
 			System.out.println(num + " 줄이 추가되었다");
 		} catch (SQLException e) {
