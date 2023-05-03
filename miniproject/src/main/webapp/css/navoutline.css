@@ -8,7 +8,25 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-} 
+}
+@font-face {
+    font-family: 'ONE-Mobile-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OAGothic-ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/OAGothic-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'YUniverse-B';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_yuniverse@1.0/YUniverse-B.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 *{
 	font-family: 'NanumSquareNeo-Variable';
@@ -38,6 +56,8 @@ a{
 }
 
 .dropdown>a{
+	font-family: ONE-Mobile-Title;
+	font-weight: normal;
     text-decoration: none;
     color: black;
 }
@@ -52,9 +72,13 @@ a{
     padding: 20px;
 }
 .text_margine>a{
+	font-family: 'OAGothic-ExtraBold';
+	font-size: 20px;
 	color:#fff;
 }
 .text_flex>h3>a{
+	font-family: 'OAGothic-ExtraBold';
+	font-size: 20px;
     color: #fff
 }
 
