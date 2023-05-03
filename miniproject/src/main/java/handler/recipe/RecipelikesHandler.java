@@ -11,24 +11,25 @@ import recipe.RecipeBoardService;
 
 public class RecipelikesHandler implements Handler {
 
-	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		int num = Integer.parseInt(request.getParameter("num"));
+		likesService service = new likesService();
+		int likes = service.addlikes(num);
 		HttpSession session = request.getSession(false);
 		String id = (String)session.getAttribute("loginId");
 		System.out.println(num);
-		likesService service = new likesService();
 		RecipeBoardService Rservice = new RecipeBoardService();
 		if (!id.equals(null)) {
 			System.out.println(service.searchIdNum(id, num));
 			if (!service.searchIdNum(id, num)) {
 				service.insert(new likesVo(id, num,0));
 				Rservice.addlike(num);
+				likes = service.addlikes(num);
 			}
 		}		
-		
-		String view = "/recipe/recipe.jsp";
+		System.out.println(likes);
+		String view = "responsebody/"+likes;
 		return view;
 	}
 
