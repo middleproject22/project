@@ -44,7 +44,7 @@ public class FreeBoardDao {
 	// 원글 모두 검색
 	public ArrayList<FreeBoardVo> selectAll() {
 		Connection conn = dbconn.conn();
-		String sql = "select * from free_board order by fb_num desc";
+		String sql = "SELECT * FROM free_board WHERE mg_num = 0 ORDER BY fb_num DESC";
 		ArrayList<FreeBoardVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class FreeBoardDao {
 			pstmt.setString(3, vo.getContent());
 			pstmt.setInt(4, vo.getCnt());
 			pstmt.setInt(5, vo.getLikes());
-
+			pstmt.setInt(6, vo.getMg_num());
 			int num = pstmt.executeUpdate();
 			System.out.println(num + " 줄이 추가되었다");
 		} catch (SQLException e) {
@@ -189,7 +189,7 @@ public class FreeBoardDao {
 	public ArrayList<FreeBoardVo> selectByTitle(String title) {
 		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
 		Connection conn = dbconn.conn();
-		String sql = "select * from free_board where title like ?";
+		String sql = "SELECT * FROM free_board WHERE title LIKE ? ORDER BY fb_num DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + title + "%");
@@ -215,7 +215,7 @@ public class FreeBoardDao {
 	public ArrayList<FreeBoardVo> selectById(String id) {
 		ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
 		Connection conn = dbconn.conn();
-		String sql = "select * from free_board where id like ?";
+		String sql = "SELECT * FROM free_board WHERE id LIKE ? ORDER BY fb_num DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + id + "%");
@@ -262,7 +262,32 @@ public class FreeBoardDao {
 	
 	public ArrayList<FreeBoardVo> selectByLikes() {
 		Connection conn = dbconn.conn();
-		String sql = "select * from (select * from free_board order by likes desc) WHERE rownum <=5";
+		String sql = "SELECT * FROM (SELECT * FROM free_board WHERE mg_num = 0 ORDER BY likes DESC)WHERE rownum <= 5";
+		ArrayList<FreeBoardVo> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new FreeBoardVo(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getInt(7), rs.getInt(8)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public ArrayList<FreeBoardVo> selectByMgNum() {
+		Connection conn = dbconn.conn();
+		String sql = "SELECT * FROM (SELECT * FROM free_board WHERE mg_num = 1 ORDER BY fb_num DESC)WHERE rownum <= 3";
 		ArrayList<FreeBoardVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

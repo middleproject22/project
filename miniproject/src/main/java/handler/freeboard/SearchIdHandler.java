@@ -23,6 +23,7 @@ public class SearchIdHandler implements Handler {
 			}
 				response.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");		
+		System.out.println(id);
 		FreeBoardService service = new FreeBoardService();
 		ArrayList<FreeBoardVo> list = service.getById(id);
 		request.setAttribute("list", list);
