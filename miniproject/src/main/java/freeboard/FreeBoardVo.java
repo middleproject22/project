@@ -13,8 +13,8 @@ public class FreeBoardVo {
 	
 	public FreeBoardVo() {
 		
-	}
-
+	}		
+		
 	public FreeBoardVo(int fb_num, String id, Date w_date, String title, String content, int cnt, int likes) {
 		this.fb_num = fb_num;
 		this.id = id;
