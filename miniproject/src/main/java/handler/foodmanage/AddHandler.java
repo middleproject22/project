@@ -48,7 +48,7 @@ public class AddHandler implements Handler {
 		String[] arrdate = request.getParameterValues("expiredate");
 		int ddday = 0; 
 		int amount = 100;
-		String content = request.getParameter("content");
+		String[] arrcontent = request.getParameterValues("content");
 		
 		session.setAttribute("dday", dday);
 		
@@ -57,6 +57,7 @@ public class AddHandler implements Handler {
 			String ingredient = arringredient[i];
 			int cat_num = catservice.getCat_num(ingredient);
 			String date = arrdate[i];
+			String content = arrcontent[i];
 			service.addFood(new FoodManageVo(0,id,ingredient,cat_num,null,null,ddday,amount,content,date));
 		}
 		

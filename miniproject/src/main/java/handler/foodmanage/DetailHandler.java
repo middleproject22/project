@@ -18,7 +18,7 @@ public class DetailHandler implements Handler {
 		ArrayList<TempVo> list = service.getTemp();
 		request.setAttribute("list", list);
 		
-		return "/bang/detail.jsp";
+		return "/foodmanage/detail.jsp";
 	}
 
 }

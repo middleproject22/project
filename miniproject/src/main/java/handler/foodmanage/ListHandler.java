@@ -25,7 +25,7 @@ public class ListHandler implements Handler {
 		
 		
 		
-		return "/bang/list.jsp" ;
+		return "/foodmanage/list.jsp" ;
 	}
 
 }
