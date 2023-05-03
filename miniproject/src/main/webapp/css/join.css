@@ -22,10 +22,15 @@ body {
 }
 .bgc{
 	background-color: #00A652;
+	padding:none;
 }
 .logo{
     width: 227px;
 }
+.navbar{
+	padding : 0;
+} 
+
 .title{
 	
 	margin-top: 60px;

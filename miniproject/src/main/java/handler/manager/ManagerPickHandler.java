@@ -28,6 +28,7 @@ public class ManagerPickHandler implements Handler {
 			ArrayList<RecipeBoardVo> list = rservice.getByMn();
 			request.setAttribute("picklist", list);
 			ArrayList<ManagerPickVo> plist = mservice.getAll();
+			System.out.println(plist);
 			request.setAttribute("plist", plist);
 			view = "/recipe/managerpick.jsp";
 
@@ -52,9 +53,9 @@ public class ManagerPickHandler implements Handler {
 				RecipeBoardVo vo = rservice.SelectByName(name);
 				int seqnum = vo.getSeq_num();
 				
-				mservice.insert(new ManagerPickVo(seqnum,name,imgpath));
+				mservice.insert(new ManagerPickVo(0,seqnum,name,imgpath));
 				
-				view = "redirect:/recipe/managerpick.do";
+				view = "redirect:/managerpick/managerpick.do";
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

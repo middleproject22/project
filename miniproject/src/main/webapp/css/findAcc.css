@@ -18,6 +18,9 @@ a{
 .logo{
     width: 227px;
 }
+.navbar{
+	padding : 0;
+} 
 
 body {
 	

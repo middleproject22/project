@@ -46,7 +46,7 @@ a {
 	height: 267px;
 }
 
-.userpick>img {
+.userpick>a>img {
 	width: 474px;
 	height: 267px;
 	padding: 15px;

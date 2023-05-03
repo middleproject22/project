@@ -1,17 +1,27 @@
 package manager;
 
 public class ManagerPickVo {
+	private int num;
 	private int seqnum;
 	private String name;
 	private String imgpath;
 	
 	public ManagerPickVo() {}
-	
-	public ManagerPickVo(int seqnum, String name, String imgpath) {
+
+	public ManagerPickVo(int num, int seqnum, String name, String imgpath) {
 		super();
+		this.num = num;
 		this.seqnum = seqnum;
 		this.name = name;
 		this.imgpath = imgpath;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public int getSeqnum() {
@@ -40,9 +50,7 @@ public class ManagerPickVo {
 
 	@Override
 	public String toString() {
-		return "ManagerPickVo [seqnum=" + seqnum + ", name=" + name + ", imgpath=" + imgpath + "]";
+		return "ManagerPickVo [num=" + num + ", seqnum=" + seqnum + ", name=" + name + ", imgpath=" + imgpath + "]";
 	}
-	
-	
 	
 }

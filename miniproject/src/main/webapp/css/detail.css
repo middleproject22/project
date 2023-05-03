@@ -16,6 +16,9 @@ a{
     display: flex;
     
 }
+.navbar{
+	padding : 0;
+} 
 
 .location>h3{
     padding-left: 15px;

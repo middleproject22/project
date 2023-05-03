@@ -23,6 +23,9 @@ body {
 	height: 100vh;
 	background-size: cover;
 }
+.navbar{
+	padding : 0;
+} 
 
 body ::before {
 	content: "";

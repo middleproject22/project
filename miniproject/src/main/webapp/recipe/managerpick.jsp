@@ -149,25 +149,32 @@
 	</nav>
 	<main>
 		
-		<div class= row>
 			<div class="card_area">
+		
 			<c:if test="${not empty plist}">
-			<c:forEach var="plist" items="${plist}">
-				<div class="card" style="width: 18rem;">
+			<c:forEach var="plist" items="${plist}" varStatus="status">
+			<c:if test = '${status.index%4 ==0}'>
+			<div class= "row one_line">
+			</c:if>
+				<div class="card card_margine" style="width: 18rem;">
   					<img src="${plist.imgpath }" class="card-img-top" alt="...">
  				 	<div class="card-body">
     				<h5 class="card-title">${plist.name}</h5>
     				</div>
     			</div>
+    		<c:if test = '${status.index%4 ==3}'>
+			</div>
+			</c:if>
 			</c:forEach>
 			</c:if>
 			</div>
-		</div>
 
 	</main>
+	<c:if test="${not empty sessionScope.manager }">
 	<div class= "btn_container">
 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#test">등록</button>
 	</div>
+	</c:if>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

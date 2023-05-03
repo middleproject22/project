@@ -34,7 +34,7 @@ public class JoinHandler implements Handler {
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String pnum = request.getParameter("pnum");
-			String imgpath = null;
+			String imgpath = "/miniproject/userimg/DefaultUser.png";
 			int managenum = 0;	
 			
 			MemberService service = new MemberService();
@@ -42,7 +42,7 @@ public class JoinHandler implements Handler {
 			MemberVo ckvo = service.getByPnum(pnum);
 			if(ckvo == null) {
 			service.Join(vo);
-			view = "redirect:/mainindex/mainIndex.jsp";
+			view = "redirect:/mainindex/mainIndex.do";
 			}else {
 				request.setAttribute("ck", "ck");
 				view = "/member/join.jsp";

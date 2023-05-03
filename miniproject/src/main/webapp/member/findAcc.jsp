@@ -26,7 +26,7 @@ window.onload = function(){
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg py-3 sicky-top bgc shadow-lg">
+<nav class="navbar navbar-expand-lg sicky-top bgc shadow-lg">
 		<div class="container">
 			<div class="col col-md-3 text-start"></div>
 			<div class="col col-md-6 text-center">

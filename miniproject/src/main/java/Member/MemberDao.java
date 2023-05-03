@@ -23,7 +23,7 @@ public class MemberDao {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPwd());
 			pstmt.setString(3, vo.getName());
-			pstmt.setString(4, vo.getPhonenum());
+			pstmt.setString(4, vo.getEmail());
 			pstmt.setString(5, vo.getPhonenum());
 			pstmt.setString(6, vo.getImgpath());
 			pstmt.setInt(7, vo.getManagenum());
