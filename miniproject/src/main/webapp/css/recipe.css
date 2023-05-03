@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+	font-family: 'NanumSquareNeo-Variable';
+}
+
+.recipe_title {
+	margin-top: 0px;
+	list-style: none;
+	font-size: 32px;
+	color:#00A652;
+	text-align: left;
+	margin-bottom: 60px;
+}
+
+.recipe_downtoggle{
+	font-size:12px;
+	--bs-btn-color: #00A652
+	--bs-btn-hover-bg: none ;
+	--bs-btn-hover-color:#fff;
+	--bs-btn-active-bg: #fff;
+	--bs-btn-active-color:#000;
+	--bs-btn-active-border-color: #00A652;
+}
+
+
+
