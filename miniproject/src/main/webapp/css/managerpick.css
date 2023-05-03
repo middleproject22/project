@@ -2,6 +2,40 @@
 main{
 	margin-left: 10%;
 	margin-right: 10%;
-	
-	
+	margin-top:  20px;
+	height: 720px;
 }
+
+.btn_container{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+*{
+	box-sizing: unset;
+}
+
+
+.filebox label {
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 20px;
+}
+	
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.height {
+  height: auto;
+  border-radius: 0; 
+}
+

@@ -326,4 +326,47 @@ public class RecipeBoardDao {
 	      }
 	      return vo;
 	   }	
+	
+	public ArrayList<RecipeBoardVo> SelectFromMp() {
+	      Connection conn = dbconn.conn();;
+	      ArrayList<RecipeBoardVo> list = new ArrayList<RecipeBoardVo>();
+	      String sql = "select seq_num, name from recipeboard where mp = 1";
+	      try {
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         ResultSet rs = pstmt.executeQuery();// select 실행
+	         while (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+	            list.add( new RecipeBoardVo(rs.getInt(1), rs.getString(2)));
+	         } 
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      return list;
+	      
+	      
+	   }
+	public RecipeBoardVo SelectByName(String name) {
+	      Connection conn = dbconn.conn();
+	     RecipeBoardVo vo=new RecipeBoardVo();
+	      String sql = "select seq_num, name, cnt, likes from recipeboard where name = ?";
+	      try {
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, name);
+	         ResultSet rs = pstmt.executeQuery();// select 실행
+	         if (rs.next()) {// 첫 줄로 이동하여 데이터 있는지 확인
+	           vo = new RecipeBoardVo(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+	         } 
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            conn.close();
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	      }
+	      return vo;
+	   }	
 }

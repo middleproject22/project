@@ -32,6 +32,11 @@ public class RecipeBoardVo {
 		this.likes = likes;
 		this.mp = mp;
 	}
+	public RecipeBoardVo(int seq_num, String name) {
+	      super();
+	      this.seq_num = seq_num;
+	      this.name = name;
+	   }
 
 	
 	public int getSeq_num() {

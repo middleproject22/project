@@ -57,4 +57,11 @@ public class RecipeBoardService {
 	public RecipeBoardVo SelectByNum(int num) {
 	      return dao.SelectByNum(num);
 	   }
+	public RecipeBoardVo SelectByName(String name) {
+		return dao.SelectByName(name);
+	}
+	
+	public ArrayList<RecipeBoardVo> getByMn(){
+		return dao.SelectFromMp();
+	}
 }

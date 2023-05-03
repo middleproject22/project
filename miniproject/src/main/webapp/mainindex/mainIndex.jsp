@@ -46,10 +46,6 @@
 								onclick='checkId(this)'
 								href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
 									전체 리스트</a></li>
-							<li><a class="dropdown-item needlogin"
-								onclick='checkId(this)'
-								href="${pageContext.request.contextPath }/recipelist/mylist.do">냉장고를
-									부탁해</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -58,7 +54,7 @@
 							<li><a class="dropdown-item"
 								href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 									목록</a></li>
-							<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
 									픽 레시피</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
@@ -88,16 +84,16 @@
 					</h5>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
-
-					<div>
+					
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
-					</div>
+					</a></div>					
 					<div class="dropdown myAcc">
 						<button class="btn btn-secondary dropdown-toggle myAcc"
 							type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -139,6 +135,7 @@
 		<h3>자유게시판</h3>
 		<table style="text-align: center;border-bottom: gray solid 1px;width: 100%">
 		<tr style="border-bottom:gray solid 1px "><th>제목</th><th>조회수</th><th>추천수</th></tr>
+		<c:if test="${not empty flist }">
 		<c:forEach var="flist" items="${ flist}">
 		<tr>
 		
@@ -147,6 +144,7 @@
 		<td>${flist.likes}</td>
 		</tr>
 		</c:forEach>
+		</c:if>
 		</table>
 
 		</div>
@@ -154,6 +152,7 @@
 		<h3>인기레시피</h3>
 		<table style="text-align: center;border-bottom: gray solid 1px;width: 100%">
 		<tr style="border-bottom:gray solid 1px "><th>레시피 이름</th><th>조회수</th><th>추천수</th></tr>
+		<c:if test="${not empty rlist }">
 		<c:forEach var="rlist" items="${ rlist}">
 		<tr>
 		
@@ -162,6 +161,7 @@
 		<td>${rlist.likes}</td>
 		</tr>
 		</c:forEach>
+		</c:if>
 		</table>
 		</div>
 		</div>
