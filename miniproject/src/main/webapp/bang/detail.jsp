@@ -23,6 +23,7 @@
 	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 <link rel="stylesheet" href="/miniproject/css/index.css">
 <link rel="stylesheet" href="/miniproject/css/foodmanage_detail.css">
+<link rel="stylesheet" href="/miniproject/css/navoutline.css">
 <title>Document</title>
 <script type="text/javascript">
 function expiredateselect(el){
@@ -39,7 +40,7 @@ function expiredateselect(el){
 	}
 		
 function alram(){
-	
+	alert("알람");
 	let check = document.getElementsByclassName("ingtext").value;
 	
 	for(let obj of check){
@@ -174,7 +175,7 @@ function alram(){
 				<h6><input type="date" id="datecheck" name="expiredate" class="expiredate form-control" onchange="expiredateselect(this)"></h6>
 			</div>
 			 <div class="col">
-                 <h6><input type="text" name="content" class="form-control"></h6>
+                 <h6><input type="text" name="content" class="content_memo form-control"></h6>
              </div>
 			<div class="col">
 			<button type="button" id="delete" class="btn btn-outline-danger" onclick='location.href="${pageContext.request.contextPath}/foodmanage/delete.do?num=${vo.temp_num}"'>삭제</button>
@@ -186,7 +187,7 @@ function alram(){
 	<div class="submitbtn">
         <div class="form-floating mb-3">
         	<div class="submit_btn">
-		  		<input type="submit" id="searchIng" value="등록" class="form-control">
+		  		<input type="submit" id="addbtn" value="등록" class="form-control" onclick='alram()'>
         	</div>
         	</div>
 	</div>
