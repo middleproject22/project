@@ -10,6 +10,8 @@ import freeboard.FreeBoardVo;
 import handler.Handler;
 import likes.likesService;
 import likes.likesVo;
+import manager.ManagerPickService;
+import manager.ManagerPickVo;
 import oracle.net.aso.r;
 import recipe.RecipeBoardService;
 import recipe.RecipeBoardVo;
@@ -28,6 +30,8 @@ public class MainIndexHandler implements Handler {
 		ArrayList<RecipeBoardVo> rlist = new ArrayList<>();
 		FreeBoardService fservice = new FreeBoardService();
 		ArrayList<FreeBoardVo> flist = fservice.getByLikes();
+		ManagerPickService mservice = new ManagerPickService();
+		ArrayList<ManagerPickVo> mlist = mservice.getMainImg();
 		
 		
 		for(int i= 0; i<llist.size();i++) {
@@ -38,6 +42,8 @@ public class MainIndexHandler implements Handler {
 		}
 		request.setAttribute("flist", flist);
 		request.setAttribute("rlist",rlist);
+		request.setAttribute("mlist",mlist);
+		
 		}
 		return view;
 	}

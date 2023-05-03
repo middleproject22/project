@@ -203,9 +203,9 @@
   }
 		
 		function b() {
+			alert("관리자픽 리스트에 추가되었습니다.")
 			const xhttp = new XMLHttpRequest();
 			
-			alert("관리자픽이 되었습니다");
 			//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
 			xhttp.onload = function() {
 

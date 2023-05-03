@@ -117,16 +117,11 @@
 			<div class="col col-md-8 m-auto">
 				<div class="recommandlist"
 					style="display: flex; justify-content: space-evenly; height: 291px;">
+					<c:forEach var="mlist" items="${mlist }">
 					<div class="userpick">
-						<img src="
-					/miniproject/imgs/tofuegg.jpeg">
+						<a href="${pageContext.request.contextPath}/recipe/byName.do?rcpnm=${mlist.name }&num=${mlist.seqnum}"><img src="${mlist.imgpath }"></a>
 					</div>
-					<div class="userpick">
-						<img src="/miniproject/imgs/yeolmu.png">
-					</div>
-					<div class="userpick">
-						<img src="/miniproject/imgs/yeolmu.png">
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

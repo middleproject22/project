@@ -1,14 +1,14 @@
 @charset "UTF-8";
 main{
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: 7%;
+	margin-right: 7%;
 	margin-top:  20px;
 	height: 720px;
 }
 
 .btn_container{
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: 7%;
+	margin-right: 7%;
 }
 
 *{
@@ -37,5 +37,14 @@ main{
 .height {
   height: auto;
   border-radius: 0; 
+}
+
+.one_line{
+	margin-bottom: 10px;
+}
+
+.card_margine{
+	margin-right: 10px;
+	
 }
 

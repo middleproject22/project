@@ -16,6 +16,9 @@ public class ManagerPickService {
 	public ArrayList<ManagerPickVo> getAll(){
 		return dao.selectAll();
 	}
+	public ArrayList<ManagerPickVo> getMainImg(){
+		return dao.selectIndexImg();
+	}
 	public ManagerPickVo getByNum(int seqnum) {
 		return dao.selectByNum(seqnum);
 	}
