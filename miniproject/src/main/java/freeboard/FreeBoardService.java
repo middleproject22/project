@@ -50,4 +50,7 @@ public class FreeBoardService {
 		return dao.selectByLikes();
 	}
 	
+	public ArrayList<FreeBoardVo> getByMgNum(){
+		return dao.selectByMgNum();
+	}
 }

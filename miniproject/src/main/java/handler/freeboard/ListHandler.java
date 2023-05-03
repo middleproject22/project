@@ -17,8 +17,10 @@ public class ListHandler implements Handler {
 		// TODO Auto-generated method stub
 		FreeBoardService service = new FreeBoardService();
 		ArrayList<FreeBoardVo> list = service.getAll();
+		FreeBoardService fservice = new FreeBoardService();
+		ArrayList<FreeBoardVo> flist = fservice.getByMgNum();
 		request.setAttribute("list", list);
-		System.out.println(list);
+		request.setAttribute("flist", flist);
 		return "/freeboard/fb_list.jsp";
 	}
 
