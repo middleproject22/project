@@ -64,11 +64,11 @@ function searing() {
 		let arr = JSON.parse(val);
 		let html = '';
 		for(let obj of arr){
-			html += "<span id='spanid' class ='aa' id='"+obj.ig_name +"'" ;
-			html += " onclick=\"sele('" + obj.ig_name + "')\">";
-			html += "<img class='imgingredient' src ='/miniproject/ingredientimg/"+obj.ig_path+"'>";
-			html += obj.ig_name ;
-			html += "</span>";
+			 html += "<span id='spanid' class='aa' id='"+obj.ig_name +"'" ;
+			  html += " onclick=\"sele('"+obj.ig_name+"'); showcnt();\">";
+			  html += "<img class='imgingredient' src='../ingredientimg/"+obj.ig_path+"'>";
+			  html += obj.ig_name ;
+			  html += "</span>";
 		}			
 		let igname = document.getElementById("igname");
 		igname.innerHTML = html ;	
@@ -103,8 +103,6 @@ function sele(ingredient){
 
 function showcnt(){
 	
-	
-	
 	const xhttp = new XMLHttpRequest();
 
 	xhttp.onload= function(){
@@ -119,7 +117,28 @@ function showcnt(){
 }		
 	
 	
-	
+function checkId(el,num) {
+
+	<c:if test="${empty sessionScope.loginId}">
+	Swal.fire({
+	 	   title:'로그인 실패!',
+	 	   text: '로그인이 필요한 서비스 입니다.',
+	 	   icon: 'error',
+		   
+	 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+	 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+	 	}).then(function() {
+			location.href = "${pageContext.request.contextPath}/member/login.jsp";
+		})
+	</c:if>
+	<c:if test="${not empty sessionScope.loginId}">
+	if(num == 1 ){
+		el.href ="${pageContext.request.contextPath }/foodmanage/list.do"
+	}else if(num == 2){
+		el.href ="${pageContext.request.contextPath}/foodlist/mylist.do"
+	}	
+	</c:if>
+}
 
 
 
@@ -127,7 +146,7 @@ function showcnt(){
 </script>
 </head>
 <body>
-<nav class="navbar bgc shadow-lg ">
+ <nav class="navbar bgc shadow-lg ">
 		<div class="container">
 			<div class="col col-md-3 text-start location">
 				<button class="navbar-toggler outline" type="button"
@@ -135,7 +154,7 @@ function showcnt(){
 					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 					<span class="material-symbols-outlined"> menu </span>
 				</button>
-				<h3>식품 등록</h3>
+				<h3>나의 냉장고</h3>
 			</div>
 			<div class="offcanvas offcanvas-start offwidth" tabindex="-1"
 				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -150,8 +169,8 @@ function showcnt(){
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
+								<li><a class="dropdown-item" onclick='checkId(this,1)'>식품등록</a></li>
+								<li><a class="dropdown-item" onclick='checkId(this,1)'>나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
