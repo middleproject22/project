@@ -23,7 +23,9 @@ public class MyListHandler implements Handler {
 		String id = (String) session.getAttribute("loginId");
 		
 		
+		
 		FoodListService service = new FoodListService();
+		
 		// dday 확인
 		service.checkDate(id);
 		// 리스트 목록 출력
@@ -39,6 +41,11 @@ public class MyListHandler implements Handler {
 			
 		}
 		int count = service.ddayAll(id);
+		int red = service.ddayThree(id);
+		int yellow = service.ddaySeven(id);
+		int green = service.ddayetc(id);
+		int[] dday = {red,yellow,green};
+		session.setAttribute("dday", dday);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("listIng", listIng);

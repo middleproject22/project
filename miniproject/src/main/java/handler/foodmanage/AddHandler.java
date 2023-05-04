@@ -23,6 +23,7 @@ public class AddHandler implements Handler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 		
@@ -37,10 +38,8 @@ public class AddHandler implements Handler {
 		
 		String id = (String)session.getAttribute("loginId");
 		
-		int red = fservice.ddayThree(id);
-		int yellow = fservice.ddaySeven(id);
-		int green = fservice.ddayetc(id);
-		int[] dday = {red,yellow,green};
+		
+
 		
 		
 		String[] arringredient = request.getParameterValues("ing");
@@ -50,7 +49,6 @@ public class AddHandler implements Handler {
 		int amount = 100;
 		String[] arrcontent = request.getParameterValues("content");
 		
-		session.setAttribute("dday", dday);
 		
 		
 		for(int i = 0; i<arringredient.length;i++) {
@@ -60,9 +58,10 @@ public class AddHandler implements Handler {
 			String content = arrcontent[i];
 			service.addFood(new FoodManageVo(0,id,ingredient,cat_num,null,null,ddday,amount,content,date));
 		}
-		
-		
 		tempservice.outByName(id);
+		
+
+		
 		
 		
 		return 	"redirect:/foodlist/mylist.do" ;

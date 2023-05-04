@@ -29,7 +29,10 @@ public class ListHandler implements Handler {
 		request.setAttribute("list", list);
 		TempService service2 = new TempService();
 		ArrayList<TempVo> list2 = service2.getTempByName(id);
+		int num = service2.getCnt(id);
+		
 		request.setAttribute("temp", list2);
+		request.setAttribute("cntnum", num);
 		
 		
 		return "/foodmanage/list.jsp" ;
