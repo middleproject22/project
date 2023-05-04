@@ -42,12 +42,12 @@ function select() {
 		let arr = JSON.parse(val);
 		let html = '';
 		for(let obj of arr){
-			html += "<span id='spanid' class='aa' id='"+obj.ig_name +"'" ;
-			html += " onclick=\"sele('" + obj.ig_name + "')\">";
-			html += "<img class='imgingredient' src ='../ingredientimg/"+obj.ig_path+"'>";
-			html += obj.ig_name ;
-			html += "</span>";
-		}										
+			  html += "<span id='spanid' class='aa' id='"+obj.ig_name +"'" ;
+			  html += " onclick=\"sele('"+obj.ig_name+"'); showcnt();\">";
+			  html += "<img class='imgingredient' src='../ingredientimg/"+obj.ig_path+"'>";
+			  html += obj.ig_name ;
+			  html += "</span>";
+			}										
 		let igname = document.getElementById("igname");
 		igname.innerHTML = html ;	
 	}				
@@ -104,7 +104,23 @@ function sele(ingredient){
 function showcnt(){
 	
 	
-}
+	
+	const xhttp = new XMLHttpRequest();
+
+	xhttp.onload= function(){
+		let val = xhttp.responseText;
+		let html = val-'0'+1;
+		
+		let cntspan = document.getElementById("basket_cnt");
+		cntspan.innerHTML = html;
+	}
+		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/showcnt.do");
+		xhttp.send();
+}		
+	
+	
+	
+
 
 
 		
@@ -119,7 +135,7 @@ function showcnt(){
 					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 					<span class="material-symbols-outlined"> menu </span>
 				</button>
-				<h3>나의 냉장고</h3>
+				<h3>식품 등록</h3>
 			</div>
 			<div class="offcanvas offcanvas-start offwidth" tabindex="-1"
 				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -135,8 +151,7 @@ function showcnt(){
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -144,8 +159,7 @@ function showcnt(){
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
-										픽 레시피</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부 추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -211,7 +225,9 @@ function showcnt(){
 	
 	<span class="basket_span">장바구니</span>
 	<span id="basket_cnt" class="basket_span" >
-	
+	<c:if test="${cntnum!=0}">
+	${cntnum}
+	</c:if>
 	</span>
 	</div>
 	

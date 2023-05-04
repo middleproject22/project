@@ -44,8 +44,7 @@
 	
 	function alram(){
 		let check = document.getElementById("text_ing");
-		let obj = '';
-		let chknum =0
+		let chknum =0;
 		let btntype = document.getElementById("addbtn")
 		if(check==null){
 			Swal.fire({
@@ -68,27 +67,35 @@
 				else{		
 			 				
 			 		let selectdate = document.getElementsByClassName("expiredate");
-// 					alert(selectdate.length);
-// 					alert(selectdate.value);
-// 					alert(chknum);
 							
 					for(i=0;i<selectdate.length;i++){
-// 						alert(selectdate[i].value)
-					if(selectdate[i].value != null){
+					if(selectdate[i].value !=''){
 									chknum++
 								}
 					}
-//  					alert(chknum)
+					
+					//날짜가 다 작성이 되어있는 경우
  					if(chknum==selectdate.length){
 						btntype.type = "submit";
 					}
 					
+					// 날짜의 공백이 하나라도 있는 경우
 					else{
-						alert("날짜를 입력하세요")
+						Swal.fire({
+						 	   title: '날짜 공백 오류',
+						 	   text: '날짜를 입력해주세요',
+						 	   icon: 'error',
+							   
+						 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+						 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+						 	})
 						
-					window.location.href="${pageContext.request.contextPath }/foodmanage/detail.do"	
+						
+						
+						
 					}
-					}
+					
+				}
 
 			 	}
 	
@@ -104,7 +111,7 @@
 					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 					<span class="material-symbols-outlined"> menu </span>
 				</button>
-				<h3>나의 냉장고</h3>
+				<h3>식품 등록</h3>
 			</div>
 			<div class="offcanvas offcanvas-start offwidth" tabindex="-1"
 				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -120,8 +127,7 @@
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -129,8 +135,7 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
-										픽 레시피</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부 추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -220,7 +225,7 @@
 
 
 
-	<form id="add" action= "${pageContext.request.contextPath}/foodmanage/add.do" method="post">
+	<form id="add" action="${pageContext.request.contextPath}/foodmanage/add.do" method="post">
 		<div class="container text-center ">
 	<c:forEach var="vo" items="${list }">
 		<div class ="row justify-content-md-center margin">

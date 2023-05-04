@@ -28,7 +28,6 @@ public class TempDao {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getIngredient());
 			int num = pstmt.executeUpdate();
-			System.out.println(num + "줄이 추가되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -47,7 +46,6 @@ public void deleteByNum(int num) {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			int num2 = pstmt.executeUpdate();
-			System.out.println(num2 + "줄이 삭제되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -68,7 +66,6 @@ public void deleteByNum(int num) {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			int num = pstmt.executeUpdate();
-			System.out.println(num + "줄이 삭제되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -87,7 +84,6 @@ public void deleteByNum(int num) {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
-			System.out.println(num + "줄이 삭제삭제삭제되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -153,7 +149,7 @@ public void deleteByNum(int num) {
 	public int cnt(String id){
 		Connection conn = dbconn.conn();
 		String sql = "select count(*) from temp where id= ? ";
-		int num = 0;
+		int num = 1;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

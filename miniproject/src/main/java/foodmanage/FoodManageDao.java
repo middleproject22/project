@@ -17,10 +17,8 @@ public class FoodManageDao {
 	}
 
 	public void insert(FoodManageVo vo) {
-		System.out.println("dao1");
 		Connection conn = dbconn.conn();
 		String sql = "insert into food_manage values (seq_fmnum.nextval,?,?,?,sysdate,to_date(?, 'yyyy-MM-dd'),null,?,?)";
-		System.out.println("dao2");
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -29,9 +27,7 @@ public class FoodManageDao {
 			pstmt.setString(4, vo.getExpiredate_str());
 			pstmt.setInt(5, vo.getAmount());
 			pstmt.setString(6, vo.getMemo());
-			System.out.println("dao3");
 			int num = pstmt.executeUpdate();
-			System.out.println(num + "줄이 추가되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -52,7 +48,6 @@ public class FoodManageDao {
 			pstmt.setInt(2, vo.getCat_num());
 
 			int num = pstmt.executeUpdate();
-			System.out.println(num + "줄이 수정되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -71,7 +66,6 @@ public class FoodManageDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			int num2 = pstmt.executeUpdate();
-			System.out.println(num2 + "줄이 삭제되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
