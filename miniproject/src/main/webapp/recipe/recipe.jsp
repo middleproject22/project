@@ -209,7 +209,14 @@
   }
 		
 		function b() {
-			alert("관리자픽 리스트에 추가되었습니다.")
+			Swal.fire({
+			 	   title: '냉부 추천 리스트',
+			 	   text: '레시피가 추가되었습니다.',
+			 	   icon: 'success',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	})
 			const xhttp = new XMLHttpRequest();
 			
 			//비동기 요청 응답이 왔을 때 자동 실행될 핸들러 등록
