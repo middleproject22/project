@@ -28,6 +28,12 @@
 <link rel="stylesheet" href="/miniproject/css/index.css">
 <title>Document</title>
 
+<style>
+ body{ 
+ 	height:1000px; 
+ } 
+
+</style>
 </head>
 
 <body>
@@ -42,10 +48,10 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item needlogin"
 								onclick='checkId(this,1)'
-								href="">식품등록</a></li>
+								>식품등록</a></li>
 							<li><a class="dropdown-item needlogin"
 								onclick='checkId(this,2)'
-								href="">나의
+								>나의
 									식품 리스트</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
@@ -128,7 +134,7 @@
 					style="display: flex; justify-content: space-evenly; height: 291px;">
 					<c:forEach var="mlist" items="${mlist }">
 						<div class="userpick">
-							<a href="${pageCsontext.request.contextPath}/recipe/byName.do?rcpnm=${mlist.name }&num=${mlist.seqnum}"><img
+							<a href="${pageContext.request.contextPath}/recipe/byName.do?rcpnm=${mlist.name}&num=${mlist.seqnum}"><img
 								src="${mlist.imgpath }"></a>
 						</div>
 					</c:forEach>
