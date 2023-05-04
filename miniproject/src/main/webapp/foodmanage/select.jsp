@@ -11,6 +11,7 @@
 
 <c:forEach var="vo" items="${list}">
 <a href="">${vo.}</a>
+select
 </c:forEach>
 
 
