@@ -5,6 +5,7 @@
 <html>
 
 <head>
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,12 +41,12 @@
 						href="#" role="button" aria-expanded="false">나의 냉장고</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item needlogin"
-								onclick='checkId(this)'
-								href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+								onclick='checkId(this,1)'
+								href="">식품등록</a></li>
 							<li><a class="dropdown-item needlogin"
-								onclick='checkId(this)'
-								href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-									전체 리스트</a></li>
+								onclick='checkId(this,2)'
+								href="">나의
+									식품 리스트</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -54,8 +55,9 @@
 							<li><a class="dropdown-item"
 								href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 									목록</a></li>
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
-									픽 레시피</a></li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부
+									추천 레시피</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -68,7 +70,8 @@
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img
+					<a
+						href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img
 						class="logo" src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
@@ -84,16 +87,22 @@
 					</h5>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
-					
-					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
-					</a></div>
-					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
-					</a></div>
-					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
-					</a></div>					
+
+					<div>
+						<a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+							<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
+						</a>
+					</div>
+					<div>
+						<a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+							<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
+						</a>
+					</div>
+					<div>
+						<a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+							<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
+						</a>
+					</div>
 					<div class="dropdown myAcc">
 						<button class="btn btn-secondary dropdown-toggle myAcc"
 							type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -118,47 +127,58 @@
 				<div class="recommandlist"
 					style="display: flex; justify-content: space-evenly; height: 291px;">
 					<c:forEach var="mlist" items="${mlist }">
-					<div class="userpick">
-						<a href="${pageContext.request.contextPath}/recipe/byName.do?rcpnm=${mlist.name }&num=${mlist.seqnum}"><img src="${mlist.imgpath }"></a>
-					</div>
+						<div class="userpick">
+							<a href="${pageCsontext.request.contextPath}/recipe/byName.do?rcpnm=${mlist.name }&num=${mlist.seqnum}"><img
+								src="${mlist.imgpath }"></a>
+						</div>
 					</c:forEach>
 				</div>
 			</div>
 		</div>
 		<div class="row justify-content-md-center">
-		<div class="col col-md-4 m-2">
-		<h3>자유게시판</h3>
-		<table style="text-align: center;border-bottom: gray solid 1px;width: 100%">
-		<tr style="border-bottom:gray solid 1px "><th>제목</th><th>조회수</th><th>추천수</th></tr>
-		<c:if test="${not empty flist }">
-		<c:forEach var="flist" items="${ flist}">
-		<tr>
-		
-		<td><a href="${pageContext.request.contextPath}/freeboard/fb_detail.do?fb_num=${flist.fb_num}">${flist.title}</a></td>
-		<td>${flist.cnt}</td>
-		<td>${flist.likes}</td>
-		</tr>
-		</c:forEach>
-		</c:if>
-		</table>
+			<div class="col col-md-4 m-2">
+				<h3 style="margin-bottom: 18px">자유게시판</h3>
+				<table
+					style="text-align: center; border-bottom: black solid 2px; width: 100%; margin-top:10px; ">
+					<tr style="border-bottom: black solid 2px">
+						<th>제목</th>
+						<th>조회수</th>
+						<th>추천수</th>
+					</tr>
+					<c:if test="${not empty flist }">
+						<c:forEach var="flist" items="${ flist}">
+							<tr style="border-bottom: 1px solid #9e9e9e;">
+								<td><a
+									href="${pageContext.request.contextPath}/freeboard/fb_detail.do?fb_num=${flist.fb_num}">${flist.title}</a></td>
+								<td>${flist.cnt}</td>
+								<td>${flist.likes}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</table>
 
-		</div>
-		<div class="col col-md-4 m-2"">
-		<h3>인기레시피</h3>
-		<table style="text-align: center;border-bottom: gray solid 1px;width: 100%">
-		<tr style="border-bottom:gray solid 1px "><th>레시피 이름</th><th>조회수</th><th>추천수</th></tr>
-		<c:if test="${not empty rlist }">
-		<c:forEach var="rlist" items="${ rlist}">
-		<tr>
-		
-		<td><a href="${pageContext.request.contextPath }/recipe/byName.do?rcpnm=${rlist.name }&num=${rlist.seq_num}">${rlist.name}</a></td>
-		<td>${rlist.cnt}</td>
-		<td>${rlist.likes}</td>
-		</tr>
-		</c:forEach>
-		</c:if>
-		</table>
-		</div>
+			</div>
+			<div class="col col-md-4 m-2"">
+				<h3 style="margin-bottom: 18px">인기레시피</h3>
+				<table
+					style="text-align: center; border-bottom: black solid 2px; width: 100%;">
+					<tr style="border-bottom: black solid 2px">
+						<th>레시피 이름</th>
+						<th>조회수</th>
+						<th>추천수</th>
+					</tr>
+					<c:if test="${not empty rlist }">
+						<c:forEach var="rlist" items="${ rlist}">
+							<tr style="border-bottom: 1px solid #9e9e9e;">
+								<td><a
+									href="${pageContext.request.contextPath }/recipe/byName.do?rcpnm=${rlist.name }&num=${rlist.seq_num}">${rlist.name}</a></td>
+								<td>${rlist.cnt}</td>
+								<td>${rlist.likes}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</table>
+			</div>
 		</div>
 	</div>
 
@@ -183,15 +203,30 @@
 			variableWidth : true
 		});
 
-		function checkId(el) {
+		function checkId(el,num) {
 
 			<c:if test="${empty sessionScope.loginId}">
-			alert("로그인이 필요한 서비스입니다.");
-			el.href = "${pageContext.request.contextPath}/member/login.do";
-
+			Swal.fire({
+			 	   title:'로그인 실패!',
+			 	   text: '로그인이 필요한 서비스 입니다.',
+			 	   icon: 'error',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	}).then(function() {
+					location.href = "${pageContext.request.contextPath}/member/login.jsp";
+				})
+			</c:if>
+			<c:if test="${not empty sessionScope.loginId}">
+			if(num == 1 ){
+				el.href ="${pageContext.request.contextPath }/foodmanage/list.do"
+			}else if(num == 2){
+				el.href ="${pageContext.request.contextPath}/foodlist/mylist.do"
+			}	
 			</c:if>
 		}
 	</script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

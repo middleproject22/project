@@ -77,37 +77,30 @@
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-							href="#" role="button" aria-expanded="false">리시피</a>
+							href="#" role="button" aria-expanded="false">레시피</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading4">관리자
-										픽 레시피</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부 추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
 							</ul></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a
-						href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img
-						class="logo" src="/miniproject/imgs/logo3.png"></a>
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img class="logo"
+						src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
 			<div class="col col-md-3 text_flex">
@@ -121,23 +114,24 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
 
-					<div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
-					</div>
-					<div>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
 						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
-					</div>
+					</a></div>	
 					<div class="dropdown myAcc">
 						<button class="btn btn-secondary dropdown-toggle myAcc"
 							type="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<img src="${sessionScope.img}" class="rounded-circle userimg">
 						</button>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/member/detail.do">
-							<span class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath}/member/detail.do"><span
+									class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
 							<li><a class="dropdown-item"
 								href="${pageContext.request.contextPath }/member/logout.do"><span
 									class="material-symbols-outlined logout"> logout </span> 로그아웃</a></li>
@@ -156,12 +150,13 @@
 			<c:if test = '${status.index%4 ==0}'>
 			<div class= "row one_line">
 			</c:if>
+				<a href="${pageContext.request.contextPath}/recipe/byName.do?rcpnm=${plist.name }&num=${plist.seqnum}">
 				<div class="card card_margine" style="width: 18rem;">
   					<img src="${plist.imgpath }" class="card-img-top" alt="...">
  				 	<div class="card-body">
     				<h5 class="card-title">${plist.name}</h5>
     				</div>
-    			</div>
+    			</div></a>
     		<c:if test = '${status.index%4 ==3}'>
 			</div>
 			</c:if>
