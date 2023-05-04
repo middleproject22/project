@@ -77,8 +77,8 @@
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
+								<li><a class="dropdown-item" onclick='checkId(this,1)'>식품등록</a></li>
+								<li><a class="dropdown-item" onclick='checkId(this,1)'>나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -141,6 +141,8 @@
 			</div>
 		</div>
 	</nav>
+	
+	
 	<main>
 		
 			<div class="card_area">
@@ -150,13 +152,13 @@
 			<c:if test = '${status.index%4 ==0}'>
 			<div class= "row one_line">
 			</c:if>
-				<a href="${pageContext.request.contextPath}/recipe/byName.do?rcpnm=${plist.name }&num=${plist.seqnum}">
 				<div class="card card_margine" style="width: 18rem;">
+				<a href="${pageContext.request.contextPath}/recipe/byName.do?rcpnm=${plist.name }&num=${plist.seqnum}">
   					<img src="${plist.imgpath }" class="card-img-top" alt="...">
  				 	<div class="card-body">
     				<h5 class="card-title">${plist.name}</h5>
     				</div>
-    			</div></a>
+    			</a></div>
     		<c:if test = '${status.index%4 ==3}'>
 			</div>
 			</c:if>
@@ -197,6 +199,29 @@
 		           reader.readAsDataURL(input.files[0]);
 		       }
 		   }
+		
+		function checkId(el,num) {
+
+			<c:if test="${empty sessionScope.loginId}">
+			Swal.fire({
+			 	   title:'로그인 실패!',
+			 	   text: '로그인이 필요한 서비스 입니다.',
+			 	   icon: 'error',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	}).then(function() {
+					location.href = "${pageContext.request.contextPath}/member/login.jsp";
+				})
+			</c:if>
+			<c:if test="${not empty sessionScope.loginId}">
+			if(num == 1 ){
+				el.href ="${pageContext.request.contextPath }/foodmanage/list.do"
+			}else if(num == 2){
+				el.href ="${pageContext.request.contextPath}/foodlist/mylist.do"
+			}	
+			</c:if>
+		}
 		
 	</script>
 
