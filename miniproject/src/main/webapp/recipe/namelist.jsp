@@ -22,7 +22,7 @@
 
 </head>
 
-	<body>
+<body>
 	<nav class="navbar bgc shadow-lg ">
 		<div class="container">
 			<div class="col col-md-3 text-start location">
@@ -47,8 +47,7 @@
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -56,8 +55,7 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
-										픽 레시피</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부 추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -112,45 +110,6 @@
 			</div>
 		</div>
 	</nav>
-			</div>
-			<div class="col col-md-3 text_flex">
-				<c:if test="${empty sessionScope.loginId }">
-					<h3 class="text_margine">
-						<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
-					</h3>
-					<h3 class="text_margine">
-						<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
-					</h3>
-				</c:if>
-				<c:if test="${not empty sessionScope.loginId }">
-
-					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
-					</a></div>
-					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
-					</a></div>
-					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
-					</a></div>	
-					<div class="dropdown myAcc">
-						<button class="btn btn-secondary dropdown-toggle myAcc"
-							type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="${sessionScope.img}" class="rounded-circle userimg">
-						</button>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item"
-								href="${pageContext.request.contextPath}/member/detail.do"><span
-									class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
-							<li><a class="dropdown-item"
-								href="${pageContext.request.contextPath }/member/logout.do"><span
-									class="material-symbols-outlined logout"> logout </span> 로그아웃</a></li>
-						</ul>
-					</div>
-				</c:if>
-			</div>
-		</div>
-	</nav>
 	<div style="width: 1000px; margin: 0 auto;">
 		<div class="container text-center">
 			<div class="row">
@@ -161,15 +120,15 @@
 					<div style="float: right">
 						<div style="display: flex">
 							<div class="col-sm2 ">
-							<form id="f1" action="${pageContext.request.contextPath }/recipe/getName.do" method="post">
+							<form id="f1" action="${pageContext.request.contextPath }/recipe/getName.do" method="get">
 							<div class="btn-group btn-outline-primary" role="group" aria-label="Basic outlined example">
 								<div style="display: flex; padding-top:60px">
-   									 <button type="button" class="btn dropdown-toggle recipe_downtoggle btn-outline-success" id="selecttype" data-bs-toggle="dropdown" aria-expanded="false">제목 검색</button>
+   									 <button type="button" class="btn dropdown-toggle recipe_downtoggle btn-outline-success" style="border: 2px solid green;" id="selecttype" data-bs-toggle="dropdown" aria-expanded="false">제목 검색</button>
    									 <ul class="dropdown-menu">
     									 <li><a href ="#" onclick ="chageLangSelect(1)" class="dropdown-item">제목으로 검색</a></li>
      									 <li><a href ="#" onclick ="chageLangSelect(2)" class="dropdown-item">재료명로 검색</a></li>
     								</ul>
-									<input type="text" class="form-control "  name="rcp" id="input-field" placeholder="제목 입력"> 
+									<input type="text" class="form-control "  name="rcp" id="input-field" placeholder="제목 입력"  autocomplete="off" style="outline:none"> 
 									<input type="submit" class="btn btn-success" value="검색">
 								</div>
 							</div>
@@ -185,10 +144,6 @@
 			<table class="table">
 				<thead
 					style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652;">
-					<c:if test="${empty list }">
-  							잘못된 검색입니다
-						</c:if>
-					<c:if test="${not empty list }">
 					<tr>
 						<th scope="col" style="width: 20%; text-align: center;">번호</th>
 						<th scope="col" style="width: 40%; text-align: center;">제목</th>
@@ -197,7 +152,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="vo" items="${list }">	
+					<c:forEach var="vo" items="${list }">
+						
 						<tr>
 							<th scope="col" style="text-align: center;">${vo.seq_num}</th>
 							<td scope="col" style="text-align: center;"><a
@@ -206,9 +162,13 @@
 							<td scope="col" style="text-align: center;">${vo.likes}</td>
 						</tr>
 					</c:forEach>
-					</c:if>
 				</tbody>
 			</table>
+			<div style="text-align:center">
+			<c:if test="${empty list}">
+				검색된 결과가 없습니다.
+			</c:if>
+			</div>
 		</div>
 	</div>
 
@@ -222,33 +182,31 @@
 
 
 	<script>
-		$(document).ready(function() {
-			$('.recommandlist').slick({
-				slidesToShow : 3,
-				slidesToScroll : 1,
-				autoplay : true,
-				autoplaySpeed : 2000,
-			});
-		})
-		let selecttype = document.getElementById("selecttype");
-		let key =0
-		function chageLangSelect(value) {
+	$(document).ready(function() {
+		$('.recommandlist').slick({
+			slidesToShow : 3,
+			slidesToScroll : 1,
+			autoplay : true,
+			autoplaySpeed : 2000,
+		});
+	})
+	let selecttype = document.getElementById("selecttype");
+	let key =0
+	function chageLangSelect(value) {
 
-			let f = document.getElementById("f1");
-			inputField = document.getElementById("input-field");
-			key = value
-			if(key ==1){
-				f.action = "${pageContext.request.contextPath }/recipe/getName.do";
-				inputField.placeholder = "제목 입력";
-				selecttype.innerHTML= "제목 검색"
-			}else{
-				
-			
-				f.action = "${pageContext.request.contextPath }/recipe/getMat.do";
-				inputField.placeholder = "재료 입력";
-				selecttype.innerHTML= "재료 검색"
-			}
+		let f = document.getElementById("f1");
+		inputField = document.getElementById("input-field");
+		key = value
+		if(key ==1){
+			f.action = "${pageContext.request.contextPath }/recipe/getName.do";
+			inputField.placeholder = "제목 입력";
+			selecttype.innerHTML= "제목 검색"
+		}else{
+			f.action = "${pageContext.request.contextPath }/recipe/getMat.do";
+			inputField.placeholder = "재료 입력";
+			selecttype.innerHTML= "재료 검색"
 		}
+	} 
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

@@ -10,6 +10,17 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
+.form-control {
+	color: green;
+	border: 2px solid green;
+}
+
+.form-control:focus, .form-control:active {
+	box-shadow: none;
+	border-color: green;
+}
+
+
 .recipe_title {
 	margin-top: 0px;
 	list-style: none;
@@ -38,5 +49,7 @@
 	font-weight: 1000;
 }
 
-
+ul.dropdown-menu:focus {
+  outline: none;
+}
 

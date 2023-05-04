@@ -47,8 +47,7 @@
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -56,8 +55,7 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
-										픽 레시피</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부 추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -123,15 +121,15 @@
 					<div style="float: right">
 						<div style="display: flex">
 							<div class="col-sm2 ">
-							<form id="f1" action="${pageContext.request.contextPath }/recipe/getName.do" method="post">
+							<form id="f1" action="${pageContext.request.contextPath }/recipe/getName.do" method="get">
 							<div class="btn-group btn-outline-primary" role="group" aria-label="Basic outlined example">
 								<div style="display: flex; padding-top:60px">
-   									 <button type="button" class="btn dropdown-toggle recipe_downtoggle btn-outline-success" id="selecttype" data-bs-toggle="dropdown" aria-expanded="false">제목 검색</button>
+   									 <button type="button" class="btn dropdown-toggle recipe_downtoggle btn-outline-success" style="border: 2px solid green;" id="selecttype" data-bs-toggle="dropdown" aria-expanded="false">제목 검색</button>
    									 <ul class="dropdown-menu">
     									 <li><a href ="#" onclick ="chageLangSelect(1)" class="dropdown-item">제목으로 검색</a></li>
      									 <li><a href ="#" onclick ="chageLangSelect(2)" class="dropdown-item">재료명로 검색</a></li>
     								</ul>
-									<input type="text" class="form-control "  name="rcp" id="input-field" placeholder="제목 입력"> 
+									<input type="text" class="form-control "  name="rcp" id="input-field" placeholder="제목 입력"  autocomplete="off" style="outline:none"> 
 									<input type="submit" class="btn btn-success" value="검색">
 								</div>
 							</div>
@@ -156,9 +154,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="vo" items="${list }">
-						<c:if test="${null==list }">
-  							"잘못된 검색입니다"
-						</c:if>
+						
 						<tr>
 							<th scope="col" style="text-align: center;">${vo.seq_num}</th>
 							<td scope="col" style="text-align: center;"><a
@@ -169,6 +165,11 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div style="text-align:center">
+			<c:if test="${empty list}">
+				검색된 결과가 없습니다.
+			</c:if>
+			</div>
 		</div>
 	</div>
 
