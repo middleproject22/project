@@ -32,7 +32,6 @@ public class SearchHandler implements Handler {
 
 		String name = request.getParameter("name"); 
 		
-		System.out.println(name);
 		ArrayList<IngredientVo> list = service.getByNames(name); 
 		
 		JSONArray arr = new JSONArray();
