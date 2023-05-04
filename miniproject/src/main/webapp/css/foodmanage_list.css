@@ -71,34 +71,22 @@
 .category-container {
 	width: 100%;
 	max-width: 100%;
-	margin: 0 auto;
+	margin:auto;
 	padding: 20px;
 }
 
 .category-row {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
 	margin: 0px -1%;
 	padding: 1px;
 	height: 80%;
 }
 
-.category-item {
-	display: inline-block;
-	width: 9%;
-	margin: 1%;
-	padding-right: 0%;
-	padding-left: 40px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	max-width: 17%;
-	text-align: center;
-}
+
 
 .category-item img {
-	width: 100%;
-	height: auto;
+	width:100px;
+	height: 100px;
+	align-items:center;
 }
 
 .hidden {
@@ -166,6 +154,11 @@
 /*   background-color: green; 스크롤바 색상 */
   border-radius: 10px; /* 스크롤바 모서리 둥글게 */
 }
+
+.slick-prev:before, .slick-next:before {
+	color: #444444;
+}
+
 
 .addingredient {
 	width: 100%;
