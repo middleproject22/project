@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import categories.CategoriesService;
 import categories.CategoriesVo;
 import handler.Handler;
+import temp.TempService;
+import temp.TempVo;
 
 public class ListHandler implements Handler {
 
@@ -16,13 +19,17 @@ public class ListHandler implements Handler {
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession(false);
+		
+		String id = (String)session.getAttribute("loginId");
 		
 		CategoriesService service = new CategoriesService();
 		
 		ArrayList<CategoriesVo> list =service.getCategories();
 		request.setAttribute("list", list);
-		
-		
+		TempService service2 = new TempService();
+		ArrayList<TempVo> list2 = service2.getTempByName(id);
+		request.setAttribute("temp", list2);
 		
 		
 		return "/foodmanage/list.jsp" ;

@@ -123,6 +123,57 @@ public void deleteByNum(int num) {
 		return list;
 		
 	}
+
+	public ArrayList<TempVo> selectByName(String name){
+		Connection conn = dbconn.conn();
+		String sql = "select * from Temp where id = ?";
+		ArrayList<TempVo> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new TempVo(rs.getInt(1), rs.getString(2), rs.getString(3)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+		
+	}
+	
+
+	public int cnt(String id){
+		Connection conn = dbconn.conn();
+		String sql = "select count(*) from temp where id= ? ";
+		int num = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num =  rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return num;
+		
+	}
 	
 	
 	

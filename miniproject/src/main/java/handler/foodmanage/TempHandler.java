@@ -27,6 +27,9 @@ public class TempHandler implements Handler {
 		TempService service = new TempService();
 		ArrayList<TempVo> list = new ArrayList<>();
 		
+		int num = service.getCnt(id);
+		request.setAttribute("cnt", num);
+		
 		service.add(new TempVo(0,id,ingredient));
 		list.add(new TempVo(0,id,ingredient));
 		
@@ -36,6 +39,7 @@ public class TempHandler implements Handler {
 			obj.put("ingredient", vo1.getIngredient());
 			arr.add(obj);
 		}
+		
 		
 		String txt = arr.toJSONString();
 		
