@@ -28,7 +28,7 @@
 					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 					<span class="material-symbols-outlined"> menu </span>
 				</button>
-				<h3>나의 냉장고</h3>
+				<h3>자유게시판</h3>
 			</div>
 			<div class="offcanvas offcanvas-start offwidth" tabindex="-1"
 				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -46,8 +46,8 @@
 								<li><a class="dropdown-item"
 									href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
 								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-										전체 리스트</a></li>
+									href="${pageContext.request.contextPath}/foodlist/mylist.do">나의
+										식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -57,8 +57,8 @@
 									href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
 								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
-										픽 레시피</a></li>
+									href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부
+										추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -143,14 +143,12 @@
 					</div>
 				</div>
 				<div class="col-1" style="padding-top: 5px">
-					<a
-						href="${pageContext.request.contextPath}/freeboard/fb_add.do?id=${sessionScope.loginId}"
-						onclick='checkId(this)' class="btn btn-success"
-						style="float: right; height: 39px">글작성</a>
+					<a  onclick='checkId(this)'class="btn btn-success"style="float: right; height: 39px">글작성</a>
 				</div>
 			</div>
 		</div>
 		<div class="tableBox">
+
 			<table class="table">
 				<thead
 					style="border-top-width: 3px; border-bottom-width: 3px; border-color: #00A652">
@@ -183,6 +181,7 @@
 						</tr>
 					</c:forEach>
 				</tbody>
+
 				<tbody style="border-bottom: 3px solid #00A652;">
 					<c:forEach var="vo" items="${list }">
 						<tr>
@@ -197,6 +196,11 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div style="text-align: center">
+				<c:if test="${empty list}">
+		검색된 결과가 없습니다
+		</c:if>
+			</div>
 		</div>
 	</div>
 	<br />
@@ -209,6 +213,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 	<script>
@@ -234,9 +239,19 @@
 		function checkId(el) {
 
 			<c:if test="${empty sessionScope.loginId}">
-			alert("로그인이 필요한 서비스입니다.");
-			el.href = "${pageContext.request.contextPath}/member/login.do";
-
+			Swal.fire({
+			 	   title: '글작성 실패!',
+			 	   text: '로그인이 필요한 서비스입니다.',
+			 	   icon: 'error',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	}).then(function(){
+		 		location.href ="${pageContext.request.contextPath}/member/login.do"
+		 		}) 
+		</c:if>
+			<c:if test="${not empty sessionScope.loginId}">
+			el.href="${pageContext.request.contextPath}/freeboard/fb_add.do?id=${sessionScope.loginId}"
 			</c:if>
 		}
 	</script>

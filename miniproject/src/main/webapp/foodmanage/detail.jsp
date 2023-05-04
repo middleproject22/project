@@ -75,6 +75,7 @@
 					}
 					
 					//날짜가 다 작성이 되어있는 경우
+
  					if(chknum==selectdate.length){
 						btntype.type = "submit";
 					}
@@ -96,6 +97,7 @@
 					}
 					
 				}
+
 
 			 	}
 	

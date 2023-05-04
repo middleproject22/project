@@ -6,10 +6,10 @@
 <html>
 
 <head>
-<head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Document</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -20,6 +20,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/miniproject/css/navoutline.css">
 <link rel="stylesheet" href="/miniproject/css/recipe.css">
+
 <title>Document</title>
 
 </head>
@@ -49,8 +50,7 @@
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">식품
-										전체 리스트</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -58,8 +58,7 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">관리자
-										픽 레시피</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부 추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -113,7 +112,7 @@
 				</c:if>
 			</div>
 		</div>
-	</nav>
+	</nav>	
 	<div style="width: 1000px; margin: 0 auto;">
 		<div class="container text-left">
 		<div style="margin-top: 60px; margin-bottom: 60px">
@@ -183,7 +182,14 @@
 		function a(){
     
    		if(${empty sessionScope.loginId}){
-	   			alert("로그인이 필요한 서비스입니다.");
+   			Swal.fire({
+   		 	   title: '추천 실패!',
+   		 	   text: '로그인 후 가능한 서비스입니다.',
+   		 	   icon: 'error',
+   			   
+   		 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+   		 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+   		 	})
   		 }
   		else{
 			const xhttp = new XMLHttpRequest();//
