@@ -68,17 +68,17 @@
 				else{		
 			 				
 			 		let selectdate = document.getElementsByClassName("expiredate");
-					alert(selectdate.length);
-					alert(selectdate.value);
-					alert(chknum);
+// 					alert(selectdate.length);
+// 					alert(selectdate.value);
+// 					alert(chknum);
 							
 					for(i=0;i<selectdate.length;i++){
-						alert(selectdate[i].value)
+// 						alert(selectdate[i].value)
 					if(selectdate[i].value != null){
 									chknum++
 								}
 					}
- 					alert(chknum)
+//  					alert(chknum)
  					if(chknum==selectdate.length){
 						btntype.type = "submit";
 					}
@@ -86,8 +86,8 @@
 					else{
 						alert("날짜를 입력하세요")
 						
-					}
 					window.location.href="${pageContext.request.contextPath }/foodmanage/detail.do"	
+					}
 					}
 
 			 	}
