@@ -109,8 +109,8 @@ for(obj of list){
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/foodlist/mylist.do">나의 식품 리스트</a></li>
+								<li><a class="dropdown-item" onclick='checkId(this,1)'>식품등록</a></li>
+								<li><a class="dropdown-item" onclick='checkId(this,1)'>나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -173,7 +173,6 @@ for(obj of list){
 			</div>
 		</div>
 	</nav>
-
 	
 <script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -359,6 +358,31 @@ for(obj of list){
         </form>
         
 </div>
+
+	<script type="text/javascript">
+	function checkId(el,num) {
+
+		<c:if test="${empty sessionScope.loginId}">
+		Swal.fire({
+		 	   title:'로그인 실패!',
+		 	   text: '로그인이 필요한 서비스 입니다.',
+		 	   icon: 'error',
+			   
+		 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+		 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+		 	}).then(function() {
+				location.href = "${pageContext.request.contextPath}/member/login.jsp";
+			})
+		</c:if>
+		<c:if test="${not empty sessionScope.loginId}">
+		if(num == 1 ){
+			el.href ="${pageContext.request.contextPath }/foodmanage/list.do"
+		}else if(num == 2){
+			el.href ="${pageContext.request.contextPath}/foodlist/mylist.do"
+		}	
+		</c:if>
+	}
+	</script>
 </body>
 
 </html>
