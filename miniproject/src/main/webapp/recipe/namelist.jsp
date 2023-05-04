@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+	<body>
 	<nav class="navbar bgc shadow-lg ">
 		<div class="container">
 			<div class="col col-md-3 text-start location">
@@ -73,6 +73,45 @@
 					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img class="logo"
 						src="/miniproject/imgs/logo3.png"></a>
 				</nav>
+			</div>
+			<div class="col col-md-3 text_flex">
+				<c:if test="${empty sessionScope.loginId }">
+					<h3 class="text_margine">
+						<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
+					</h3>
+					<h3 class="text_margine">
+						<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
+					</h3>
+				</c:if>
+				<c:if test="${not empty sessionScope.loginId }">
+
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
+					</a></div>	
+					<div class="dropdown myAcc">
+						<button class="btn btn-secondary dropdown-toggle myAcc"
+							type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="${sessionScope.img}" class="rounded-circle userimg">
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath}/member/detail.do"><span
+									class="material-symbols-outlined key"> lock </span> 내 정보</a></li>
+							<li><a class="dropdown-item"
+								href="${pageContext.request.contextPath }/member/logout.do"><span
+									class="material-symbols-outlined logout"> logout </span> 로그아웃</a></li>
+						</ul>
+					</div>
+				</c:if>
+			</div>
+		</div>
+	</nav>
 			</div>
 			<div class="col col-md-3 text_flex">
 				<c:if test="${empty sessionScope.loginId }">
