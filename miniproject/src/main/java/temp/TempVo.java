@@ -17,6 +17,8 @@ public class TempVo {
 		this.ingredient = ingredient;
 	}
 
+	
+
 	public int getTemp_num() {
 		return temp_num;
 	}

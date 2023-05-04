@@ -18,6 +18,10 @@ public class TempService {
 		return dao.select();
 		
 	}
+	public ArrayList<TempVo> getTempByName(String name) {
+		return dao.selectByName(name);
+		
+	}
 	public void outByName(String ingredient) {
 		dao.deleteByName(ingredient);
 		
@@ -30,4 +34,8 @@ public class TempService {
 		dao.deleteAll();
 		
 	}
+	public int getCnt(String id) {
+		return dao.cnt(id);
+	}
+	
 }

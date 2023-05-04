@@ -1,11 +1,10 @@
 package handler.foodmanage;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,6 +12,8 @@ import org.json.simple.JSONObject;
 import handler.Handler;
 import ingredient.IngredientService;
 import ingredient.IngredientVo;
+import temp.TempService;
+import temp.TempVo;
 
 public class SelectHandler implements Handler {
 
@@ -23,9 +24,14 @@ public class SelectHandler implements Handler {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		HttpSession session = request.getSession(false);
+		String id = (String)session.getAttribute("loginId");
+		
 		IngredientService service = new IngredientService();
 		String name = request.getParameter("name"); 
 		ArrayList<IngredientVo> list = new ArrayList<>(); 
+		
+	
 		
 		if (!name.equals("iii")) {
 			list = service.getByMid(name);

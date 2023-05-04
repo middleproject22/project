@@ -34,6 +34,8 @@ function a(el){
 function select() {	
 	const xhttp = new XMLHttpRequest();
 				
+
+	
 				
 	xhttp.onload= function(){
 		let val = xhttp.responseText;
@@ -50,8 +52,7 @@ function select() {
 		igname.innerHTML = html ;	
 	}				
 		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/select.do?name="+param);
-					
-	xhttp.send();	
+		xhttp.send();	
 }			
 			
 function searing() {	
@@ -82,6 +83,8 @@ function searing() {
 function sele(ingredient){
 	
 	document.getElementById("basket_id").src ="../categoryimg/장바구니2.png" ;
+	let sspan = document.getElementById("baskep_cnt");
+	
 	
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload= function(){
@@ -97,6 +100,13 @@ function sele(ingredient){
 		xhttp.open("GET","${pageContext.request.contextPath}/foodmanage/temp.do?ingredient="+ingredient);
 		xhttp.send();
 }		
+
+function showcnt(){
+	
+	
+}
+
+
 		
 </script>
 </head>
@@ -190,12 +200,22 @@ function sele(ingredient){
 			</div>
 		</div>
 	</nav>
-	
+
 	<div class="basket_div">
-	<img src ="../categoryimg/장바구니.png" id="basket_id" class="basket">
+	<c:if test="${not empty temp}">
+	<img src ="../categoryimg/장바구니2.png" id="basket_id" class="basket" onclick="window.location.href='${pageContext.request.contextPath}/foodmanage/detail.do'">
+	</c:if>
+	<c:if test="${empty temp}">
+	<img src ="../categoryimg/장바구니.png" id="basket_id" class="basket" onclick="window.location.href='${pageContext.request.contextPath}/foodmanage/detail.do'">
+	</c:if>
 	
 	<span class="basket_span">장바구니</span>
+	<span id="basket_cnt" class="basket_span" >
+	
+	</span>
 	</div>
+	
+	
 	
 <div class="body_container"> 
 
