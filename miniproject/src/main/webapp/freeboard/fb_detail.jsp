@@ -15,6 +15,7 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/miniproject/css/navoutline.css">
 <link rel="stylesheet" href="/miniproject/css/fb_detail.css">
 </head>
@@ -160,11 +161,9 @@
 				<div class="col">
 					<div class="fb-tail" style="text-align: right">
 						<a href="${pageContext.request.contextPath}/freeboard/fb_list.do">목록</a>
-						<c:if test="${sessionScope.loginId == vo.id}">
-							<a
-								href="${pageContext.request.contextPath}/freeboard/fb_edit.do?fb_num=${vo.fb_num}">수정</a>
-							<a
-								href="${pageContext.request.contextPath}/freeboard/fb_delete.do?fb_num=${vo.fb_num}">삭제</a>
+						<c:if test="${sessionScope.loginId == vo.id || mvo.managenum == 1 }">
+							<a href="${pageContext.request.contextPath}/freeboard/fb_edit.do?fb_num=${vo.fb_num}">수정</a>
+							<a href="${pageContext.request.contextPath}/freeboard/fb_delete.do?fb_num=${vo.fb_num}">삭제</a>
 						</c:if>
 					</div>
 				</div>
@@ -245,7 +244,14 @@
     	console.log("el : " + el);
     
    if(${empty sessionScope.loginId}){
-	   alert("로그인이 필요한 서비스입니다.");
+	   Swal.fire({
+	 	   title: '추천 실패!',
+	 	   text: '로그인이 필요한 서비스입니다.',
+	 	   icon: 'error',
+		   
+	 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+	 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+	 	})
    }
    else{
 	   const xhttp = new XMLHttpRequest();//
