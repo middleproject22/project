@@ -28,7 +28,7 @@
 					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 					<span class="material-symbols-outlined"> menu </span>
 				</button>
-				<h3>자유게시판</h3>
+				<h3>나의 냉장고</h3>
 			</div>
 			<div class="offcanvas offcanvas-start offwidth" tabindex="-1"
 				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -43,38 +43,30 @@
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">나의 냉장고</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/foodmanage/list.do">식품등록</a></li>
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath}/foodlist/mylist.do">나의
-										식품 리스트</a></li>
+								<li><a class="dropdown-item" onclick='check(this,1)'>식품등록</a></li>
+								<li><a class="dropdown-item" onclick='check(this,1)'>나의 식품 리스트</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">레시피</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/recipe/AllData.do">레시피
 										목록</a></li>
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부
-										추천 레시피</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/managerpick/managerpick.do">냉부 추천 레시피</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
 							href="#" role="button" aria-expanded="false">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath }/freeboard/fb_list.do">자유게시판</a></li>
 							</ul></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col col-md-6 text-center">
 				<nav class="navbar-brand">
-					<a
-						href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img
-						class="logo" src="/miniproject/imgs/logo3.png"></a>
+					<a href="${pageContext.request.contextPath }/mainindex/mainIndex.do"><img class="logo"
+						src="/miniproject/imgs/logo3.png"></a>
 				</nav>
 			</div>
 			<div class="col col-md-3 text_flex">
@@ -88,21 +80,15 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
 
-					<div>
-						<a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-							<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
-						</a>
-					</div>
-					<div>
-						<a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-							<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
-						</a>
-					</div>
-					<div>
-						<a href="${pageContext.request.contextPath}/foodlist/mylist.do">
-							<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
-						</a>
-					</div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview red rounded-circle">${sessionScope.dday[0]}</span>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview yellow rounded-circle">${sessionScope.dday[1]}</span>
+					</a></div>
+					<div><a href="${pageContext.request.contextPath}/foodlist/mylist.do">
+						<span class="dday_simpleview green rounded-circle">${sessionScope.dday[2]}</span>
+					</a></div>	
 					<div class="dropdown myAcc">
 						<button class="btn btn-secondary dropdown-toggle myAcc"
 							type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -252,6 +238,29 @@
 		</c:if>
 			<c:if test="${not empty sessionScope.loginId}">
 			el.href="${pageContext.request.contextPath}/freeboard/fb_add.do?id=${sessionScope.loginId}"
+			</c:if>
+		}
+		
+		function check(el,num) {
+
+			<c:if test="${empty sessionScope.loginId}">
+			Swal.fire({
+			 	   title:'로그인 실패!',
+			 	   text: '로그인이 필요한 서비스 입니다.',
+			 	   icon: 'error',
+				   
+			 	   confirmButtonColor: '#1A7742', // confrim 버튼 색깔 지정
+			 	   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+			 	}).then(function() {
+					location.href = "${pageContext.request.contextPath}/member/login.jsp";
+				})
+			</c:if>
+			<c:if test="${not empty sessionScope.loginId}">
+			if(num == 1 ){
+				el.href ="${pageContext.request.contextPath }/foodmanage/list.do"
+			}else if(num == 2){
+				el.href ="${pageContext.request.contextPath}/foodlist/mylist.do"
+			}	
 			</c:if>
 		}
 	</script>
