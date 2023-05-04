@@ -45,30 +45,30 @@ public class RecipeMatHandler implements Handler {
 		
 		request.setAttribute("list", list);
 		} 
-//		else {
-//			
-//			String[] mats = request.getParameterValues("inglist");
-//			int len = mats.length;
-//			System.out.println(len);
-//			for (int i=0; i<len; i++) {
-//			    rcpArr[i] = mats[i];
-//			}
-//			
-//			for (int i=len; i<3; i++) {
-//			    rcpArr[i] = "";
-//			}
-//			
-//			String mat1 = rcpArr[0];
-//			String mat2 = rcpArr[1];
-//			String mat3 = rcpArr[2];
-//			
-//			
-//			
-//			RecipeBoardService service = new RecipeBoardService();
-//			ArrayList<RecipeBoardVo> list = service.selectMat(mat1, mat2, mat3);
-//			request.setAttribute("list", list);
-//
-//		}
+		else {
+			
+			String[] mats = request.getParameterValues("inglist");
+			int len = mats.length;
+			System.out.println(len);
+			for (int i=0; i<len; i++) {
+			    rcpArr[i] = mats[i];
+			}
+			
+			for (int i=len; i<3; i++) {
+			    rcpArr[i] = "";
+			}
+			
+			String mat1 = rcpArr[0];
+			String mat2 = rcpArr[1];
+			String mat3 = rcpArr[2];
+			
+			
+			
+			RecipeBoardService service = new RecipeBoardService();
+			ArrayList<RecipeBoardVo> list = service.selectMat(mat1, mat2, mat3);
+			request.setAttribute("list", list);
+
+		}
 		return view;
 	}
 
